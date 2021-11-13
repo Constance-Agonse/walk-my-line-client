@@ -23,6 +23,7 @@ export default function Profile() {
       <section className="card">
         <div>infos du profile</div>
         <JourneyCard/>
+
             <MyLikedJournies />  OR
             <MyOwnJournies />
             <div>

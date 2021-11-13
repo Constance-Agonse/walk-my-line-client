@@ -1,0 +1,47 @@
+/* partie css a supprimer c'etait juste un kiff */
+.buttonHome {
+    background-color: #F6884D;
+    width: 100px;
+    padding : 10px;
+    margin : 10px;
+    border-radius: 10px;
+    border-style: none;
+  }
+  
+  .buttonHome:hover {
+    background-color: whitesmoke;
+    width: 100px;
+    padding : 10px;
+    margin : 10px;
+    border-radius: 10px;
+    border-style: none;
+  }
+  
+  .linkHome{
+    text-decoration: none;
+    color : black;
+    font-weight: bold;
+  }
+  
+  .spacer{
+    aspect-ratio: 900/600;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  
+  .blob-scene-haikei{
+      background-image: url("../../src/img/blob-scene-haikei.svg");
+  }
+  
+  .title{
+    color :whitesmoke;
+  }
+  
+  .homeContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
