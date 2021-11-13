@@ -1,0 +1,19 @@
+#info-pin-global{
+  width: 160px;
+  height: 200px;
+  box-sizing: border-box;
+  background-color: bisque;
+  border-radius: 24px;
+  object-fit: contain;
+  margin-right: 24px;
+}
+
+#info-pin-media img{
+max-height: 120px;
+border-radius: 24px;
+max-width: 160px;
+}
+
+#info-pin-text{
+font-size: 9px;
+}
