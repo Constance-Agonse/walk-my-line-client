@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+// import './JourneyCard.css';
 
 export default function JourneyCard() {
     return (
