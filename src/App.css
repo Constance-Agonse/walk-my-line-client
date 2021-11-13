@@ -104,8 +104,70 @@
 }
 
 
-
-
+.circle{
+  background-color: tomato;
+  border-radius: 100%;
+}
+.test{
+  color: whitesmoke;
+}
 
 
 /* partie css a supprimer c'etait juste un kiff */
+
+/*Partie de test css pour profile*/
+
+.globalContainerJourneyCard{
+  color: white;
+  background-color: #425C59;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.innerBoxContainer{
+  border: 1px solid tomato;
+
+}
+
+/* .tagContainer{
+  max-height: 80px;
+  border : 2px solid tomato;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+} */
+
+/* .tagContainer .item{
+  margin: 10px;
+  padding: 10px;
+  max-width: 50px;
+  border-radius: 25px;
+  background-color: violet;
+  font-weight: bold;  
+  text-align: center;
+} */
+
+
+.tagContainer{
+  max-width: 50vw;
+  /* border : 2px solid tomato; */
+  display: flex;
+  overflow-x: auto;
+}
+
+.tagContainer::-webkit-scrollbar{
+  width : 0;
+}
+
+.tagContainer .item{
+  background-color: tomato; 
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin: 2px 5px;
+  padding: 8px;
+  border-radius: 25px;
+}
+
