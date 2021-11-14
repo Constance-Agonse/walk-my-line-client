@@ -6,6 +6,15 @@
 }
 
 
+:root {
+  --rose: #FCA6A2;
+  --bleu: #0059A6;
+  --beige: #FFECC1;
+  --vert: #00885C;
+  --orange: #F55721;
+  --jaune: #FFBC00;
+}
+
 .App {
   text-align: center;
   box-sizing: border-box;
