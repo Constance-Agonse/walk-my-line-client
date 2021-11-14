@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-// import './JourneyCard.css';
-=======
 import React from 'react'
 import './JourneyCard.css';
 import { useState } from 'react';
@@ -9,7 +5,6 @@ import ReactMapGL, {Marker} from 'react-map-gl';
 import {Favorite} from "@material-ui/icons"
 import {Room} from "@material-ui/icons"
 import {Star} from "@material-ui/icons"
->>>>>>> de4811be997d7b93f3745bff27eb9557461cca5f
 
 export default function JourneyCard() {
     const [viewport, setViewport] = useState({
