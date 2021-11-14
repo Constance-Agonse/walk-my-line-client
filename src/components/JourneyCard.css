@@ -11,7 +11,7 @@
   }
   
   .tagContainer .item{
-    background-color: tomato; 
+    background-color: #F77F00; 
     font-weight: bold;
     color: white;
     text-align: center;
@@ -24,8 +24,8 @@
 
 .globalContainerJourneyCard{
     color: white;
-    background-color: #425C59;
-    border-radius: 25px;
+    /* background-color: #425C59;
+    border-radius: 25px; */
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -33,11 +33,14 @@
   
   .innerBoxContainer{
     /* border: 1px solid tomato; */
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
 
   }
 
   .map-container{
-    margin: 20px;
+    margin: 10px;
   }
 
   .map{

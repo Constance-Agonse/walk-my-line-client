@@ -2,14 +2,14 @@ import React from 'react'
 import './JourneyCard.css';
 import { useState } from 'react';
 import ReactMapGL, {Marker} from 'react-map-gl';
-import {Favorite} from "@material-ui/icons"
+// import {Favorite} from "@material-ui/icons"
 import {Room} from "@material-ui/icons"
-import {Star} from "@material-ui/icons"
+// import {Star} from "@material-ui/icons"
 
 export default function JourneyCard() {
     const [viewport, setViewport] = useState({
-    width: "150px",
-    height: "200px",
+    width: "20vw",
+    height: "15vh",
     latitude: 48.853,
     longitude: 2.3905,
     zoom: 11.5
@@ -25,8 +25,9 @@ export default function JourneyCard() {
                     <li>Public</li>
                 </ul>
             </div>
+
             <div className="innerBoxContainer">
-                <p>arrondissement (précision)</p>
+                <p>arr (précision)</p>
                 <p>France</p>
                 <div className="tagContainer">
                     <span className="item">#Component</span>
@@ -38,6 +39,7 @@ export default function JourneyCard() {
 
                 </div>
             </div>
+            
             <div className="innerBoxContainer map-container">
             <ReactMapGL
                 {...viewport}
