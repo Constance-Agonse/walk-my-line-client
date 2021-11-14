@@ -4,6 +4,9 @@
 }
 
 /* header */
+#user-name{
+    color: #F77F00;
+}
 .profile-characteristic-container{
     /* border: 2px solid tomato; */
     display: flex;

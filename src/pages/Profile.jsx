@@ -16,7 +16,7 @@ export default function Profile() {
       <header className="profile-characteristic-container">
         <div className="container-profile-picture">
           <img className="imgProfile" src="./../../public/toutou.png" alt="profil-picture"/>
-          <p className="user-name"><strong>Croustie</strong></p>
+          <p id="user-name"><strong>Croustie</strong></p>
         </div>
           <div className="sub-container-profile-follower">
             <p className="profile-follower"><strong>5</strong> <br/> journies</p>
