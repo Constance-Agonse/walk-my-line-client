@@ -15,6 +15,8 @@ export default function Journey() {
     longitude: 2.3905,
     zoom: 11.5
   });
+  
+
   return (
     <div id="journey-global">
       <NavBar />
