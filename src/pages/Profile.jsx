@@ -8,14 +8,18 @@ import './Profil.css';
 import {HomeRounded} from "@material-ui/icons"
 import {EditLocationOutlined} from "@material-ui/icons"
 
-
+//LE Profile va être render avec les informations que possède le user.
+// 1 - Trouver comment on avait fait avec le précédent projet pour connecter un mec par default
+// 2 - Comparer comment on fait passer les paramètres
+// 3 - Ecrire les parametres et les faires passer dans JourneyCard
+// 4 - Agencer les différentes informations en fonction de ce qui doit être display
 
 export default function Profile() {
   return (
     <div className="profile-global-container">
       <header className="profile-characteristic-container">
         <div className="container-profile-picture">
-          <img className="imgProfile" src="./../../public/toutou.png" alt="profil-picture"/>
+          <img className="imgProfile" src="./toutou.png" alt="profil-picture"/>
           <p id="user-name"><strong>Croustie</strong></p>
         </div>
           <div className="sub-container-profile-follower">
