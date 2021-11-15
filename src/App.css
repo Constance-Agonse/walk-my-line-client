@@ -1,6 +1,25 @@
+@import './styles/reset.css';
+
+@font-face {
+  font-family: Satoshi;
+  src: url('./fonts/Satoshi-Light.otf');
+}
+
+
+:root {
+  --rose: #FCA6A2;
+  --bleu: #0059A6;
+  --beige: #FFECC1;
+  --vert: #00885C;
+  --orange: #F55721;
+  --jaune: #FFBC00;
+}
+
 .App {
   text-align: center;
   box-sizing: border-box;
+  font-size: 16px;
+  font-family: Satoshi;
 }
 
 .circle{

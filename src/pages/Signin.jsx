@@ -1,33 +1,110 @@
-import React from 'react'
+import React, { useState, useContext } from "react";
+import { Link, Redirect } from "react-router-dom";
+
+// custom tools
+import { useAuth } from "./../auth/UserContext";
+import APIHandler from "../api/APIHandler";
+// import "./../styles/form.css";
+
+
+// export default function Signin(props) {
+//   const [email, setEmail] = useState("admin@foobarbaz.io");
+//   const [password, setPassword] = useState("12345");
+//   const { isLoggedIn, setCurrentUser } = useAuth();
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     try {
+//       const apiRes = await APIHandler.post("/signin", { email, password });
+//       setCurrentUser(apiRes.data.currentUser);
+//     } catch (err) {
+//       setCurrentUser(null);
+//     }
+//   };
+
+//   return isLoggedIn ? (
+//     <Redirect to="/" />
+//   ) : (
+//     <form className="form" onSubmit={handleSubmit}>
+//       <h1 className="title">Signin</h1>
+//       <label className="label" htmlFor="email">
+//         email
+//       </label>
+//       <input
+//         className="input"
+//         id="email"
+//         type="email"
+//         value={email}
+//         onChange={(e) => setEmail(e.target.value)}
+//       />
+//       <label className="label" htmlFor="password">
+//         password
+//       </label>
+//       <input
+//         className="input"
+//         id="password"
+//         type="password"
+//         value={password}
+//         onChange={(e) => setPassword(e.target.value)}
+//       />
+//       <button className="btn">ok</button>
+//       <p className="parag">
+//         No account yet ? please{" "}
+//         <Link to="/signup" className="link">
+//           signup
+//         </Link>
+//       </p>
+//     </form>
+//   );
+// }
+
+
+///ONLY FOR STYLING // attention, reprendre cette  structure en haut (div)
+import './Form.css';
+import { ToggleButtonGroup } from "@mui/material";
+
 
 export default function Signin() {
   return (
-    <div>
-            <h1>Sign IN page</h1>
+    <div className="form-page">
+      <div className="toggle-signinup">
+        <ToggleButtonGroup size="small" {...control}>
+          {children}
+        </ToggleButtonGroup>
+        <ToggleButtonGroup {...control}>{children}</ToggleButtonGroup>
+        <ToggleButtonGroup size="large" {...control}>
+          {children}
+        </ToggleButtonGroup>
+      </div>
+      <form className="form" >
+        <div className="form-block">
+          <label className="label" htmlFor="email">
+            email
+          </label>
+          <input
+            className="input"
+            id="email"
+            type="email"
+          />
         </div>
-    // <React.Fragment>
-    //   <div>
-    //   <div class ="sign-in-bg">
-    //   <div class ="sign-block">
-    //   <div class ="sign-in-center">
-
-    //   <form method="post" action="/auth/signin" class ="form">
-
-    // {/* {{> flashMessage }} */}
-    //   <label for="email">Email: </label>
-    //   <input class ="input-skill-edit" type ="email" id="email" name="email" value="test@email.com">
-    //   <label for="password">Password: </label>
-    //   <input class ="input-skill-edit" type ="password" id="password" name="password" value="12345">
-    //   <button class ="button-action-sign">Sign in!</button>
-    //   </form>
-    //   <p>
-    //   Don't have an account yet ? </p>
-    //   <a class ="sign-in-up-btn sign-up-btn" href="/auth/signup">Sign up</a>
-
-    //   </div>
-    //   </div>
-    //   </div>
-    //   </div>
-    // </React.Fragment>
+        <div className="form-block">
+          <label className="label" htmlFor="password">
+            password
+          </label>
+          <input
+            className="input"
+            id="password"
+            type="password"
+          />
+        </div>
+        <button className="btn">ok</button>
+        <p className="parag">
+          No account yet ? please{" "}
+          <Link to="/signup" className="link">
+            signup
+          </Link>
+        </p>
+      </form>
+    </div>
   )
 }
