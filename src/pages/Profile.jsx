@@ -5,8 +5,9 @@ import MyOwnJournies from './MyOwnJournies';
 import { Link } from 'react-router-dom';
 import JourneyCard from "../components/JourneyCard";
 import './Profil.css';
-import {HomeRounded} from "@material-ui/icons"
-import {EditLocationOutlined} from "@material-ui/icons"
+import {HomeRounded} from "@material-ui/icons";
+import {EditLocationOutlined} from "@material-ui/icons";
+
 
 //LE Profile va être render avec les informations que possède le user.
 // 1 - Trouver comment on avait fait avec le précédent projet pour connecter un mec par default

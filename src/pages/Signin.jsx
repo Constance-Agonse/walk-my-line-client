@@ -61,21 +61,21 @@ import APIHandler from "../api/APIHandler";
 
 ///ONLY FOR STYLING // attention, reprendre cette  structure en haut (div)
 import './Form.css';
-import { ToggleButtonGroup } from "@mui/material";
+// import { ToggleButtonGroup } from "@mui/material";
 
 
 export default function Signin() {
   return (
     <div className="form-page">
-      <div className="toggle-signinup">
-        <ToggleButtonGroup size="small" {...control}>
-          {children}
-        </ToggleButtonGroup>
+      {/* <div className="toggle-signinup">
+        <ToggleButtonGroup size="small" {...control}> */}
+          {/* {children} */}
+        {/* </ToggleButtonGroup>
         <ToggleButtonGroup {...control}>{children}</ToggleButtonGroup>
         <ToggleButtonGroup size="large" {...control}>
           {children}
-        </ToggleButtonGroup>
-      </div>
+        </ToggleButtonGroup> */}
+      {/* </div> */}
       <form className="form" >
         <div className="form-block">
           <label className="label" htmlFor="email">

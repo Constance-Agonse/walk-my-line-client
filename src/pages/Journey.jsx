@@ -4,6 +4,8 @@ import './Journey.css';
 import { useState } from 'react';
 import ReactMapGL, {Marker} from 'react-map-gl';
 import {Room} from "@material-ui/icons";
+import NavBar from '../components/NavBar';
+import Hashtags from "./../components/Hashtags";
 
 export default function Journey() {
   const [viewport, setViewport] = useState({
@@ -15,9 +17,7 @@ export default function Journey() {
   });
   return (
     <div id="journey-global">
-      {/* <div id="">
-        <img src="testcarte.png" id='journey-map-img' alt="test carte" />
-      </div> */}
+      <NavBar />
       <div className="journey-map">
             <ReactMapGL
                 {...viewport}
@@ -40,7 +40,12 @@ export default function Journey() {
 
       <div id="journey-bar">
         <div id="journey-bar-info">
-          <div id="journey-bar-info-title">
+        <div id="journey-bar-info-title">
+        <h2>title A tiny trip to Paris </h2>
+            <h3>By xxxx </h3>
+            
+          </div>
+          <div id="journey-bar-info-location">
             <h2>City</h2>
             <h3>Country</h3>
           </div>
@@ -48,6 +53,13 @@ export default function Journey() {
             <p>X km</p>
             <p>X time, min or h</p>
             <p>X pin</p>
+          </div>
+          <div id="journey-bar-info-hashtags">
+            <Hashtags />
+            <Hashtags />
+            <Hashtags />
+            <Hashtags />
+            <Hashtags />
           </div>
         </div>
         <div id="journey-bar-pins-container">

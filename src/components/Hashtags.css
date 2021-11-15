@@ -1,0 +1,11 @@
+.item{
+  background-color: #F77F00; 
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin: 2px 5px;
+  padding: 8px;
+  border-radius: 24px;
+  display:inline-block;
+  white-space:nowrap;
+}
