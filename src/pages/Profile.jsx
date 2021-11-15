@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from "react-router-dom";
-import MyLikedJournies from './MyLikedJournies';
-import MyOwnJournies from './MyOwnJournies';
+// import MyLikedJournies from './MyLikedJournies';
+// import MyOwnJournies from './MyOwnJournies';
 import { Link } from 'react-router-dom';
 import JourneyCard from "../components/JourneyCard";
 import './Profil.css';
 import {HomeRounded} from "@material-ui/icons";
 import {EditLocationOutlined} from "@material-ui/icons";
+import APIHandler from "./../api/APIHandler";
+
 
 
 //LE Profile va être render avec les informations que possède le user.
@@ -15,12 +17,35 @@ import {EditLocationOutlined} from "@material-ui/icons";
 // 3 - Ecrire les parametres et les faires passer dans JourneyCard
 // 4 - Agencer les différentes informations en fonction de ce qui doit être display
 
+
 export default function Profile() {
+  const [users, setUsers] = useState([]); // i need a state
+  const [userId, setUserId] = useState(null); // so please react
+
+  useEffect(() => {
+    console.log("MOUNTED !!!!");
+    console.log("in effect => same as component did mount");
+    // when the component is attached to the DOM => fetchCats
+    fetchUsers();
+  }, []);
+
+  const fetchUsers = async () => {
+    try {
+      const res = await APIHandler.get("/profile");
+      console.log("api res => ", res);
+      setUsers(res.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const currentUser = users.find((user) => user._id === userId);
+
   return (
     <div className="profile-global-container">
       <header className="profile-characteristic-container">
         <div className="container-profile-picture">
-          <img className="imgProfile" src="./toutou.png" alt="profil-picture"/>
+          <img className="imgProfile" src="./toutou.png" alt="your-profil-picture"/>
           <p id="user-name"><strong>Croustie</strong></p>
         </div>
           <div className="sub-container-profile-follower">

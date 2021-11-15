@@ -1,5 +1,6 @@
 import React from 'react'
 import './ErrorPage.css';
+//THIS PIECE OF CODE IS BORROWED FROM Swarup Kumar Kuila IN CODEPEN 
 
 export default function ErrorPage() {
   
