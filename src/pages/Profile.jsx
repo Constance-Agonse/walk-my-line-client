@@ -5,8 +5,9 @@ import MyOwnJournies from './MyOwnJournies';
 import { Link } from 'react-router-dom';
 import JourneyCard from "../components/JourneyCard";
 import './Profil.css';
-import {HomeRounded} from "@material-ui/icons"
-import {EditLocationOutlined} from "@material-ui/icons"
+import {HomeRounded} from "@material-ui/icons";
+import {EditLocationOutlined} from "@material-ui/icons";
+
 
 
 
