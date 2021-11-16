@@ -5,6 +5,7 @@ import ReactMapGL, {Marker} from 'react-map-gl';
 // import {Favorite} from "@material-ui/icons"
 import {Room} from "@material-ui/icons"
 // import {Star} from "@material-ui/icons"
+import Hashtags from "./Hashtags"
 
 export default function JourneyCard({ journeyData }) {
     const [viewport, setViewport] = useState({
@@ -30,7 +31,7 @@ export default function JourneyCard({ journeyData }) {
                 <p>arr (précision)</p>
                 <p>France</p>
                 <div className="tagContainer">
-                    <span className="item">#Component</span>
+                    <Hashtags />
                     <span className="item">#Component</span>
                     <span className="item">#Component</span>
                     <span className="item">#Component </span>

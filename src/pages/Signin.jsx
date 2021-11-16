@@ -1,9 +1,15 @@
-import React, { useState, useContext } from "react";
-import { Link, Redirect } from "react-router-dom";
+import React from "react";
+// { useState, useContext } 
+
+import { Link, 
+  // Redirect 
+} from "react-router-dom";
 
 // custom tools
-import { useAuth } from "./../auth/UserContext";
-import APIHandler from "../api/APIHandler";
+// import { useAuth } from "./../auth/UserContext";
+// import APIHandler from "../api/APIHandler";
+
+
 // import "./../styles/form.css";
 // import ToggleSignin from "../components/ToggleSignin"
 import './../components/ToggleSignin.css'

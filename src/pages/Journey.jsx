@@ -8,7 +8,7 @@ import NavBar from '../components/NavBar';
 import Hashtags from "./../components/Hashtags";
 import { Link } from 'react-router-dom';
 
-export default function Journey() {
+export default function Journey({ journeyData }) {
   const [viewport, setViewport] = useState({
     width: "100vw",
     height: "65vh",
@@ -53,9 +53,10 @@ export default function Journey() {
             <h3>Country</h3>
           </div>
           <div id="journey-bar-info-text">
-            <p>X km</p>
-            <p>X time, min or h</p>
-            <p>X pin</p>
+            <p>{journeyData.km} km</p>
+            <p>{journeyData.journeyTime} min</p>
+            <p>{journeyData.pins.length} pins</p>
+            <p>{(journeyData.isPublic) ? ("Public"): "Private"}</p>
           </div>
           <div id="journey-bar-info-line" >
             <div id="journey-bar-info-rate">

@@ -2,7 +2,9 @@
 import './CreateSearchJourney.css';
 
 //react
-import React, { useState, useRef, useCallback } from 'react'
+import React, { useState, 
+  // useRef, useCallback 
+} from 'react'
 import { NavLink } from "react-router-dom";
 //icone
 import {HomeRounded} from "@material-ui/icons";
@@ -11,7 +13,7 @@ import {PersonRounded} from '@material-ui/icons';
 //mapbox
 import ReactMapGL from 'react-map-gl';
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
-import Geocoder from 'react-map-gl-geocoder'
+// import Geocoder from 'react-map-gl-geocoder'
 
 
 export default function CreateSearchJourney() {
