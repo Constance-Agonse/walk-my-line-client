@@ -30,10 +30,10 @@ export default function Profile() {
     console.log("MOUNTED !!!!");
     console.log("in effect => same as component did mount");
     // when the component is attached to the DOM => fetchCats
-    fetchUsers();
+    fetchJournies();
   }, []);
 
-  const fetchUsers = async () => {
+  const fetchJournies = async () => {
     try {
       const res = await APIHandler.get("/profile");
       console.log("api res => ", res);
@@ -50,7 +50,17 @@ export default function Profile() {
   console.log("journiesCreateByUser >>> ", journiesCreateByUser) //[0].creator.username
   console.log("journiesFollowedByUser >>> ", journiesFollowedByUser)
 
-{/* <Link className="switch-link" to="./journey"> Liked journies </Link> */}
+  const handleDelete = async (id) => {
+    console.log('before axios delete')
+
+    try {
+      console.log('in axios handledelete')
+      await APIHandler.delete(`/profile/${id}`);
+      fetchJournies();
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <div className="profile-global-container">
@@ -75,7 +85,7 @@ export default function Profile() {
               <h2>No journies created yet ...</h2>
             ) : (
               journiesCreateByUser.map((journey) => (
-                <JourneyCard key={journey._id} journeyData={journey}/>
+                <JourneyCard key={journey._id} journeyData={journey} handleDelete={handleDelete}/>
               ))
             )
 
@@ -84,7 +94,7 @@ export default function Profile() {
             <h2>No liked journies yet ...</h2>            
           ) : (
             journiesFollowedByUser.map((journey) => (
-                <JourneyCard key={journey._id} journeyData={journey}/>
+                <JourneyCard key={journey._id} journeyData={journey} handleDelete={handleDelete}/>
               ))
           )
         )

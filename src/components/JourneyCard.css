@@ -50,3 +50,11 @@
   #townName {
       text-decoration: 2px underline;
   }
+
+  #deletebtn{
+    background-color: transparent;
+  }
+
+  #deleteimg {
+    width: 20%;
+  }

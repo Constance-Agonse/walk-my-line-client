@@ -9,7 +9,7 @@ import Hashtags from "./Hashtags"
 import { Link } from 'react-router-dom';
 
 
-export default function JourneyCard({ journeyData }) {
+export default function JourneyCard({ journeyData , handleDelete}) {
     const [viewport, setViewport] = useState({
     width: "20vw",
     height: "15vh",
@@ -42,11 +42,13 @@ export default function JourneyCard({ journeyData }) {
                     } 
                     )}
                     <span className="item">...</span>
-
                 </div>
+                <p>Rate : {journeyData.rate} </p>
             </div>
             
             <div className="innerBoxContainer map-container">
+            <button id="deletebtn" onClick={() => handleDelete(journeyData._id)}><img src="/delete.png" alt="deletebtn" id="deleteimg"/></button>
+            <h3>By {journeyData.creator.username} </h3> 
             <ReactMapGL
                 {...viewport}
                 mapboxApiAccessToken = "pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg"
