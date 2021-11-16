@@ -6,36 +6,38 @@ import ReactMapGL, {Marker} from 'react-map-gl';
 import {Room} from "@material-ui/icons"
 // import {Star} from "@material-ui/icons"
 import Hashtags from "./Hashtags"
+import { Link } from 'react-router-dom';
+
 
 export default function JourneyCard({ journeyData }) {
     const [viewport, setViewport] = useState({
     width: "20vw",
     height: "15vh",
-    latitude: 48.853,
-    longitude: 2.3905,
+    latitude: journeyData.latInitial,
+    longitude: journeyData.longInitial,
     zoom: 11.5
   });
     return (
         <section className="globalContainerJourneyCard">
-            <div className="innerBoxContainer" >
-                <h3 id="townName">Paris</h3>
-                <ul>
-                    <li>{journeyData.km} km</li>
-                    <li>{journeyData.journeyTime} min</li>
-                    <li>{journeyData.pins.length} pins</li>
-                    <li>{(journeyData.isPublic) ? ("Public"): "Private"}</li>
-                </ul>
-            </div>
-
+            <Link to="./journey" journeyData={journeyData}>
+                <div className="innerBoxContainer" >
+                    <h3 id="townName">Paris</h3>
+                    <ul>
+                        <li>{journeyData.km} km</li>
+                        <li>{journeyData.journeyTime} min</li>
+                        <li>{journeyData.pins.length} pins</li>
+                        <li>{(journeyData.isPublic) ? ("Public"): "Private"}</li>
+                    </ul>
+                </div>
+            </Link>    
             <div className="innerBoxContainer">
                 <p>arr (précision)</p>
                 <p>France</p>
                 <div className="tagContainer">
-                    <Hashtags />
-                    <span className="item">#Component</span>
-                    <span className="item">#Component</span>
-                    <span className="item">#Component </span>
-                    <span className="item">#Component</span>
+                    {journeyData.tags.map((tag) => {
+                        return <Hashtags key={tag._id} text={tag} />
+                    } 
+                    )}
                     <span className="item">...</span>
 
                 </div>
@@ -50,8 +52,8 @@ export default function JourneyCard({ journeyData }) {
                 className="map"                
                 >
                     <Marker 
-                    latitude={48.853752} 
-                    longitude={2.390568} 
+                    latitude={journeyData.latInitial} 
+                    longitude={journeyData.longInitial} 
                     offsetLeft={-20} 
                     offsetTop={-10}>
                         <Room style={{fontSize:viewport.zoom  * 3, color : '#fb8500'}}/>

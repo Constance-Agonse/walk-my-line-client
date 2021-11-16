@@ -28,8 +28,8 @@ function App() {
         <Route exact path="/profile" component = {Profile} />
         <Route exact path="/createSearchJourney" component = {CreateSearchJourney} />
         <Route exact path="/createSearchJourney/Pin" component = {CreatePinJourney} />
-        <Route exact path="/myOwnJournies" component = {MyOwnJournies} />
-        <Route exact path="/myLikedJournies" component = {MyLikedJournies} />  
+        {/* <Route exact path="/myOwnJournies" component = {MyOwnJournies} />
+        <Route exact path="/myLikedJournies" component = {MyLikedJournies} />   */}
         <Route exact path="/journey" component = {Journey} />  
         <Route exact path="/auth/signup" component= {Signup} />
         <Route exact path="/auth/signin" component= {Signin} />

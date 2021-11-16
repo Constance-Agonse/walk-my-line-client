@@ -1,10 +1,9 @@
 import React from 'react'
 import './Hashtags.css'
 
-export default function Hashtags() {
+export default function Hashtags({text}) {
   return (
-    <div className="item">
-      #trop stylé
-    </div>
+      <span className="item">{text.name}</span>      
+    
   )
 }

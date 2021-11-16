@@ -9,6 +9,9 @@ import Hashtags from "./../components/Hashtags";
 import { Link } from 'react-router-dom';
 
 export default function Journey({ journeyData }) {
+  console.log("heyyyyyyyyyyyyyyyyyyyyyyyy")
+  console.log(journeyData)
+
   const [viewport, setViewport] = useState({
     width: "100vw",
     height: "65vh",
@@ -45,7 +48,7 @@ export default function Journey({ journeyData }) {
         <div id="journey-bar-info">
         <div id="journey-bar-info-title">
         <h2>title A tiny trip to Paris </h2>
-            <h3>By xxxx </h3>
+            <h3>By  </h3> 
             
           </div>
           <div id="journey-bar-info-location">
