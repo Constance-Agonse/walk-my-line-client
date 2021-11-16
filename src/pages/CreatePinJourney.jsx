@@ -25,7 +25,7 @@ export default class CreatePinJourney extends Component {
   handleSubmit = async (e) => {
     e.preventDefault(); // prevent the form to reload
     // destructuring the state
-    const { title, rating, lat, long, description, url, genre } = this.state;
+    const { title, rating, description, url, genre } = this.state;
     // accessing the image out of the ref
     console.log(this.state.media)
     const file = this.state.media.current.files[0]; // target the image file associated to the input[type=file]

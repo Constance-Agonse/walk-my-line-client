@@ -57,7 +57,9 @@ class Signup extends Component {
   render() {
     console.log(this.props);
     //const { isLoggedIn } = this.props.userContext;
-    const { email, password, username, tmpAvatar } = this.state;
+    const { 
+      // email, password, username, 
+      tmpAvatar } = this.state;
     //return isLoggedIn ? (
     // avoid the component to be rendered if user is already logged in
     // <Redirect to="/" />
