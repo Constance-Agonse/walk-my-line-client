@@ -6,6 +6,7 @@ import ReactMapGL, {Marker} from 'react-map-gl';
 import {Room} from "@material-ui/icons";
 import NavBar from '../components/NavBar';
 import Hashtags from "./../components/Hashtags";
+import { Link } from 'react-router-dom';
 
 export default function Journey() {
   const [viewport, setViewport] = useState({
@@ -15,7 +16,7 @@ export default function Journey() {
     longitude: 2.3905,
     zoom: 11.5
   });
-  
+
 
   return (
     <div id="journey-global">
@@ -55,6 +56,16 @@ export default function Journey() {
             <p>X km</p>
             <p>X time, min or h</p>
             <p>X pin</p>
+          </div>
+          <div id="journey-bar-info-line" >
+            <div id="journey-bar-info-rate">
+              <img src="/star-rate.png" alt="star" />
+              <img src="/star-rate.png" alt="star" />
+              <img src="/star-rate.png" alt="star" />
+              <img src="/star-rate.png" alt="star" />
+              <img src="/star-rate.png" alt="star" />
+            </div>
+            <Link id="journey-bar-info-follow">Follow/unfollow</Link>
           </div>
           <div id="journey-bar-info-hashtags">
             <Hashtags />

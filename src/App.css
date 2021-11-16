@@ -30,6 +30,10 @@
   color: whitesmoke;
 }
 
+.is-hidden {
+  display: none;
+}
+
 
 /* partie css a supprimer c'etait juste un kiff */
 

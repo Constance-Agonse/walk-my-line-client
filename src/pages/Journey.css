@@ -76,12 +76,21 @@ height: 60vh
   flex-direction: row;
   /* justify-content: space-between; */
   overflow-x: auto;
-  /* max-width: 80vw; */
-
-  /* SCROLL HORIZONTAL DES FAMILLES */
-
 }
 #journey-bar-info-hashtags::-webkit-scrollbar{
   width : 0;
 }
 
+#journey-bar-info-line{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+#journey-bar-info-follow{
+  background-color: #F77F00; 
+  color: white;
+  text-align: center;
+  padding: 8px;
+  border-radius: 24px;
+}

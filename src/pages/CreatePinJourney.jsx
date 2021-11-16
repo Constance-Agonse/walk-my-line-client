@@ -58,7 +58,7 @@ export default class CreatePinJourney extends Component {
     this.setState({
       [e.target.name]: e.target.value,
     });
-  };
+  }; 
 
   render() {
     return (
@@ -175,7 +175,7 @@ export default class CreatePinJourney extends Component {
             type="file" />
 
         </div>
-      <button type='submit'>Submit!</button>
+      <button>Submit!</button>
       </form>
       <NavLink exact to="/profile">Done ! (go to profile)</NavLink>
     </div>

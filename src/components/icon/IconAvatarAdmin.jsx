@@ -1,11 +1,12 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCog } from "@fortawesome/free-solid-svg-icons";
+import { faCamera } from "@fortawesome/free-solid-svg-icons";
 
 export default function IconAvatar({ clbk, avatar= ""}) {
   const fileInput = React.createRef();
 
   const handleClick = () => {
+    console.log(fileInput.current)
     fileInput.current.click();
   };
 
@@ -15,13 +16,14 @@ export default function IconAvatar({ clbk, avatar= ""}) {
       <input
         ref={fileInput}
         type="file"
+        name='avatar'
         className="is-hidden"
         onChange={clbk}
       />
       <FontAwesomeIcon
         onClick={handleClick}
         className="is-clickable fa-lg"
-        icon={faCog}
+        icon={faCamera}
       />
     </div>
   );

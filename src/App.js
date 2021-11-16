@@ -14,9 +14,15 @@ import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 
 
+// auth
+import { UserContextProvider } from "./auth/UserContext";
+import { ProtectedRoute } from "./auth/ProtectedRoute";
+
+
 function App() {
   return (
     <div className="App">
+    {/* <UserContextProvider> */}
       <Switch>
         <Route exact path="/" component= {Home} />
         <Route exact path="/profile" component = {Profile} />
@@ -25,11 +31,12 @@ function App() {
         <Route exact path="/myOwnJournies" component = {MyOwnJournies} />
         <Route exact path="/myLikedJournies" component = {MyLikedJournies} />  
         <Route exact path="/journey" component = {Journey} />  
-        <Route exact path="/signup" component= {Signup} />
-        <Route exact path="/signin" component= {Signin} />
+        <Route exact path="/auth/signup" component= {Signup} />
+        <Route exact path="/auth/signin" component= {Signin} />
         
         <Route path="*" component= {ErrorPage} />
       </Switch>
+      {/* </UserContextProvider> */}
     </div>
   );
 }

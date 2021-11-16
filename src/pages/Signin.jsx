@@ -5,6 +5,8 @@ import { Link, Redirect } from "react-router-dom";
 import { useAuth } from "./../auth/UserContext";
 import APIHandler from "../api/APIHandler";
 // import "./../styles/form.css";
+// import ToggleSignin from "../components/ToggleSignin"
+import './../components/ToggleSignin.css'
 
 
 // export default function Signin(props) {
@@ -64,18 +66,25 @@ import './Form.css';
 // import { ToggleButtonGroup } from "@mui/material";
 
 
+
+
+
+
+
+
 export default function Signin() {
   return (
     <div className="form-page">
-      {/* <div className="toggle-signinup">
-        <ToggleButtonGroup size="small" {...control}> */}
-          {/* {children} */}
-        {/* </ToggleButtonGroup>
-        <ToggleButtonGroup {...control}>{children}</ToggleButtonGroup>
-        <ToggleButtonGroup size="large" {...control}>
-          {children}
-        </ToggleButtonGroup> */}
-      {/* </div> */}
+      <div className="toggle-signinup">
+        <div className="switch-button">
+          <span className="active">
+            <button className="switch-button-case left active-case">Sign in</button>
+            <button className="switch-button-case right">Sign up</button>
+          </span>
+        </div>
+
+
+      </div>
       <form className="form" >
         <div className="form-block">
           <label className="label" htmlFor="email">
@@ -100,7 +109,7 @@ export default function Signin() {
         <button className="btn">ok</button>
         <p className="parag">
           No account yet ? please{" "}
-          <Link to="/signup" className="link">
+          <Link to="/auth/signup" className="link">
             signup
           </Link>
         </p>
