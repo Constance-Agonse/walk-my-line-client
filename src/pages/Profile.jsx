@@ -36,8 +36,6 @@ export default function Profile() {
   const fetchUsers = async () => {
     try {
       const res = await APIHandler.get("/profile");
-      // const res = await axios.get("http://localhost:4000/profile");
-
       console.log("api res => ", res);
       setUsers(res.data[0]); //(prevUsers) => prevUsers = 
       setUserId(res.data[1]); //(prevUserId) => prevUserId = 
@@ -76,7 +74,7 @@ export default function Profile() {
             journiesCreateByUser.length === 0 ? (
               <h2>No journies created yet ...</h2>
             ) : (
-              journiesCreateByUser.map((journey, i) => (
+              journiesCreateByUser.map((journey) => (
                 <JourneyCard key={journey._id} journeyData={journey}/>
               ))
             )
@@ -85,7 +83,7 @@ export default function Profile() {
           journiesFollowedByUser.length === 0 ? (
             <h2>No liked journies yet ...</h2>            
           ) : (
-            journiesFollowedByUser.map((journey, i) => (
+            journiesFollowedByUser.map((journey) => (
                 <JourneyCard key={journey._id} journeyData={journey}/>
               ))
           )
