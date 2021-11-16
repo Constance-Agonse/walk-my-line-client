@@ -2,13 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from "react-router-dom";
 // import MyLikedJournies from './MyLikedJournies';
 // import MyOwnJournies from './MyOwnJournies';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import JourneyCard from "../components/JourneyCard";
 import './Profil.css';
 import {HomeRounded} from "@material-ui/icons";
 import {EditLocationOutlined} from "@material-ui/icons";
 import APIHandler from "./../api/APIHandler";
-
 
 
 //LE Profile va être render avec les informations que possède le user.
@@ -19,8 +18,13 @@ import APIHandler from "./../api/APIHandler";
 
 
 export default function Profile() {
-  const [users, setUsers] = useState([]); // i need a state
-  const [userId, setUserId] = useState(null); // so please react
+  const [users, setUsers] = useState([]);
+  const [userId, setUserId] = useState([]); 
+  const [journiesCreateByUser, setJourniesCreateByUser] = useState([]); 
+  const [journiesFollowedByUser, setJourniesFollowedByUser] = useState([]); 
+  const [btnMyJourniesOn,setBtnMyJourniesOn] = useState(true);
+
+
 
   useEffect(() => {
     console.log("MOUNTED !!!!");
@@ -32,38 +36,62 @@ export default function Profile() {
   const fetchUsers = async () => {
     try {
       const res = await APIHandler.get("/profile");
+      // const res = await axios.get("http://localhost:4000/profile");
+
       console.log("api res => ", res);
-      setUsers(res.data);
+      setUsers(res.data[0]); //(prevUsers) => prevUsers = 
+      setUserId(res.data[1]); //(prevUserId) => prevUserId = 
+      setJourniesCreateByUser(res.data[2]);
+      setJourniesFollowedByUser(res.data[3]);
     } catch (err) {
       console.error(err);
     }
   };
+  console.log("users >>> ", users)
+  // console.log("userId >>> ", userId)
+  console.log("journiesCreateByUser >>> ", journiesCreateByUser) //[0].creator.username
+  console.log("journiesFollowedByUser >>> ", journiesFollowedByUser)
 
-  const currentUser = users.find((user) => user._id === userId);
+{/* <Link className="switch-link" to="./journey"> Liked journies </Link> */}
 
   return (
     <div className="profile-global-container">
       <header className="profile-characteristic-container">
         <div className="container-profile-picture">
-          <img className="imgProfile" src="./toutou.png" alt="your-profil-picture"/>
-          <p id="user-name"><strong>Croustie</strong></p>
+          <img className="imgProfile" src="./toutou.png" alt="beautifulAvatarOfu"/>
+          <p id="user-name"><strong>{userId.username}</strong></p> 
         </div>
           <div className="sub-container-profile-follower">
-            <p className="profile-follower"><strong>5</strong> <br/> journies</p>
-            <p className="profile-follower"><strong>10</strong> <br/> journies</p>
-            <p className="profile-follower"><strong>30</strong> <br/> following</p>
-            <p className="profile-follower"><strong>20</strong>  <br/> followers</p>
+            <p className="profile-follower"><strong>{journiesCreateByUser.length}</strong> <br/> journies</p>
+            <p className="profile-follower"><strong>{journiesFollowedByUser.length}</strong> <br/> journies liked</p>
           </div>  
       </header>
       <section className="all-card-container">
       <div className="button-switch-container">
-        <button className="button-switch"><Link className="switch-link" to="./journey"> My journies</Link></button>
-        <button className="button-switch"><Link className="switch-link" to="./journey"> Liked journies </Link></button>
+        <button className="button-switch" onClick={() => setBtnMyJourniesOn(prev => prev = true)}>My journies</button> 
+        <button className="button-switch" onClick={() => setBtnMyJourniesOn(prev => prev = false)}>Liked journies</button>
       </div>
-        
-        <JourneyCard/>
-        <JourneyCard/>
-        <JourneyCard/>
+        {btnMyJourniesOn ? (
+          // MY JOURNIES
+            journiesCreateByUser.length === 0 ? (
+              <h2>No journies created yet ...</h2>
+            ) : (
+              journiesCreateByUser.map((journey, i) => (
+                <JourneyCard key={journey._id} journeyData={journey}/>
+              ))
+            )
+
+        ) : ( // MY LIKED JOURNIES
+          journiesFollowedByUser.length === 0 ? (
+            <h2>No liked journies yet ...</h2>            
+          ) : (
+            journiesFollowedByUser.map((journey, i) => (
+                <JourneyCard key={journey._id} journeyData={journey}/>
+              ))
+          )
+        )
+        }
+
       </section>   
       <footer className="nav-container">
         <div className="spacer wave-bottom"></div>

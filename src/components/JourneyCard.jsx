@@ -6,7 +6,7 @@ import ReactMapGL, {Marker} from 'react-map-gl';
 import {Room} from "@material-ui/icons"
 // import {Star} from "@material-ui/icons"
 
-export default function JourneyCard() {
+export default function JourneyCard({ journeyData }) {
     const [viewport, setViewport] = useState({
     width: "20vw",
     height: "15vh",
@@ -19,10 +19,10 @@ export default function JourneyCard() {
             <div className="innerBoxContainer" >
                 <h3 id="townName">Paris</h3>
                 <ul>
-                    <li>5 km</li>
-                    <li>40 min</li>
-                    <li>5 pins</li>
-                    <li>Public</li>
+                    <li>{journeyData.km} km</li>
+                    <li>{journeyData.journeyTime} min</li>
+                    <li>{journeyData.pins.length} pins</li>
+                    <li>{(journeyData.isPublic) ? ("Public"): "Private"}</li>
                 </ul>
             </div>
 
