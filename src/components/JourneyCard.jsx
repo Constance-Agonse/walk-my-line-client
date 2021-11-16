@@ -19,7 +19,10 @@ export default function JourneyCard({ journeyData }) {
   });
     return (
         <section className="globalContainerJourneyCard">
-            <Link to="./journey" journeyData={journeyData}>
+            <Link to={{
+                pathname:'/journey',
+                state: journeyData
+            }}>
                 <div className="innerBoxContainer" >
                     <h3 id="townName">Paris</h3>
                     <ul>

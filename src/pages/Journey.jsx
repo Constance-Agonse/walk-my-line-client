@@ -1,16 +1,15 @@
-import React from 'react';
 import InfoPin from '../components/InfoPin';
 import './Journey.css';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactMapGL, {Marker} from 'react-map-gl';
 import {Room} from "@material-ui/icons";
 import NavBar from '../components/NavBar';
 import Hashtags from "./../components/Hashtags";
 import { Link } from 'react-router-dom';
 
-export default function Journey({ journeyData }) {
+export default function Journey({location}) {
   console.log("heyyyyyyyyyyyyyyyyyyyyyyyy")
-  console.log(journeyData)
+  console.log(location)
 
   const [viewport, setViewport] = useState({
     width: "100vw",
@@ -19,7 +18,9 @@ export default function Journey({ journeyData }) {
     longitude: 2.3905,
     zoom: 11.5
   });
+  useEffect(() => {
 
+  }, [])
 
   return (
     <div id="journey-global">
@@ -48,7 +49,7 @@ export default function Journey({ journeyData }) {
         <div id="journey-bar-info">
         <div id="journey-bar-info-title">
         <h2>title A tiny trip to Paris </h2>
-            <h3>By  </h3> 
+            <h3>By {location.state.creator.username} </h3> 
             
           </div>
           <div id="journey-bar-info-location">
@@ -56,10 +57,10 @@ export default function Journey({ journeyData }) {
             <h3>Country</h3>
           </div>
           <div id="journey-bar-info-text">
-            <p>{journeyData.km} km</p>
+            {/* <p>{journeyData.km} km</p>
             <p>{journeyData.journeyTime} min</p>
             <p>{journeyData.pins.length} pins</p>
-            <p>{(journeyData.isPublic) ? ("Public"): "Private"}</p>
+            <p>{(journeyData.isPublic) ? ("Public"): "Private"}</p> */}
           </div>
           <div id="journey-bar-info-line" >
             <div id="journey-bar-info-rate">
@@ -72,11 +73,11 @@ export default function Journey({ journeyData }) {
             <Link id="journey-bar-info-follow">Follow/unfollow</Link>
           </div>
           <div id="journey-bar-info-hashtags">
+            {/* <Hashtags />
             <Hashtags />
             <Hashtags />
             <Hashtags />
-            <Hashtags />
-            <Hashtags />
+            <Hashtags /> */}
           </div>
         </div>
         <div id="journey-bar-pins-container">
