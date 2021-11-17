@@ -19,7 +19,10 @@ import { ProtectedRoute } from "./auth/ProtectedRoute";
 
 
 function App() {
+
+
   return (
+
     <div className="App">
     {/* <UserContextProvider> */}
       <Switch>

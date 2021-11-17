@@ -1,83 +1,117 @@
 import InfoPin from '../components/InfoPin';
 import './Journey.css';
 import React, { useState, useEffect } from 'react';
-import ReactMapGL, {Marker} from 'react-map-gl';
-import {Room} from "@material-ui/icons";
+import ReactMapGL, { Marker } from 'react-map-gl';
+import { Room } from "@material-ui/icons";
 import NavBar from '../components/NavBar';
 import Hashtags from "./../components/Hashtags";
 import { Link } from 'react-router-dom';
+import Rating from '../components/Rating';
+import Testbutton from '../components/Testbutton';
+import { Button } from '@material-ui/core';
+import { useAuth } from "./../auth/UserContext";
+import APIHandler from "./../api/APIHandler";
 
-export default function Journey({location}) {
-  console.log("heyyyyyyyyyyyyyyyyyyyyyyyy")
-  console.log(location)
-
+export default function Journey({ location }) {
+  const { currentUser } = useAuth();
+  console.log('currentUser');
+  console.log(currentUser);
+  const [btnUnfollow, setbtnUnfollow] = useState(true);
   const [viewport, setViewport] = useState({
     width: "100vw",
-    height: "65vh",
-    latitude: 48.853,
-    longitude: 2.3905,
+    height: "60vh",
+    latitude: location.state.latInitial,
+    longitude: location.state.longInitial,
     zoom: 11.5
   });
-  useEffect(() => {
 
+  // const fetchCurrentUser = async () => {
+  //   try {
+  //     const res = await APIHandler.get("/profile");
+  //     console.log("api res => ", res);
+  //     setUserId(res.data[1]);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
+
+  useEffect(() => {
+    // console.log(currentUser)
   }, [])
+  console.log('location.state.isLikedBy',)
+  console.log(location.state.isLikedBy)
+  console.log('location.state.creator._id',)
+  console.log(location.state.creator._id)
+  // console.log('req.session.currentUser',)
+  // console.log(req.session.currentUser)
+
 
   return (
     <div id="journey-global">
       <NavBar />
       <div className="journey-map">
-            <ReactMapGL
-                {...viewport}
-                mapboxApiAccessToken = "pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg"
-                onViewportChange={nextViewport => setViewport(nextViewport)}
-                mapStyle="mapbox://styles/hugowalk/ckvvj03ck2ojj14nmd442pqot"
-                className="journey-map-mapbox"                
-                >
-                    <Marker 
-                    latitude={48.853752} 
-                    longitude={2.390568} 
-                    offsetLeft={-20} 
-                    offsetTop={-10}>
-                        <Room style={{fontSize:viewport.zoom  * 3, color : '#fb8500'}}/>
-                        {/* le zoom * 3 permet d'avoir un icon qui s'adapte avec le zoom effectué */}
-                    </Marker>
+        <ReactMapGL
+          {...viewport}
+          mapboxApiAccessToken="pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg"
+          onViewportChange={nextViewport => setViewport(nextViewport)}
+          mapStyle="mapbox://styles/hugowalk/ckvvj03ck2ojj14nmd442pqot"
+          className="journey-map-mapbox"
 
-            </ReactMapGL>
-            </div>
+        >
+          <Marker
+            latitude={location.state.latInitial}
+            longitude={location.state.longInitial}
+            offsetLeft={-20}
+            offsetTop={-10}>
+            <Room style={{ fontSize: viewport.zoom * 3, color: '#fb8500' }} />
+            {/* le zoom * 3 permet d'avoir un icon qui s'adapte avec le zoom effectué */}
+          </Marker>
+
+        </ReactMapGL>
+      </div>
 
       <div id="journey-bar">
         <div id="journey-bar-info">
-        <div id="journey-bar-info-title">
-        <h2>title A tiny trip to Paris </h2>
-            <h3>By {location.state.creator.username} </h3> 
-            
+          <div id="journey-bar-info-title">
+            <h2>{location.state.title} </h2>
+            <h3>By {location.state.creator.username} </h3>
+
           </div>
           <div id="journey-bar-info-location">
             <h2>City</h2>
             <h3>Country</h3>
           </div>
           <div id="journey-bar-info-text">
-            {/* <p>{journeyData.km} km</p>
-            <p>{journeyData.journeyTime} min</p>
-            <p>{journeyData.pins.length} pins</p>
-            <p>{(journeyData.isPublic) ? ("Public"): "Private"}</p> */}
+            <p>{location.state.km} km</p>
+            <p>{location.state.journeyTime} min</p>
+            <p>{location.state.pins.length} pins</p>
+            <p>{(location.state.isPublic) ? ("Public") : "Private"}</p>
           </div>
           <div id="journey-bar-info-line" >
             <div id="journey-bar-info-rate">
-              <img src="/star-rate.png" alt="star" />
-              <img src="/star-rate.png" alt="star" />
-              <img src="/star-rate.png" alt="star" />
-              <img src="/star-rate.png" alt="star" />
-              <img src="/star-rate.png" alt="star" />
+              <Rating>{location.state.rate}</Rating>
             </div>
-            <Link id="journey-bar-info-follow">Follow/unfollow</Link>
+            <div className="button-switch-container">
+              {/* {location.state.isLikedBy.includes(currentUser) ? (<Button>Follow</Button>) : (<Button>Unfollow</Button>)} */}
+              {location.state.isLikedBy.includes(currentUser) ? (<Button>Follow</Button>) : (<Button>Unfollow</Button>)}
+              <Testbutton text="Follow" />
+              <button className="button-switch" onClick={() => setbtnUnfollow(prev => prev = true)}>Follow</button>
+              <button className="button-switch" onClick={() => setbtnUnfollow(prev => prev = false)}>Unfollow</button>
+              {/* {btnUnfollow ? (
+              <button className="button-switch" onClick={() => setbtnUnfollow(prev => prev = true)}>Follow</button>
+            ): (
+              <button className="button-switch" onClick={() => setbtnUnfollow(prev => prev = false)}>Unfollow</button>
+            )} */}
+
+
+            </div>
+            {/* <Link id="journey-bar-info-follow">Follow/unfollow</Link> */}
           </div>
           <div id="journey-bar-info-hashtags">
-            {/* <Hashtags />
-            <Hashtags />
-            <Hashtags />
-            <Hashtags />
-            <Hashtags /> */}
+            {location.state.tags.map((tag) => {
+              return <Hashtags key={tag._id} text={tag} />
+            }
+            )}
           </div>
         </div>
         <div id="journey-bar-pins-container">

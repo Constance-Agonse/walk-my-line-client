@@ -5,6 +5,14 @@
   src: url('./fonts/Satoshi-Light.otf');
 }
 
+@font-face {
+  font-family: Neco;
+  src: url('./fonts/Neco-Regular.otf');
+}
+@font-face {
+  font-family: Boska;
+  src: url('./fonts/Boska-Medium.otf');
+}
 
 :root {
   --rose: #FCA6A2;

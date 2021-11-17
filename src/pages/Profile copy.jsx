@@ -7,11 +7,7 @@ import JourneyCard from "../components/JourneyCard";
 import './Profil.css';
 import {HomeRounded} from "@material-ui/icons";
 import {EditLocationOutlined} from "@material-ui/icons";
-
 import APIHandler from "./../api/APIHandler";
-
-
-// import { useAuth } from "./../auth/UserContext";
 
 
 //LE Profile va être render avec les informations que possède le user.
@@ -28,7 +24,7 @@ export default function Profile() {
   const [journiesFollowedByUser, setJourniesFollowedByUser] = useState([]); 
   const [btnMyJourniesOn,setBtnMyJourniesOn] = useState(true);
 
-  // const { currentUser } = useAuth();
+
 
   useEffect(() => {
     console.log("MOUNTED !!!!");
@@ -49,8 +45,6 @@ export default function Profile() {
       console.error(err);
     }
   };
-
-  // console.log("currentUser >>> ", currentUser);
   console.log("users >>> ", users)
   // console.log("userId >>> ", userId)
   console.log("journiesCreateByUser >>> ", journiesCreateByUser) //[0].creator.username
@@ -73,17 +67,11 @@ export default function Profile() {
       <header className="profile-characteristic-container">
         <div className="container-profile-picture">
           <img className="imgProfile" src="./toutou.png" alt="beautifulAvatarOfu"/>
-          <p id="user-name"><strong>
-          {/* {userId.username} */}
-          </strong></p> 
+          <p id="user-name"><strong>{userId.username}</strong></p> 
         </div>
           <div className="sub-container-profile-follower">
-            <p className="profile-follower"><strong>
-            {/* {journiesCreateByUser.length} */}
-            </strong> <br/> journies</p>
-            <p className="profile-follower"><strong>
-            {/* {journiesFollowedByUser.length} */}
-            </strong> <br/> journies liked</p>
+            <p className="profile-follower"><strong>{journiesCreateByUser.length}</strong> <br/> journies</p>
+            <p className="profile-follower"><strong>{journiesFollowedByUser.length}</strong> <br/> journies liked</p>
           </div>  
       </header>
       <section className="all-card-container">

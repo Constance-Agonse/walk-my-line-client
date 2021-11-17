@@ -37,6 +37,18 @@
   
   .title{
     color :whitesmoke;
+    font-family: Neco;
+    font-size: 5em;
+    text-align: start;
+    padding: 24px;
+  }
+
+  .title-other{
+    color :whitesmoke;
+    font-family: Boska;
+    font-size: 5em;
+    text-align: start;
+    padding: 24px;
   }
   
   .homeContainer{
