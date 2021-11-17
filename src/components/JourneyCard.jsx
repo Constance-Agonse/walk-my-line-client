@@ -7,6 +7,7 @@ import {Room} from "@material-ui/icons"
 // import {Star} from "@material-ui/icons"
 import Hashtags from "./Hashtags"
 import { Link } from 'react-router-dom';
+import Rating from './Rating';
 
 
 export default function JourneyCard({ journeyData , handleDelete}) {
@@ -43,7 +44,7 @@ export default function JourneyCard({ journeyData , handleDelete}) {
                     )}
                     <span className="item">...</span>
                 </div>
-                <p>Rate : {journeyData.rate} </p>
+                <Rating>{journeyData.rate}</Rating>
             </div>
             
             <div className="innerBoxContainer map-container">

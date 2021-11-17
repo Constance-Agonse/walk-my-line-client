@@ -8,8 +8,11 @@ import Hashtags from "./../components/Hashtags";
 import { Link } from 'react-router-dom';
 import Rating from '../components/Rating';
 import Testbutton from '../components/Testbutton';
+import { Button } from '@material-ui/core';
+import { useAuth } from "./../auth/UserContext"
 
 export default function Journey({ location }) {
+  //const { currentUser } = useAuth();
   const [btnUnfollow, setbtnUnfollow] = useState(true);
   const [viewport, setViewport] = useState({
     width: "100vw",
@@ -20,10 +23,15 @@ export default function Journey({ location }) {
   });
 
   useEffect(() => {
+    // console.log(currentUser)
   }, [])
+  console.log('location.state.isLikedBy',)
+  console.log(location.state.isLikedBy)
+  console.log('location.state.creator._id',)
+  console.log(location.state.creator._id)
+  // console.log('req.session.currentUser',)
+  // console.log(req.session.currentUser)
 
-  console.log(location.state)
-  console.log('kmmmmmm',)
 
   return (
     <div id="journey-global">
@@ -68,24 +76,20 @@ export default function Journey({ location }) {
           </div>
           <div id="journey-bar-info-line" >
             <div id="journey-bar-info-rate">
-              <Rating />
-              {/* <img src="/star-rate.png" alt="star" />
-              <img src="/star-rate.png" alt="star" />
-              <img src="/star-rate.png" alt="star" />
-              <img src="/star-rate.png" alt="star" />
-              <img src="/star-rate.png" alt="star" /> */}
+              <Rating>{location.state.rate}</Rating>
             </div>
             <div className="button-switch-container">
-              <Testbutton text="Follow"/>
-            <button className="button-switch" onClick={() => setbtnUnfollow(prev => prev = true)}>Follow</button>
-            <button className="button-switch" onClick={() => setbtnUnfollow(prev => prev = false)}>Unfollow</button>
-            {/* {btnUnfollow ? (
+              {location.state.isLikedBy.includes(location.state.creator._id) ? (<Button>Follow</Button>) : (<Button>Unfollow</Button>)}
+              <Testbutton text="Follow" />
+              <button className="button-switch" onClick={() => setbtnUnfollow(prev => prev = true)}>Follow</button>
+              <button className="button-switch" onClick={() => setbtnUnfollow(prev => prev = false)}>Unfollow</button>
+              {/* {btnUnfollow ? (
               <button className="button-switch" onClick={() => setbtnUnfollow(prev => prev = true)}>Follow</button>
             ): (
               <button className="button-switch" onClick={() => setbtnUnfollow(prev => prev = false)}>Unfollow</button>
             )} */}
-              
-              
+
+
             </div>
             {/* <Link id="journey-bar-info-follow">Follow/unfollow</Link> */}
           </div>
