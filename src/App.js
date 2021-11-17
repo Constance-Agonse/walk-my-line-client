@@ -6,8 +6,7 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import CreateSearchJourney from "./pages/CreateSearchJourney";
 import CreatePinJourney from "./pages/CreatePinJourney";
-import MyOwnJournies from "./pages/MyOwnJournies";
-import MyLikedJournies from "./pages/MyLikedJournies";
+import CreateJourney2 from "./pages/CreateJourney2";
 import Journey from "./pages/Journey"
 import ErrorPage from "./pages/ErrorPage";
 import Signup from "./pages/Signup";
@@ -27,9 +26,8 @@ function App() {
         <Route exact path="/" component= {Home} />
         <Route exact path="/profile" component = {Profile} />
         <Route exact path="/createSearchJourney" component = {CreateSearchJourney} />
+        <Route exact path="/createSearchJourney/create2" component = {CreateJourney2} />        
         <Route exact path="/createSearchJourney/Pin" component = {CreatePinJourney} />
-        {/* <Route exact path="/myOwnJournies" component = {MyOwnJournies} />
-        <Route exact path="/myLikedJournies" component = {MyLikedJournies} />   */}
         <Route exact path="/journey" component = {Journey} />  
         <Route exact path="/auth/signup" component= {Signup} />
         <Route exact path="/auth/signin" component= {Signin} />
