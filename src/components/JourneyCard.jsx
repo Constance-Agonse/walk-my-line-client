@@ -45,6 +45,7 @@ export default function JourneyCard({ journeyData , handleDelete}) {
                     <span className="item">...</span>
                 </div>
                 <Rating>{journeyData.rate}</Rating>
+            
             </div>
             
             <div className="innerBoxContainer map-container">

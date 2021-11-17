@@ -12,7 +12,7 @@ import ToggleSwitch from '../components/ToggleSwitch';
 
 class Signup extends Component {
   state = {
-    avatar: "",
+    profilePic: '',
     tmpAvatar: "",
     username: "admin",
     email: "admin@foobarbaz.io",
@@ -27,7 +27,7 @@ class Signup extends Component {
     fd.append("email", this.state.email);
     fd.append("password", this.state.password);
     fd.append("username", this.state.username);
-    fd.append("avatar", this.state.avatar);
+    fd.append("profilePic", this.state.profilePic);
 
     try {
       await APIHandler.post("/auth/signup", fd);
@@ -43,14 +43,14 @@ class Signup extends Component {
 
   handleImage = (e) => {
     // console.log("Signup@handle image", e.target.files[0]);
-    this.setState({ avatar: e.target.files[0] }, () => {
+    this.setState({ profilePic: e.target.files[0] }, () => {
       const reader = new FileReader();
       reader.onloadend = () => {
         // when the fileREader ends  ...
         const baseString = reader.result; // get the image as a base64 encoded string
         this.setState({ tmpAvatar: baseString }); // set the tmp avatar as an image source before upload
       };
-      reader.readAsDataURL(this.state.avatar); // read the file from the local disk
+      reader.readAsDataURL(this.state.profilePic); // read the file from the local disk
     });
   };
 
@@ -83,6 +83,8 @@ class Signup extends Component {
             id="email"
             type="email"
             name="email"
+            value={this.state.email}
+            onChange={this.handleChange}
           />
         </div>
         <div className="form-block">
@@ -94,14 +96,16 @@ class Signup extends Component {
             id="username"
             type="text"
             name="username"
+            value={this.state.username}
+            onChange={this.handleChange}
           />
         </div>
         <div className="form-block">
-          <label className="label" htmlFor="avatar">
+          <label className="label" htmlFor="profilePic">
             avatar
           </label>
 
-          <IconAvatarAdmin avatar={tmpAvatar} clbk={this.handleImage} />
+          <IconAvatarAdmin profilePic={tmpAvatar} clbk={this.handleImage} />
 
 
 
@@ -117,6 +121,8 @@ class Signup extends Component {
             id="password"
             type="password"
             name="password"
+            value={this.state.password}
+            onChange={this.handleChange}
           />
         </div>
         <button className="btn">ok</button>

@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 
-export default function IconAvatar({ clbk, avatar= ""}) {
+export default function IconAvatar({ clbk, profilePic= ""}) {
   const fileInput = React.createRef();
 
   const handleClick = () => {
@@ -12,11 +12,12 @@ export default function IconAvatar({ clbk, avatar= ""}) {
 
   return (
     <div className={"is-clickable icon-avatar"} title="change avatar">
-      {avatar && <img src={avatar} alt="user avatar" />}
+      {profilePic && <img src={profilePic} alt="user avatar" />}
       <input
         ref={fileInput}
         type="file"
-        name='avatar'
+        name='profilePic'
+        id='profilePic'
         className="is-hidden"
         onChange={clbk}
       />

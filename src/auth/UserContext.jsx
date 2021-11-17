@@ -13,8 +13,12 @@ export const UserContextProvider = (props) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    console.log('hola chico')
     APIHandler.get("/auth/is-loggedin")
+
       .then((res) => {
+        console.log('hola chico2')
+
         setIsLoading(false);
         setCurrentUser(res.data.currentUser);
       })

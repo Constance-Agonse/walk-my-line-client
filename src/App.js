@@ -26,6 +26,7 @@ function App() {
       <UserContextProvider>
         <Switch>
           <Route exact path="/" component={Home} />
+          {/* <ProtectedRoute exact path="/profile" component={Profile} /> */}
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/createSearchJourney" component={CreateSearchJourney} />
           <Route exact path="/createSearchJourney/Pin" component={CreatePinJourney} />

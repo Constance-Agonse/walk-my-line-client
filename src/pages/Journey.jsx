@@ -9,10 +9,13 @@ import { Link } from 'react-router-dom';
 import Rating from '../components/Rating';
 import Testbutton from '../components/Testbutton';
 import { Button } from '@material-ui/core';
-import { useAuth } from "./../auth/UserContext"
+import { useAuth } from "./../auth/UserContext";
+import APIHandler from "./../api/APIHandler";
 
 export default function Journey({ location }) {
-  //const { currentUser } = useAuth();
+  const { currentUser } = useAuth();
+  console.log('currentUser');
+  console.log(currentUser);
   const [btnUnfollow, setbtnUnfollow] = useState(true);
   const [viewport, setViewport] = useState({
     width: "100vw",
@@ -21,6 +24,16 @@ export default function Journey({ location }) {
     longitude: location.state.longInitial,
     zoom: 11.5
   });
+
+  // const fetchCurrentUser = async () => {
+  //   try {
+  //     const res = await APIHandler.get("/profile");
+  //     console.log("api res => ", res);
+  //     setUserId(res.data[1]);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
 
   useEffect(() => {
     // console.log(currentUser)
@@ -79,7 +92,8 @@ export default function Journey({ location }) {
               <Rating>{location.state.rate}</Rating>
             </div>
             <div className="button-switch-container">
-              {location.state.isLikedBy.includes(location.state.creator._id) ? (<Button>Follow</Button>) : (<Button>Unfollow</Button>)}
+              {/* {location.state.isLikedBy.includes(currentUser) ? (<Button>Follow</Button>) : (<Button>Unfollow</Button>)} */}
+              {location.state.isLikedBy.includes(currentUser) ? (<Button>Follow</Button>) : (<Button>Unfollow</Button>)}
               <Testbutton text="Follow" />
               <button className="button-switch" onClick={() => setbtnUnfollow(prev => prev = true)}>Follow</button>
               <button className="button-switch" onClick={() => setbtnUnfollow(prev => prev = false)}>Unfollow</button>

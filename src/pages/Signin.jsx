@@ -82,12 +82,12 @@ export default function Signin() {
   return (
     <div className="form-page">
       <div className="toggle-signinup">
-        <div className="switch-button">
+        {/* <div className="switch-button">
           <span className="active">
             <button className="switch-button-case left active-case">Sign in</button>
             <button className="switch-button-case right">Sign up</button>
           </span>
-        </div>
+        </div> */}
 
 
       </div>
