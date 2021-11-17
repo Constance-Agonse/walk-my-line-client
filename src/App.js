@@ -24,10 +24,11 @@ function App() {
   return (
 
     <div className="App">
-    {/* <UserContextProvider> */}
+    <UserContextProvider>
       <Switch>
         <Route exact path="/" component= {Home} />
         <Route exact path="/profile" component = {Profile} />
+        {/* <ProtectedRoute exact path=“/profile” component={Profile} /> */}
         <Route exact path="/createSearchJourney" component = {CreateSearchJourney} />
         <Route exact path="/createSearchJourney/create2" component = {CreateJourney2} />        
         <Route exact path="/createSearchJourney/Pin" component = {CreatePinJourney} />
@@ -37,7 +38,7 @@ function App() {
         
         <Route path="*" component= {ErrorPage} />
       </Switch>
-      {/* </UserContextProvider> */}
+      </UserContextProvider>
     </div>
   );
 }
