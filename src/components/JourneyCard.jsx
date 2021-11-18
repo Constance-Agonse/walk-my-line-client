@@ -1,77 +1,80 @@
 import React from 'react'
 import './JourneyCard.css';
 import { useState } from 'react';
-import ReactMapGL, {Marker} from 'react-map-gl';
+import ReactMapGL, { Marker } from 'react-map-gl';
 // import {Favorite} from "@material-ui/icons"
-import {Room} from "@material-ui/icons"
+import { Room } from "@material-ui/icons"
 // import {Star} from "@material-ui/icons"
 import Hashtags from "./Hashtags"
 import { Link } from 'react-router-dom';
 import Rating from './Rating';
 
 
-export default function JourneyCard({ journeyData , handleDelete}) {
+export default function JourneyCard({ journeyData, handleDelete, idProfile }) {
     const [viewport, setViewport] = useState({
-    width: "20vw",
-    height: "15vh",
-    latitude: journeyData.latInitial,
-    longitude: journeyData.longInitial,
-    zoom: 11.5
-  });
-
-    console.log("in journey")
-
+        width: "115px",
+        height: "115px",
+        latitude: journeyData.latInitial,
+        longitude: journeyData.longInitial,
+        zoom: 11.5
+    });
     return (
         <section className="globalContainerJourneyCard">
-            <Link to={{
-                pathname:'/journey',
-                state: journeyData
-            }}>
-                <div className="innerBoxContainer" >
-                    <h3 id="townName">Paris</h3>
-                    <ul>
-                        <li>{journeyData.km} km</li>
-                        <li>{journeyData.journeyTime} min</li>
-                        <li>{journeyData.pins.length} pins</li>
-                        <li>{(journeyData.isPublic) ? ("Public"): ("Private")}</li>
-                    </ul>
-                </div>
-            </Link>    
-            <div className="innerBoxContainer">
-                <p>arr (précision)</p>
-                <p>France</p>
-                <div className="tagContainer">
-                    {journeyData.tags.map((tag) => {
-                        return <Hashtags key={tag._id} text={tag.name} />
-                    } 
-                    )}
-                    <span className="item">...</span>
-                </div>
-                <Rating>{journeyData.rate}</Rating>
-            
-            </div>
-            
-            <div className="innerBoxContainer map-container">
-            <button id="deletebtn" onClick={() => handleDelete(journeyData._id)}><img src="/delete.png" alt="deletebtn" id="deleteimg"/></button>
-            <h3>By {journeyData.creator.username} </h3> 
-            <ReactMapGL
-                {...viewport}
-                mapboxApiAccessToken = "pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg"
-                onViewportChange={nextViewport => setViewport(nextViewport)}
-                mapStyle="mapbox://styles/hugowalk/ckvvj03ck2ojj14nmd442pqot"
-                className="map"                
+            <div className="map-container">
+                <ReactMapGL
+                    {...viewport}
+                    mapboxApiAccessToken="pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg"
+                    onViewportChange={nextViewport => setViewport(nextViewport)}
+                    mapStyle="mapbox://styles/hugowalk/ckvvj03ck2ojj14nmd442pqot"
+                    className="map"
                 >
-                    <Marker 
-                    latitude={journeyData.latInitial} 
-                    longitude={journeyData.longInitial} 
-                    offsetLeft={-20} 
-                    offsetTop={-10}>
-                        <Room style={{fontSize:viewport.zoom  * 3, color : '#fb8500'}}/>
+                    <Marker
+                        latitude={journeyData.latInitial}
+                        longitude={journeyData.longInitial}
+                        offsetLeft={-20}
+                        offsetTop={-10}>
+                        <Room style={{ fontSize: viewport.zoom * 3, color: '#fb8500' }} />
                         {/* le zoom * 3 permet d'avoir un icon qui s'adapte avec le zoom effectué */}
                     </Marker>
 
-            </ReactMapGL>
+                </ReactMapGL>
             </div>
+            <Link className="innerBoxContainer-link"to={{
+                pathname: '/journey',
+                state: journeyData
+            }}>
+                <div className="innerBoxContainer-journey" >
+
+                    <p>{journeyData.title}</p>
+                    <p>by {journeyData.creator.username}</p>
+                    <div className="affichage-vertical">
+                        <h3 id="townName">Paris</h3>
+                        <p>France</p>
+                    </div>
+                    <div className="affichage-vertical">
+                        <p>{journeyData.km} km</p>
+                        <p>{journeyData.journeyTime} min</p>
+                        <p>{journeyData.pins.length} pins</p>
+                    </div>
+                    <div className="affichage-vertical">
+                        <p>{(journeyData.isPublic) ? ("Public") : "Private"}</p>
+                        <Rating>{journeyData.rate}</Rating>
+                    </div>
+                    <div className="tagContainer">
+                        {journeyData.tags.map((tag) => {
+                            return <Hashtags key={tag._id} text={tag.name} />
+                        }
+                        )}
+                        <span className="item-hashtags">...</span>
+                    </div>
+
+
+                </div>
+            </Link>
+
+            <button className="deletebtn" onClick={() => handleDelete(journeyData._id)}><img src="/delete.png" alt="deletebtn" id="deleteimg" /></button>
+
+
         </section>
     )
 }

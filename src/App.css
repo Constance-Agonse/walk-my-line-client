@@ -13,14 +13,17 @@
   font-family: Boska;
   src: url('./fonts/Boska-Medium.otf');
 }
+@font-face {
+  font-family: BoskaBlack;
+  src: url('./fonts/Boska-Black.otf');
+}
 
 :root {
-  --rose: #FCA6A2;
-  --bleu: #0059A6;
-  --beige: #FFECC1;
-  --vert: #00885C;
-  --orange: #F55721;
-  --jaune: #FFBC00;
+  --vert: #618469;
+  --beige: #FEF1E0;
+  --brown: #955E44;
+  --lightbrown: #DFD0C9;
+  --beigetresclair: #faf5f0;
 }
 
 .App {
