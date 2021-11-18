@@ -30,6 +30,8 @@ export default function Profile() {
 
   useEffect(() => {
     console.log("MOUNTED !!!!");
+    console.log("in effect => same as component did mount");
+    // when the component is attached to the DOM => fetchCats
     fetchJournies();
   }, []);
 
@@ -46,7 +48,7 @@ export default function Profile() {
     }
   };
 
-console.log("currentUser >>> ", currentUser);
+  // console.log("currentUser >>> ", currentUser);
   console.log("users >>> ", users)
   console.log("userId >>> ", userId)
   console.log("journiesCreateByUser >>> ", journiesCreateByUser) //[0].creator.username
