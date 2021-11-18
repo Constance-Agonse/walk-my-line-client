@@ -39,9 +39,12 @@ export default function JourneyCard({ journeyData, handleDelete, idProfile }) {
 
                 </ReactMapGL>
             </div>
-            <Link className="innerBoxContainer-link"to={{
+            <Link className="innerBoxContainer-link" to={{
                 pathname: '/journey',
-                state: journeyData
+                state: {
+                    journeyData: journeyData,
+                    idProfile: idProfile
+                }
             }}>
                 <div className="innerBoxContainer-journey" >
 

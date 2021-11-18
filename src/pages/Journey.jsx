@@ -14,6 +14,11 @@ import APIHandler from "./../api/APIHandler";
 
 export default function Journey({ location, idProfile }) {
   const { currentUser } = useAuth();
+  const journeyData = location.state.journeyData;
+  console.log('journeyData');
+  console.log(journeyData);
+  // console.log('journeyData');
+  // console.log(journeyData);
   // console.log('currentUser');
   // console.log(currentUser);
   const [isFollow, setIsFollow] = useState(true);
@@ -21,8 +26,8 @@ export default function Journey({ location, idProfile }) {
   const [viewport, setViewport] = useState({
     width: "100vw",
     height: "60vh",
-    latitude: location.state.latInitial,
-    longitude: location.state.longInitial,
+    latitude: journeyData.latInitial,
+    longitude: journeyData.longInitial,
     zoom: 11.5
   });
 
@@ -39,40 +44,40 @@ export default function Journey({ location, idProfile }) {
   useEffect(() => {
     // console.log(currentUser)
   }, [])
-  // console.log('location.state.isLikedBy',)
-  // console.log(location.state.isLikedBy)
-  // console.log('location.state.creator._id',)
-  // console.log(location.state.creator._id)
+  // console.log('journeyData.isLikedBy',)
+  // console.log(journeyData.isLikedBy)
+  // console.log('journeyData.creator._id',)
+  // console.log(journeyData.creator._id)
   // console.log('req.session.currentUser',)
   // console.log(req.session.currentUser)
-  
+
 
   const removeFromIslikedBy = () => {
     if (!isFollow) {
-      console.log('location.state.isLikedBy')
-      console.log(location.state.isLikedBy)
-      console.log('location.state.creator._id')
-      console.log(location.state.creator._id)
-      console.log('location.state')
+      console.log('journeyData.isLikedBy')
+      console.log(journeyData.isLikedBy)
+      console.log('journeyData.creator._id')
+      console.log(journeyData.creator._id)
+      console.log('journeyData')
 
-console.log(location.state)
+      console.log(journeyData)
 
-      const newIsLikedBy = location.state.isLikedBy.filter((e) => {
-        
+      const newIsLikedBy = journeyData.isLikedBy.filter((e) => {
+
         return (e._id !== idProfile)
-        
+
       })
       console.log('newIsLikedBy')
       console.log(newIsLikedBy)
-      // location.state.isLikedBy.includes(currentUser)
-    } 
-  
-  }
-const buttonRemove = () => {
-  removeFromIslikedBy();
-  setIsFollow((prev) => (prev = !prev))
+      // journeyData.isLikedBy.includes(currentUser)
+    }
 
-}
+  }
+  const buttonRemove = () => {
+    removeFromIslikedBy();
+    setIsFollow((prev) => (prev = !prev))
+
+  }
 
   return (
     <div id="journey-global">
@@ -87,8 +92,8 @@ const buttonRemove = () => {
 
         >
           <Marker
-            latitude={location.state.latInitial}
-            longitude={location.state.longInitial}
+            latitude={journeyData.latInitial}
+            longitude={journeyData.longInitial}
             offsetLeft={-20}
             offsetTop={-10}>
             <Room style={{ fontSize: viewport.zoom * 3, color: '#fb8500' }} />
@@ -103,9 +108,9 @@ const buttonRemove = () => {
           <div id="journey-bar-info">
             <div id="journey-bar-info-title">
               {/* ATTENTION BIEN REMPLACER TOUTES LES VARIABLES */}
-              {/* <h2>{location.state.title} </h2> */}
+              {/* <h2>{journeyData.title} </h2> */}
               Beautiful trip in Paris
-              <h3>By {location.state.creator.username} </h3>
+              <h3>By {journeyData.creator.username} </h3>
 
             </div>
             <div id="journey-bar-info-location">
@@ -113,21 +118,21 @@ const buttonRemove = () => {
               <h3>Country</h3>
             </div>
             <div id="journey-bar-info-text">
-              <p>{location.state.km} km</p>
-              <p>{location.state.journeyTime} min</p>
-              <p>{location.state.pins.length} pins</p>
-              <p>{(location.state.isPublic) ? ("Public") : "Private"}</p>
+              <p>{journeyData.km} km</p>
+              <p>{journeyData.journeyTime} min</p>
+              <p>{journeyData.pins.length} pins</p>
+              <p>{(journeyData.isPublic) ? ("Public") : "Private"}</p>
             </div>
             <div id="journey-bar-info-line" >
               <div id="journey-bar-info-rate">
-                <Rating>{location.state.rate}</Rating>
+                <Rating>{journeyData.rate}</Rating>
               </div>
               <div className="button-switch-container">
-                
-                {location.state.isLikedBy.includes(currentUser) ? (<Button onClick={() => setbtnUnfollow(prev => prev = true)}>Follow</Button>) : (<Button onClick={() => setbtnUnfollow(prev => prev = false)}>Unfollow</Button>)}
-              
-                <button className="button-switch" onClick={buttonRemove}>{isFollow ? "Follow" : "Unfollow"  }</button>
-                
+
+                {journeyData.isLikedBy.includes(currentUser) ? (<Button onClick={() => setbtnUnfollow(prev => prev = true)}>Follow</Button>) : (<Button onClick={() => setbtnUnfollow(prev => prev = false)}>Unfollow</Button>)}
+
+                <button className="button-switch" onClick={buttonRemove}>{isFollow ? "Follow" : "Unfollow"}</button>
+
                 {/* <button className="button-switch" onClick={() => setbtnUnfollow(prev => prev = true)}>Follow</button>
 
                 <button className="button-switch" onClick={() => setbtnUnfollow(prev => prev = false)}>Unfollow</button> */}
@@ -143,7 +148,7 @@ const buttonRemove = () => {
               {/* <Link id="journey-bar-info-follow">Follow/unfollow</Link> */}
             </div>
             <div id="journey-bar-info-hashtags">
-              {location.state.tags.map((tag) => {
+              {journeyData.tags.map((tag) => {
                 return <Hashtags key={tag._id} text={tag} />
               }
               )}
