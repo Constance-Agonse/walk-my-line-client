@@ -18,6 +18,9 @@ export default function JourneyCard({ journeyData , handleDelete}) {
     longitude: journeyData.longInitial,
     zoom: 11.5
   });
+
+    console.log("in journey")
+
     return (
         <section className="globalContainerJourneyCard">
             <Link to={{
@@ -30,7 +33,7 @@ export default function JourneyCard({ journeyData , handleDelete}) {
                         <li>{journeyData.km} km</li>
                         <li>{journeyData.journeyTime} min</li>
                         <li>{journeyData.pins.length} pins</li>
-                        <li>{(journeyData.isPublic) ? ("Public"): "Private"}</li>
+                        <li>{(journeyData.isPublic) ? ("Public"): ("Private")}</li>
                     </ul>
                 </div>
             </Link>    
@@ -39,7 +42,7 @@ export default function JourneyCard({ journeyData , handleDelete}) {
                 <p>France</p>
                 <div className="tagContainer">
                     {journeyData.tags.map((tag) => {
-                        return <Hashtags key={tag._id} text={tag} />
+                        return <Hashtags key={tag._id} text={tag.name} />
                     } 
                     )}
                     <span className="item">...</span>

@@ -1,10 +1,10 @@
 // //css
 import './CreateSearchJourney.css';
 import React from "react";
-import ReactDOM from "react-dom";
-import ReactMapboxGl from "react-mapbox-gl";
-import DrawControl from "react-mapbox-gl-draw";
-import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
+// import ReactDOM from "react-dom";
+// import ReactMapboxGl from "react-mapbox-gl";
+// import DrawControl from "react-mapbox-gl-draw";
+// import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
 
 // react
 import { useState, useRef, useCallback , useEffect} from 'react'
@@ -19,7 +19,7 @@ import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
 import Geocoder from 'react-map-gl-geocoder' //, MapboxGeocoder , mapboxgl
 // import ReactMapboxGl from 'react-mapbox-gl';
 // import DrawControl from 'react-mapbox-gl-draw';
-import MapboxDraw from '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.js'
+// import MapboxDraw from '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.js'
 
 
 
