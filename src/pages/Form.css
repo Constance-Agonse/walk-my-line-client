@@ -1,39 +1,62 @@
-.form-page{
- height: 100vh;
- width: 100vw;
-  background-color: rgb(74, 74, 139);
+.form-page-container-signinup{
+  background-image: url('./../img/accueuil.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
+  position: relative;
+  color: var(--brown);
+  align-items: center;
+
 }
 
-.form{
-  background-color: #F2E5D2;
-  margin-left: 24px;
-  margin-right: 24px;
-  border-radius: 24px;
+.form-title-app{
+  color: var(--brown);
+  font-family: BoskaBlack;
+  font-size: 105px;
+  margin-top: 105px;
+  white-space: normal;
+}
+.form-container{
+  /* margin-left: 24px;
+  margin-right: 24px; */
   display: flex;
   flex-direction: column;
-  margin-bottom: 50px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 24px;
-  height: 50vh;
+  height: 40vh;
   justify-content: space-between;
+  position:absolute;
+  bottom: 0;
+  font-weight: bold;
 }
-
+/* Floating column for inputs: 75% width */
 .input {
   width: 200px;
-  border-radius: 24px;
+  border-radius: 4px;
   padding: 10px;
   border: none;
+  /* border: 1px solid --lightbrown; */
+  background-color: var(--lightbrown);
+  float: left;
+  width: 65%;
+  margin-top: 6px;
+  font-family: Satoshi;
+  color: var(--brown);
 }
 
 .btn {
-  background-color: var(--orange);
-  border-radius: 24px;
-  padding: 12px 24px;
+  background-color: var(--brown);
+  border-radius: 4px;
+  padding: 8px 24px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border: none;
-  width: 65%;
+  color: var(--beige);
+  font-family: BoskaBlack;
+  font-size: 20px;
+  /* width: 65%; */
   margin-left: auto;
   margin-right: auto;
   /* margin: 0;
@@ -47,7 +70,6 @@
 .btn:hover{
 
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-    background-color: rgba(	245,87,33, 0.75);
 
 }
 /* Floating column for labels: 25% width */
@@ -58,15 +80,10 @@
   text-align: start;
 }
 
-/* Floating column for inputs: 75% width */
-.input {
-  float: left;
-  width: 65%;
-  margin-top: 6px;
-}
+
+
 
 .toggle-signinup {
-  background-color: #F2E5D2;
   margin-left: 24px;
   margin-right: 24px;
   border-radius: 24px;

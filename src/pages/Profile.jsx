@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from "react-router-dom";
-// import MyLikedJournies from './MyLikedJournies';
-// import MyOwnJournies from './MyOwnJournies';
 // import { Link } from 'react-router-dom';
 import JourneyCard from "../components/JourneyCard";
 import './Profil.css';
-import {HomeRounded} from "@material-ui/icons";
-import {EditLocationOutlined} from "@material-ui/icons";
+import { HomeRounded } from "@material-ui/icons";
+import { EditLocationOutlined } from "@material-ui/icons";
 
 import APIHandler from "./../api/APIHandler";
 
@@ -23,10 +21,10 @@ import APIHandler from "./../api/APIHandler";
 
 export default function Profile() {
   const [users, setUsers] = useState([]);
-  const [userId, setUserId] = useState([]); 
-  const [journiesCreateByUser, setJourniesCreateByUser] = useState([]); 
-  const [journiesFollowedByUser, setJourniesFollowedByUser] = useState([]); 
-  const [btnMyJourniesOn,setBtnMyJourniesOn] = useState(true);
+  const [userId, setUserId] = useState([]);
+  const [journiesCreateByUser, setJourniesCreateByUser] = useState([]);
+  const [journiesFollowedByUser, setJourniesFollowedByUser] = useState([]);
+  const [btnMyJourniesOn, setBtnMyJourniesOn] = useState(true);
 
   // const { currentUser } = useAuth();
 
@@ -52,7 +50,7 @@ export default function Profile() {
 
   // console.log("currentUser >>> ", currentUser);
   console.log("users >>> ", users)
-  // console.log("userId >>> ", userId)
+  console.log("userId >>> ", userId)
   console.log("journiesCreateByUser >>> ", journiesCreateByUser) //[0].creator.username
   console.log("journiesFollowedByUser >>> ", journiesFollowedByUser)
 
@@ -72,54 +70,67 @@ export default function Profile() {
     <div className="profile-global-container">
       <header className="profile-characteristic-container">
         <div className="container-profile-picture">
-          <img className="imgProfile" src="./toutou.png" alt="beautifulAvatarOfu"/>
-          <p id="user-name"><strong>
-          {/* {userId.username} */}
-          </strong></p> 
+          <img className="imgProfile" src="./toutou.png" alt="beautifulAvatarOfu" />
+          <p className="title-typo"><strong>
+            Croustie
+            {/* {userId.username} */}
+          </strong></p>
         </div>
-          <div className="sub-container-profile-follower">
-            <p className="profile-follower"><strong>
-            {/* {journiesCreateByUser.length} */}
-            </strong> <br/> journies</p>
-            <p className="profile-follower"><strong>
-            {/* {journiesFollowedByUser.length} */}
-            </strong> <br/> journies liked</p>
-          </div>  
+        <div className="sub-container-profile-follower">
+          <p className="profile-follower"><strong>
+            <div className="title-typo">
+              1
+              {/* {journiesCreateByUser.length} */}
+            </div>
+
+
+          </strong> own<br /> journies</p>
+          <p className="profile-follower"><strong>
+            <div className="title-typo">
+              4
+              {/* {journiesFollowedByUser.length} */}
+            </div>
+          </strong>journies <br />liked</p>
+        </div>
       </header>
       <section className="all-card-container">
-      <div className="button-switch-container">
-        <button className="button-switch" onClick={() => setBtnMyJourniesOn(prev => prev = true)}>My journies</button> 
-        <button className="button-switch" onClick={() => setBtnMyJourniesOn(prev => prev = false)}>Liked journies</button>
-      </div>
+        <div className="button-switch-container">
+          <button className="button-switch" onClick={() => setBtnMyJourniesOn(prev => prev = true)}>My journies</button>
+          <button className="button-switch" onClick={() => setBtnMyJourniesOn(prev => prev = false)}>Liked journies</button>
+        </div>
+
         {btnMyJourniesOn ? (
           // MY JOURNIES
-            journiesCreateByUser.length === 0 ? (
-              <h2>No journies created yet ...</h2>
-            ) : (
-              journiesCreateByUser.map((journey) => (
-                <JourneyCard key={journey._id} journeyData={journey} handleDelete={handleDelete}/>
-              ))
-            )
+          journiesCreateByUser.length === 0 ? (
+            <h2>No journies created yet ...</h2>
+          ) : (
+            journiesCreateByUser.map((journey) => (
+              <JourneyCard key={journey._id} idProfile={userId._id} journeyData={journey} handleDelete={handleDelete} />
+            ))
+
+          )
 
         ) : ( // MY LIKED JOURNIES
           journiesFollowedByUser.length === 0 ? (
-            <h2>No liked journies yet ...</h2>            
+            <h2>No liked journies yet ...</h2>
           ) : (
             journiesFollowedByUser.map((journey) => (
-                <JourneyCard key={journey._id} journeyData={journey} handleDelete={handleDelete}/>
-              ))
+              <JourneyCard key={journey._id} idProfile={userId._id} journeyData={journey} handleDelete={handleDelete} />
+            ))
+
           )
         )
         }
 
-      </section>   
+      </section>
       <footer className="nav-container">
-        <div className="spacer wave-bottom"></div>
-        <div className="nav-icone-container">
-          <NavLink to="/"><HomeRounded className="icone" /></NavLink>
-          <NavLink to="./createSearchJourney"><EditLocationOutlined className="icone"/></NavLink>
+        <div className="wave-bottom">
+          <div className="nav-icone-container">
+            <NavLink to="/"><HomeRounded className="icone" /></NavLink>
+            <NavLink to="./createSearchJourney"><EditLocationOutlined className="icone" /></NavLink>
+          </div>
         </div>
-      </footer>   
+      </footer>
     </div>
   )
 }

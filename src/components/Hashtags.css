@@ -1,11 +1,16 @@
-.item{
-  background-color: #F77F00; 
+.item-hashtags{
+  background-color: var(--beige);
+  color: var(--brown);
+
   font-weight: bold;
-  color: white;
+  font-size: 12px;
   text-align: center;
-  margin: 2px 5px;
-  padding: 8px;
-  border-radius: 24px;
+  margin: 2px 5px 0px 2px;
+  padding: 6px 10px;
+  border-radius: 4px;
   display:inline-block;
   white-space:nowrap;
+  font-family: Satoshi;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.125);
 }
+

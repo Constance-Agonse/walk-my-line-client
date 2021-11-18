@@ -12,7 +12,7 @@ import ToggleSwitch from '../components/ToggleSwitch';
 
 class Signup extends Component {
   state = {
-    profilePic: React.createRef(),
+    profilePic: '',
     tmpAvatar: "",
     username: "admin",
     email: "admin@foobarbaz.io",
@@ -21,15 +21,12 @@ class Signup extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password, username } = this.state;
-// const file = this.state
-    console.log(this.state.profilePic);
-    // const file = this.state.profilePic
+
     const fd = new FormData();
     // create a form data (programatic form, to send the file as binary)
-    fd.append("email", email);
-    fd.append("password", password);
-    fd.append("username", username);
+    fd.append("email", this.state.email);
+    fd.append("password", this.state.password);
+    fd.append("username", this.state.username);
     fd.append("profilePic", this.state.profilePic);
 
     try {
@@ -67,15 +64,15 @@ class Signup extends Component {
     // avoid the component to be rendered if user is already logged in
     // <Redirect to="/" />
     //) : (
-    return (<div className="form-page-container-signinup">
+    return (<div className="form-page">
 
-<h1 className="form-title-app" >Walk My Line</h1>
+
 
       <div className="toggle-signinup">
        <ToggleSwitch Name='weekly' />
       </div>
       <form
-        className="form-container"
+        className="form"
         onSubmit={this.handleSubmit}>
         <div className="form-block">
           <label className="label" htmlFor="email">

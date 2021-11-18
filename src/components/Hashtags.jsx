@@ -3,7 +3,7 @@ import './Hashtags.css'
 
 export default function Hashtags({text}) {
   return (
-      <span className="item">{text.name}</span>      
+      <span className="item-hashtags">{text.name}</span>      
     
   )
 }
