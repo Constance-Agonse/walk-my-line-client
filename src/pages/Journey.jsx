@@ -42,7 +42,7 @@ export default function Journey({ location, idProfile }) {
   // };
 
   useEffect(() => {
-    // console.log(currentUser)
+    console.log(">>>>>>>>",journeyData);
   }, [])
   // console.log('journeyData.isLikedBy',)
   // console.log(journeyData.isLikedBy)
@@ -149,7 +149,7 @@ export default function Journey({ location, idProfile }) {
             </div>
             <div id="journey-bar-info-hashtags">
               {journeyData.tags.map((tag) => {
-                return <Hashtags key={tag._id} text={tag} />
+                return <Hashtags key={tag._id} text={tag.name} />
               }
               )}
             </div>

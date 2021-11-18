@@ -107,10 +107,12 @@ const styles = [
 ];
 // **************************DRAW CUSTOM*****************************************//
 
-let tagArray = [];
+let tagArray = []; 
 
 export default function CreateJourney2({ location }) {
-  const cityData = location.state;
+  // console.log("location>>>",location)
+  const creator = location.state.creator;
+  const cityData = location.state.isSearchDone;
   //la ligne commenté ci dessous pourrait me permettre de gérer le pb de changement de view, lorsque l'on définit un trajet loin de notre point original on y revient et c'est relou donc il faut pas rentrer en dur les paramètres sauf si on les update avec un useeffect ou use state
   //   const [coordMapView, setCoordMapView] = useState([cityData.longitude,cityData.latitude,cityData.zoom])
   const [isPublic, setIsPublic] = useState(true);
@@ -166,7 +168,7 @@ export default function CreateJourney2({ location }) {
   //Pour le moment je ne gere pas le delete des chemins à faire en bonus
   const onDrawDelete = (e) => {
     let idToDelete = e.features[0].id;
-    console.log(e.features[0].geometry.type)
+    // console.log(e.features[0].geometry.type)
     if (e.features[0].geometry.type === "Point") {
         setDrawPointJourney((currentState) => {
         const x = currentState.filter((el) => {
@@ -184,7 +186,6 @@ export default function CreateJourney2({ location }) {
     // console.log("addTag",addTag)
   };
 
-  console.log("point");
   console.log("drawPointJourney", drawPointJourney);
   //On doit create un tag dans la database en fonction du trajet ou l'on est ensuite on push le tag dans l'array de l' useState pour que on est plusieurs tag
   //ou alors on peut pusher tous les tags seulement lorsqu'on click sur done
@@ -206,7 +207,6 @@ export default function CreateJourney2({ location }) {
   /*********************Radio btn for pins*********************** */
 
   const onChangeRadio = (event) => {
-    console.log(event.target.value);
     setRadioType(event.target.value);
   };
   /*********************Radio btn for pins*********************** */
@@ -252,14 +252,14 @@ export default function CreateJourney2({ location }) {
                     <input type="radio" value="Audio" name="pins" onChange={onChangeRadio}/> Audio */}
           <input
             type="radio"
-            value="Image"
+            value="image"
             name="pins"
             onChange={onChangeRadio}
           />{" "}
           Image
           <input
             type="radio"
-            value="Text"
+            value="text"
             name="pins"
             onChange={onChangeRadio}
             checked="checked"
@@ -281,7 +281,9 @@ export default function CreateJourney2({ location }) {
             />
             <button>+</button>
           </form>
-          <button>Done !</button>
+
+          <NavLink exact to="/profile"><button>Done !</button></NavLink>
+
           <button onClick={() => setIsPublic((prev) => (prev = !prev))}>
             {isPublic ? "Public" : "Private"}
           </button>
@@ -298,7 +300,7 @@ export default function CreateJourney2({ location }) {
           </div>
         )}
         <div>
-            {formIsVisibel && <CreatePinJourney isSubmit={setFormIsVisibel} genre={radioType}/>}
+            {formIsVisibel && <CreatePinJourney isSubmit={setFormIsVisibel} genre={radioType} creator={creator} pinData={drawPointJourney[drawPointJourney.length-1]}/>}
         </div>
       </section>
     </div>

@@ -20,6 +20,7 @@ import Geocoder from 'react-map-gl-geocoder' //, MapboxGeocoder , mapboxgl
 // import ReactMapboxGl from 'react-mapbox-gl';
 // import DrawControl from 'react-mapbox-gl-draw';
 // import MapboxDraw from '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.js'
+import APIHandler from "./../api/APIHandler";
 
 
 
@@ -39,11 +40,27 @@ export default function CreateSearchJourney() {
     zoom: 11.5
   });
   const [isSearchDone, setSearchDone] = useState()
+  const [creator, setCreator] = useState("")
+  
   // console.log('firzst', isSearchDone)
   useEffect (()=>{
-    console.log("isSearchDone")
     console.log(isSearchDone)
   },[isSearchDone])
+
+  const fetchCreator = async () => {
+    try {
+      const res = await APIHandler.get("/createSearchJourney");
+      console.log("api res => ", res);
+      setCreator(res.data._id);      
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    console.log("MOUNTED !!!!");
+    fetchCreator();
+  }, []);
 
 
   const mapRef = useRef();
@@ -131,17 +148,18 @@ const onDrawCreate = ({ features }) => {
           <button>T</button>
         </div> */}
         <div id="feature-container">
-          <button>#addATag</button>
           {isSearchDone !== undefined && (
           <Link to={{
                 pathname:'/createSearchJourney/create2',
-                state: isSearchDone
+                state: {
+                  creator : creator,
+                  isSearchDone : isSearchDone
+                } 
             }}>
           <button> Next page !</button> 
           </Link>    
 
         )}
-          <button>#Public</button>
         </div>
       </section>
 

@@ -30,8 +30,6 @@ export default function Profile() {
 
   useEffect(() => {
     console.log("MOUNTED !!!!");
-    console.log("in effect => same as component did mount");
-    // when the component is attached to the DOM => fetchCats
     fetchJournies();
   }, []);
 

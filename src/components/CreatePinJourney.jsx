@@ -10,17 +10,17 @@ export default class CreatePinJourney extends Component {
 
     this.state = {
 
-      creator: "test croustie",
-      title: "test petit tour",
-      // rating: 5,
-      // lat: 6,
-      // long: 6,
-      description: "c'est la description très intéressante",
+      creator: this.props.creator,
+      title: "",
+      lat: this.props.pinData.geometry.coordinates[1],
+      long: this.props.pinData.geometry.coordinates[0],
+      description: "",
       url: "http://google.com",
       genre: this.props.genre,
       media: React.createRef(), // create a reference to attach to the virtual DOM,
     };
   }
+
 
  
   
@@ -30,40 +30,48 @@ export default class CreatePinJourney extends Component {
     e.preventDefault(); // prevent the form to reload
     // destructuring the state
     this.props.isSubmit(false)
+    console.log("this.state.title",this.state.title)
 
-    // const { title, rating, description, url, genre } = this.state;
-    // // accessing the image out of the ref
+    const { title, description, url, genre , lat, long, creator} = this.state;
+    // accessing the image out of the ref
     // console.log(this.state.media)
     // const file = this.state.media.current.files[0]; // target the image file associated to the input[type=file]
 
-    // const uploadData = new FormData(); // create a form data => an object to send as post body
+    const uploadData = new FormData(); // create a form data => an object to send as post body
 
-    // // appending the keys / values pairs to the FormData
-    // uploadData.append("title", title); // create a key [title] on the formDate
-    // uploadData.append("rating", rating); // create a key [rating] on the formDate
-    // // uploadData.append("lat", lat);  // create a key [lat] on the formDate
-    // // uploadData.append("long", long);  // create a key [long] on the formDate
-    // uploadData.append("description", description);  // create a key [description] on the formDate
-    // uploadData.append("url", url);  // create a key [url] on the formDate
-    // uploadData.append("genre", genre);  // create a key [genre] on the formDate
+    // appending the keys / values pairs to the FormData
+    uploadData.append("creator", creator);
+    uploadData.append("title", title); // create a key [title] on the formDate
+    uploadData.append("lat", lat);  // create a key [lat] on the formDate
+    uploadData.append("long", long);  // create a key [long] on the formDate
+    uploadData.append("description", description);  // create a key [description] on the formDate
+    uploadData.append("url", url);  // create a key [url] on the formDate
+    uploadData.append("genre", genre);  // create a key [genre] on the formDate
     // uploadData.append("media", file);
-
-    // for(let entry of uploadData.entries()) {
-    //   console.log(entry[1])
-    // }
-    // try {
+    console.log('------------------------------')
+    console.log(uploadData)
+    console.log('******************************')
+    for(let entry of uploadData.entries()) {
+      console.log(entry[1])
+    }
+    console.log('------------------------------')
+    try {
       
-    //   await APIHandler.post("/api/pins", uploadData); // sending the formData
-    //   // this.props.handler(); // passing the ball to the parent's callback
-    // } catch (err) {
-    //   console.error(err);
-    // }
+      await APIHandler.post("/api/pins", uploadData); // sending the formData
+      // this.props.handler(); // passing the ball to the parent's callback
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   handleChange = (e) => {
+
     this.setState({
       [e.target.name]: e.target.value,
     });
+    console.log('props >>>')
+    console.log(this.props)
+
   }; 
 
   render() {
@@ -71,7 +79,7 @@ export default class CreatePinJourney extends Component {
     <div className="form-page">
       <form className="form" 
       onSubmit={this.handleSubmit}>
-          <div className="form-block">
+          {/* <div className="form-block">
             <label className="label" htmlFor="creator">
               creator
             </label>
@@ -83,7 +91,7 @@ export default class CreatePinJourney extends Component {
               value={this.state.name}
               onChange={this.handleChange}
             />
-          </div>
+          </div> */}
           <div className="form-block">
             <label className="label" htmlFor="title">
               title
@@ -93,7 +101,7 @@ export default class CreatePinJourney extends Component {
               id="title"
               type="text"
               placeholder="title"
-              value={this.state.name}
+              name="title"
               onChange={this.handleChange}
             />
           </div>
@@ -141,8 +149,9 @@ export default class CreatePinJourney extends Component {
               className="input"
               id="description"
               type="string"
+              name="description"
               placeholder="description"
-              value={this.state.name}
+              // value={this.state.description}
               onChange={this.handleChange}
             />
           </div>
@@ -174,7 +183,6 @@ export default class CreatePinJourney extends Component {
           }          
         <button>Submit!</button>
       </form>
-      <NavLink exact to="/profile">Done ! (go to profile)</NavLink>
     </div>
 
 
