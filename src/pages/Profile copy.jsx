@@ -48,7 +48,7 @@ export default function Profile() {
     }
   };
 
-console.log("currentUser >>> ", currentUser);
+  // console.log("currentUser >>> ", currentUser);
   console.log("users >>> ", users)
   console.log("userId >>> ", userId)
   console.log("journiesCreateByUser >>> ", journiesCreateByUser) //[0].creator.username
