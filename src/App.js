@@ -28,7 +28,7 @@ function App() {
     <div className="App">
     <UserContextProvider>
       <Switch>
-        <Route exact path="/" component= {Home} />
+        {/* <Route exact path="/" component= {Home} /> */}
         <ProtectedRoute exact path="/profile" component={Profile} />
         <ProtectedRoute exact path="/createSearchJourney" component = {CreateSearchJourney} />
         {/* <Route exact path="/createSearchJourney" component = {CreateSearchJourney} /> */}
@@ -43,7 +43,7 @@ function App() {
          
         <Route exact path="/auth/signup" component= {Signup} />
         <Route exact path="/auth/signin" component= {Signin} />
-        <Route exact path="/homeSearch" component= {HomeSearch} />
+        <Route exact path="/" component= {HomeSearch} />
         
         <Route path="*" component= {ErrorPage} />
       </Switch>
