@@ -71,9 +71,9 @@ class Signup extends Component {
 
 <h1 className="form-title-app" >Walk My Line</h1>
 
-      <div className="toggle-signinup">
+      {/* <div className="toggle-signinup">
        <ToggleSwitch Name='weekly' />
-      </div>
+      </div> */}
       <form
         className="form-container"
         onSubmit={this.handleSubmit}>

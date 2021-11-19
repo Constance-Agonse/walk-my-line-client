@@ -35,3 +35,28 @@
     overflow-y: scroll;
 } */
 
+.global-create-container{
+  width: 100%;
+  background-image: url('/src/img/search.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: 24px;
+  height: 100vh;
+  z-index: 2;
+}
+ #geocoder{
+  border-radius: 4px;
+  padding: 10px;
+  border: none;
+  /* border: 1px solid --lightbrown; */
+  background-color: var(--lightbrown);
+  float: left;
+  width: 65%;
+  margin-top: 6px;
+  font-family: Satoshi;
+  color: var(--brown);
+ }
+
+
+ 

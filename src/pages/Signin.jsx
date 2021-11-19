@@ -35,16 +35,14 @@ export default function Signin(props) {
   ) : (
     <div className="form-page-container-signinup">
     <h1 className="form-title-app" >Walk My Line</h1>
-      <div className="toggle-signinup">
+      {/* <div className="toggle-signinup"> */}
         {/* <div className="switch-button">
           <span className="active">
             <button className="switch-button-case left active-case">Sign in</button>
             <button className="switch-button-case right">Sign up</button>
           </span>
         </div> */}
-
-
-      </div>
+      {/* </div> */}
       <form className="form-container" onSubmit={handleSubmit} >
         <div className="form-block">
           <label className="label" htmlFor="email">

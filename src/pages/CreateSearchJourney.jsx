@@ -110,6 +110,7 @@ export default function CreateSearchJourney() {
                 onViewportChange={handleGeocoderViewportChange}
                 mapboxApiAccessToken="pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg"
                 position="top-left"
+                id="geocoder"
               />
             
             {/* <DrawControl onDrawCreate={onDrawCreate} onDrawUpdate={onDrawUpdate} id="drawcontrol"/> */}

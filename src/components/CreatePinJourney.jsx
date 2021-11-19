@@ -35,7 +35,7 @@ export default class CreatePinJourney extends Component {
     // accessing the image out of the ref
     // console.log(this.state.media)
     // if(genre === 'image') {
-    //   const file = this.state.media.current.files[0]; // target the image file associated to the input[type=file]
+      const file = this.state.media.current.files[0]; // target the image file associated to the input[type=file]
     // }
 
     const uploadData = new FormData(); // create a form data => an object to send as post body
@@ -49,8 +49,8 @@ export default class CreatePinJourney extends Component {
     uploadData.append("url", url);  // create a key [url] on the formDate
     uploadData.append("genre", genre);  // create a key [genre] on the formDate
     // if(genre === 'image') {
-    //   const file = this.state.media.current.files[0]; // target the image file associated to the input[type=file]
-    //   uploadData.append("media", file);
+      // const file = this.state.media.current.files[0]; // target the image file associated to the input[type=file]
+      uploadData.append("media", file);
     // }
 
     console.log('------------------------------')
@@ -62,8 +62,11 @@ export default class CreatePinJourney extends Component {
     console.log('------------------------------')
     try {
       
-      await APIHandler.post("/api/pins", uploadData); // sending the formData
+      const resultat = await APIHandler.post("/api/pins", uploadData ); // sending the formData //{ title, lat, long, description, url, genre}
       // this.props.handler(); // passing the ball to the parent's callback
+      console.log("resultat >>>>>>>")
+      
+      
     } catch (err) {
       console.error(err);
     }
