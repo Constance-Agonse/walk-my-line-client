@@ -35,7 +35,7 @@
     overflow-y: scroll;
 } */
 
-.global-create-container-searchjourney{
+#global-create-container-searchjourney{
   width: 100%;
   /* background-image: url('/src/img/search.png');
   background-repeat: no-repeat;

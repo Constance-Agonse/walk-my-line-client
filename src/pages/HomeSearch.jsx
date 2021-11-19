@@ -26,17 +26,10 @@ import './HomeSearch.css'
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
 
 export default function HomeSearch() {
-<<<<<<< HEAD
-  const [allJournies, setAllJournies] = useState([]);
-
-  useEffect(() => {
-    fetchJournies();
-=======
     const [allJournies, setAllJournies] = useState([]);
     const allJourniesGlobalArray = allJournies;
     useEffect(() => {
         fetchJournies();
->>>>>>> dc951d0cd0f5ce162299f55d3205850708f064cb
   }, []);
 
   const fetchJournies = async () => {
@@ -155,27 +148,6 @@ export default function HomeSearch() {
 }
 
 
-{/* allJournies.map((journey,index)=> (
-                    <Marker
-                        key={index}
-                        latitude={journey.latInitial}
-                        longitude={journey.longInitial}
-                        offsetLeft={-20}
-                        offsetTop={-10}>
-                        <Room style={{ fontSize: viewport.zoom * 3, color: '#fb8500' }} />.
-                    </Marker>
-            )) */}
-{/* console.log(allJournies[0].latInitial) */ }
-
-
-console.log('***')
-  console.log(allJournies.length)
-  console.log('***')
-
-  // console.log(allJournies[0].length)
-  console.log('***')
-
-  // console.log(allJournies[0])
 
 
 

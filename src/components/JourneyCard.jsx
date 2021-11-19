@@ -67,7 +67,7 @@ export default function JourneyCard({ journeyData, handleDelete}) {
                     </div>
                     <div className="tagContainer">
                         {journeyData.tags.map((tag, i) => {
-                            return <Hashtags key={i} text={tag.name} />
+                            return <Hashtags key={i} text={tag} />
                         }
                         )}
                         <span className="item-hashtags">...</span>

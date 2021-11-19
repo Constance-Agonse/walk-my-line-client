@@ -98,7 +98,7 @@ export default function CreateSearchJourney() {
 
   return (
 
-    <div className="global-create-container-searchjourney">
+    <div id="global-create-container-searchjourney">
 
       <div className="map-container-searchjourney">
         <ReactMapGL
@@ -137,9 +137,9 @@ export default function CreateSearchJourney() {
           <NavLink to="/profile"><PersonRounded /></NavLink>
         </div>
 
-        <div id="feature-container-searchjourney">
+        <div>
 
-          {/* {isSearchDone !== undefined && ( */}
+          {isSearchDone !== undefined && (
             <Link to={{
               pathname: '/createSearchJourney/create2',
               state: {
@@ -147,10 +147,11 @@ export default function CreateSearchJourney() {
                 isSearchDone: isSearchDone
               }
             }}>
-               Next page !
+            <div id="feature-container-searchjourney"> Next page ! </div>
+              
             </Link>
 
-          {/* )} */}
+          )}
         </div>
       </section>
 

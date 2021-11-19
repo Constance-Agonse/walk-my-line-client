@@ -1,7 +1,8 @@
 .global-create-container-homesearch {
   height: 100vh;
   width: 100vw;
-  background-color: var(--vert);
+  /* z-index: 7; */
+  /* background-color: var(--vert); */
 
 }
 
@@ -25,27 +26,17 @@
   background-color: var(--vert);
 }
 
-/* #input-geocoder-homesearch{
-  border-radius: 4px;
-  padding: 10px;
-  border: none;
-  background-color: var(--lightbrown);
-  float: left;
-  width: 65%;
-  margin-top: 6px;
-  font-family: Satoshi;
-  color: var(--brown);
- } */
+
 
 .nav-icone-container-homesearch {
-  color: var(--beige);
+  color: var(--vert);
   padding: 24px;
   display: flex;
   justify-content: space-between;
 }
 
 .feature-container-homesearch {
-  color: var(--beige);
+  color: var(--vert);
   display: flex;
   min-width: 80vw;
   margin-bottom: 10px;

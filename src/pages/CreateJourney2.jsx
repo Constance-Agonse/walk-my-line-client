@@ -7,7 +7,7 @@ import "./CreateSearchJourney.css";
 import CreatePinJourney from "../components/CreatePinJourney";
 import Hashtags from "../components/Hashtags";
 
-
+import './CreateJourney2.css'
 import { HomeRounded } from "@material-ui/icons";
 import { PersonRounded } from "@material-ui/icons";
 
@@ -267,8 +267,8 @@ export default function CreateJourney2({ location }) {
   /*********************Radio btn for pins*********************** */
   console.log('daaaaaaaaaaaaaaaaaaaaaa :', pinArray)
   return (
-    <div>
-      <div id="test">
+    <div id="blockcreatejourney2-container">
+      <div id="blockcreatejourney2">
         <Map
           // mapboxApiAccessToken = "pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg"
           style="mapbox://styles/hugowalk/ckvyzg1n629ta15mvc49rx7ll"
@@ -293,13 +293,13 @@ export default function CreateJourney2({ location }) {
         </Map>
       </div>
 
-      <section id="menu">
-        <div className="nav-icone-container">
+      <section id="menu-createjourney-2">
+        <div className="nav-icone-container-journey2">
           <NavLink to="/">
-            <HomeRounded className="icone" />
+            <HomeRounded  />
           </NavLink>
           <NavLink to="/profile">
-            <PersonRounded className="icone" />
+            <PersonRounded />
           </NavLink>
         </div>
         <div id="pins-container">
@@ -321,7 +321,7 @@ export default function CreateJourney2({ location }) {
           />{" "}
           Text
         </div>
-        <div id="feature-container">
+        <div className="feature-container-container2">
           <form onSubmit={handleSubmitTag}>
             <input
               className="input"
@@ -331,12 +331,13 @@ export default function CreateJourney2({ location }) {
               placeholder="#AddTag"
               // onChange={handleChange}
             />
-            <button>+</button>
+            <button id="plusbutton">+</button>
           </form>
+          </div>
+          <div className="feature-container-container2">
+          <NavLink exact to="/profile"><button id="plusbutton" onClick={createJourney}>Done !</button></NavLink>
 
-          <NavLink exact to="/profile"><button onClick={createJourney}>Done !</button></NavLink>
-
-          <button onClick={() => setIsPublic((prev) => (prev = !prev))}>
+          <button id="plusbutton" onClick={() => setIsPublic((prev) => (prev = !prev))}>
             {isPublic ? "Public" : "Private"}
           </button>
         </div>
