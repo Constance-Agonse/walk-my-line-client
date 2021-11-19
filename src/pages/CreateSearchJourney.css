@@ -35,17 +35,29 @@
     overflow-y: scroll;
 } */
 
-.global-create-container{
+.global-create-container-searchjourney{
   width: 100%;
   background-image: url('/src/img/search.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  padding: 24px;
+  /* padding: 24px; */
   height: 100vh;
   z-index: 2;
+  color: var(--beige);
+  position: absolute;
 }
- #geocoder{
+
+
+#menu-container-search-journey{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+  background-color: var(--vert);
+
+}
+ #input-geocoder{
   border-radius: 4px;
   padding: 10px;
   border: none;
@@ -59,4 +71,30 @@
  }
 
 
- 
+.map-container-searchjourney{
+  z-index: 1;
+}
+
+.nav-icone-container-searchjourney{
+  color: var(--beige);
+  display: flex;
+  justify-content: space-between;
+  z-index: 6;
+}
+
+#feature-container-searchjourney{
+  color: var(--beige);
+  display: flex;
+  justify-content: space-between;
+  z-index: 6;
+  height: 104px;
+}
+
+
+
+#menu-container-search-journey{
+  position:absolute;
+  /* position : fixed; */
+  bottom: 0;
+  width: 100vw;
+}

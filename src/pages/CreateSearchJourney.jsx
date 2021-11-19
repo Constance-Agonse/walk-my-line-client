@@ -5,60 +5,62 @@ import React from "react";
 // import ReactMapboxGl from "react-mapbox-gl";
 // import DrawControl from "react-mapbox-gl-draw";
 // import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
+// import mapboxgl from 'mapbox-gl'
 
 // react
-import { useState, useRef, useCallback , useEffect} from 'react'
-import { NavLink , Link} from "react-router-dom";
+import { useState, useRef, useCallback, useEffect } from 'react'
+import { NavLink, Link } from "react-router-dom";
 //icone
-import {HomeRounded} from "@material-ui/icons";
-import {PersonRounded} from '@material-ui/icons';
+import { HomeRounded } from "@material-ui/icons";
+import { PersonRounded } from '@material-ui/icons';
 
 //mapbox
 import ReactMapGL from 'react-map-gl';
-import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
+// import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
 import Geocoder from 'react-map-gl-geocoder' //, MapboxGeocoder , mapboxgl
 // import ReactMapboxGl from 'react-mapbox-gl';
 // import DrawControl from 'react-mapbox-gl-draw';
 // import MapboxDraw from '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.js'
 import APIHandler from "./../api/APIHandler";
 
+import './CreateSearchJourney.css';
+// import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
+// /* eslint import/no-webpack-loader-syntax: off */
+// mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 
-
- 
 // Don't forget to import the CSS
-import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
 
 
 export default function CreateSearchJourney() {
 
   const [viewport, setViewport] = useState({
     width: "100vw",
-    height: "85vh",
+    height: "75vh",
     latitude: 48.853,
     longitude: 2.3905,
     zoom: 11.5
   });
   const [isSearchDone, setSearchDone] = useState()
   const [creator, setCreator] = useState("")
-  
+
   // console.log('firzst', isSearchDone)
-  useEffect (()=>{
+  useEffect(() => {
     console.log(isSearchDone)
-  },[isSearchDone])
+  }, [isSearchDone])
 
   const fetchCreator = async () => {
     try {
       const res = await APIHandler.get("/createSearchJourney");
       console.log("api res => ", res);
-      setCreator(res.data._id);      
+      setCreator(res.data._id);
     } catch (err) {
       console.error(err);
     }
   };
 
   useEffect(() => {
-    console.log("MOUNTED !!!!");
+
     fetchCreator();
   }, []);
 
@@ -73,8 +75,9 @@ export default function CreateSearchJourney() {
   const handleGeocoderViewportChange = useCallback(
     (newViewport) => {
       const geocoderDefaultOverrides = { transitionDuration: 1000 };
-      setSearchDone(prevSearch => prevSearch = newViewport)
-    console.log("isSearchDone dans view")
+
+      setSearchDone(newViewport)
+      console.log("isSearchDone dans view")
 
       console.log(isSearchDone)
 
@@ -89,35 +92,35 @@ export default function CreateSearchJourney() {
   );
 
   // const Map = ReactMapboxGl({
-//   accessToken:
-//     "pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg"
-// });
+  //   accessToken:
+  //     "pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg"
+  // });
 
   return (
-    <div className="global-create-container">
-  
-      <div className="innerBoxContainer map-container">
-            <ReactMapGL
-            ref={mapRef}
-                {...viewport}
-                mapboxApiAccessToken = "pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg"
-                onViewportChange={nextViewport => setViewport(nextViewport)}
-                mapStyle="mapbox://styles/hugowalk/ckvyzg1n629ta15mvc49rx7ll"
-                id="map-create"                
-                >
-              <Geocoder
-                mapRef={mapRef}
-                onViewportChange={handleGeocoderViewportChange}
-                mapboxApiAccessToken="pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg"
-                position="top-left"
-                id="geocoder"
-              />
-            
-            {/* <DrawControl onDrawCreate={onDrawCreate} onDrawUpdate={onDrawUpdate} id="drawcontrol"/> */}
 
-            </ReactMapGL>
-            
-            {/* <Map
+    <div className="global-create-container-searchjourney">
+
+      <div className="map-container-searchjourney">
+        <ReactMapGL
+          ref={mapRef}
+          {...viewport}
+          mapboxApiAccessToken="pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg"
+          onViewportChange={nextViewport => setViewport(nextViewport)}
+          mapStyle="mapbox://styles/hugowalk/ckvyzg1n629ta15mvc49rx7ll"
+          id="map-create"
+        >
+          <Geocoder
+            mapRef={mapRef}
+            onViewportChange={handleGeocoderViewportChange}
+            mapboxApiAccessToken="pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg"
+            position="top-left"
+            id="input-geocoder"
+          />
+
+
+        </ReactMapGL>
+
+        {/* <Map
         style="mapbox://styles/mapbox/streets-v9" // eslint-disable-line
         containerStyle={{
           height: "600px",
@@ -128,35 +131,30 @@ export default function CreateSearchJourney() {
       </Map> */}
 
       </div>
-      <section id="menu">
-        <div className="nav-icone-container">
-          <NavLink to="/"><HomeRounded className="icone" /></NavLink>
-          <NavLink to="/profile"><PersonRounded className="icone"/></NavLink>
+      <section id="menu-container-search-journey">
+        <div className="nav-icone-container-searchjourney">
+          <NavLink to="/"><HomeRounded /></NavLink>
+          <NavLink to="/profile"><PersonRounded /></NavLink>
         </div>
-        {/* <div id="pins-container">
-        
-          <button>A</button>
-          <button>V</button>
-          <button>I</button>
-          <button>T</button>
-        </div> */}
-        <div id="feature-container">
-          {isSearchDone !== undefined && (
-          <Link to={{
-                pathname:'/createSearchJourney/create2',
-                state: {
-                  creator : creator,
-                  isSearchDone : isSearchDone
-                } 
-            }}>
-          <button> Next page !</button> 
-          </Link>    
 
-        )}
+        <div id="feature-container-searchjourney">
+
+          {isSearchDone !== undefined && (
+            <Link to={{
+              pathname: '/createSearchJourney/create2',
+              state: {
+                creator: creator,
+                isSearchDone: isSearchDone
+              }
+            }}>
+              <button> Next page !</button>
+            </Link>
+
+          )}
         </div>
       </section>
 
-        
+
 
     </div>
   )
@@ -169,7 +167,7 @@ export default function CreateSearchJourney() {
 // import ReactMapboxGl from "react-mapbox-gl";
 // import DrawControl from "react-mapbox-gl-draw";
 // import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
-// import './CreateSearchJourney.css';
+
 
 // // import "./styles.css";
 
@@ -401,7 +399,7 @@ export default function CreateSearchJourney() {
 // center: [-79.4512, 43.6568],
 // zoom: 13
 // });
- 
+
 // // Add the control to the map.
 // map.addControl(
 // new MapboxGeocoder({
