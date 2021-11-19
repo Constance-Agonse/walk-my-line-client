@@ -20,13 +20,14 @@ import { useAuth } from "./../auth/UserContext";
 
 
 export default function Profile() {
+  const { currentUser } = useAuth();
   const [users, setUsers] = useState([]);
-  const [userId, setUserId] = useState([]);
+  // const [userId, setUserId] = useState([]); //plus besoin avec currentuser
   const [journiesCreateByUser, setJourniesCreateByUser] = useState([]);
   const [journiesFollowedByUser, setJourniesFollowedByUser] = useState([]);
   const [btnMyJourniesOn, setBtnMyJourniesOn] = useState(true);
 
-  const { currentUser } = useAuth();
+
 
   useEffect(() => {
     console.log("MOUNTED !!!!");
@@ -38,7 +39,7 @@ export default function Profile() {
       const res = await APIHandler.get("/profile");
       console.log("api res => ", res);
       setUsers(res.data[0]); //(prevUsers) => prevUsers = 
-      setUserId(res.data[1]); //(prevUserId) => prevUserId = 
+      // setUserId(currentUser); // setUserId(res.data[1]); //plus besoin avec currentuser
       setJourniesCreateByUser(res.data[2]);
       setJourniesFollowedByUser(res.data[3]);
     } catch (err) {
@@ -48,7 +49,7 @@ export default function Profile() {
 
 console.log("currentUser >>> ", currentUser);
   console.log("users >>> ", users)
-  console.log("userId >>> ", userId)
+  // console.log("userId >>> ", userId)
   console.log("journiesCreateByUser >>> ", journiesCreateByUser) //[0].creator.username
   console.log("journiesFollowedByUser >>> ", journiesFollowedByUser)
 
@@ -71,7 +72,7 @@ console.log("currentUser >>> ", currentUser);
           <img className="imgProfile" src="./toutou.png" alt="beautifulAvatarOfu" />
           <p className="title-typo"><strong>
             
-            {userId.username}
+            {currentUser.username}
           </strong></p>
         </div>
         <div className="sub-container-profile-follower">
@@ -103,7 +104,7 @@ console.log("currentUser >>> ", currentUser);
             <h2>No journies created yet ...</h2>
           ) : (
             journiesCreateByUser.map((journey) => (
-              <JourneyCard key={journey._id} idProfile={userId._id} journeyData={journey} handleDelete={handleDelete} />
+              <JourneyCard key={journey._id} journeyData={journey} handleDelete={handleDelete} />
             ))
 
           )
@@ -113,7 +114,7 @@ console.log("currentUser >>> ", currentUser);
             <h2>No liked journies yet ...</h2>
           ) : (
             journiesFollowedByUser.map((journey) => (
-              <JourneyCard key={journey._id} idProfile={userId._id} journeyData={journey} handleDelete={handleDelete} />
+              <JourneyCard key={journey._id} journeyData={journey} handleDelete={handleDelete} />
             ))
 
           )

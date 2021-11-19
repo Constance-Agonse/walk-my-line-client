@@ -11,6 +11,7 @@ export default function Home() {
     <button className="buttonHome"> <NavLink exact to="/createSearchJourney" className="linkHome">Create a journeyyy !</NavLink></button>
     <button className="buttonHome"> <NavLink exact to="/auth/signup" className="linkHome">Sign up !</NavLink></button>
     <button className="buttonHome"> <NavLink exact to="/auth/signin" className="linkHome">Sign in !</NavLink></button>
+    <button className="buttonHome"> <NavLink exact to="/homeSearch" className="linkHome">/homeSearch</NavLink></button>
     </div>
   )
 }
