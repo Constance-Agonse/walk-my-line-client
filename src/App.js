@@ -31,7 +31,7 @@ function App() {
         {/* <Route exact path="/" component= {Home} /> */}
         <ProtectedRoute exact path="/profile" component={Profile} />
         <ProtectedRoute exact path="/createSearchJourney" component = {CreateSearchJourney} />
-        {/* <Route exact path="/createSearchJourney" component = {CreateSearchJourney} /> */}
+        
         
         <ProtectedRoute exact path="/createSearchJourney/create2" component = {CreateJourney2} />        
         {/* <Route exact path="/createSearchJourney/Pin" component = {CreatePinJourney} /> */}
@@ -39,7 +39,7 @@ function App() {
         {/* <Route exact path="/profile" component={Profile} /> */}
         {/* <Route exact path="/createSearchJourney" component = {CreateSearchJourney} />         */}
         {/* <Route exact path="/createSearchJourney/create2" component = {CreateJourney2} />    */}
-        {/* <ProtectedRoute exact path="/journey/:id" component ={Journey} />  */}
+        {/* <Route exact path="/journey" component = {Journey} />  */}
          
         <Route exact path="/auth/signup" component= {Signup} />
         <Route exact path="/auth/signin" component= {Signin} />
@@ -53,3 +53,5 @@ function App() {
 }
 
 export default App;
+
+

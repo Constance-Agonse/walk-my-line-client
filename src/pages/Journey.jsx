@@ -172,7 +172,8 @@ export default function Journey({ location }) {
             <div id="journey-bar-info-title">
               {/* ATTENTION BIEN REMPLACER TOUTES LES VARIABLES */}
               {/* <h2>{journeyData.title} </h2> */}
-              Beautiful trip in Paris
+              A trip
+              
               <h3>By {journeyData.creator.username} </h3>
 
             </div>
@@ -192,20 +193,7 @@ export default function Journey({ location }) {
               </div>
               <div className="button-switch-container">
 
-                {journeyData.isLikedBy.includes(currentUser) ? (<Button onClick={() => setbtnUnfollow(prev => prev = true)}>Follow</Button>) : (<Button onClick={() => setbtnUnfollow(prev => prev = false)}>Unfollow</Button>)}
-
                 <button className="button-switch" onClick={buttonRemove}>{isFollow ? "Follow" : "Unfollow"}</button>
-
-                {/* <button className="button-switch" onClick={() => setbtnUnfollow(prev => prev = true)}>Follow</button>
-
-                <button className="button-switch" onClick={() => setbtnUnfollow(prev => prev = false)}>Unfollow</button> */}
-                {/* <Testbutton text="Follow" /> */}
-                {/* {btnUnfollow ? (
-              <button className="button-switch" onClick={() => setbtnUnfollow(prev => prev = true)}>Follow</button>
-            ): (
-              <button className="button-switch" onClick={() => setbtnUnfollow(prev => prev = false)}>Unfollow</button>
-            )} */}
-
 
               </div>
               {/* <Link id="journey-bar-info-follow">Follow/unfollow</Link> */}

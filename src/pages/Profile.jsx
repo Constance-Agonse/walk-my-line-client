@@ -64,7 +64,7 @@ console.log("currentUser >>> ", currentUser);
       console.error(err);
     }
   };
-
+console.log('currentUser:::', currentUser);
   return (
     <div className="profile-global-container">
       <header className="profile-characteristic-container">
