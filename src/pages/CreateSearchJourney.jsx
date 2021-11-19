@@ -88,14 +88,6 @@ export default function CreateSearchJourney() {
     []
   );
 
-const onDrawCreate = ({ features }) => {
-    console.log(features);
-  };
-
-  const onDrawUpdate = ({ features }) => {
-    console.log(features);
-  };
-
   // const Map = ReactMapboxGl({
 //   accessToken:
 //     "pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg"

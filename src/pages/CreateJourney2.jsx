@@ -151,9 +151,14 @@ export default function CreateJourney2({ location }) {
 
   // console.log(location)
   const createJourney = async (e) => {
-    console.log( "drawLineJourney.geometry.coordinates")
-
+    console.log( "drawLineJourney.geometry.coordinates***************")
+//VERIFIER LES COORDONEE + RES A METTRE DEVANT POUR RECUP LES DATAS ENVOY2 DU SERVER
     console.log( drawLineJourney)
+    console.log( drawLineJourney[0].geometry.coordinates[0][0])
+
+    console.log( drawLineJourney[0].geometry.coordinates[0][1])
+    console.log( "drawLineJourney.geometry.coordinates***************")
+
       const randomRate = Math.random() * 5;
       const journeyData = {
       isPublic: isPublic, 
@@ -164,8 +169,8 @@ export default function CreateJourney2({ location }) {
       km: 47,                 //a changer
       isLikedBy:[],
       rate:randomRate,         //bancale
-      latInitial: drawLineJourney[0].geometry.coordinates[0][0], //on prend le premier point du trajet en reference du debut
-      longInitial: drawLineJourney[0].geometry.coordinates[0][1],
+      latInitial: drawLineJourney[0].geometry.coordinates[0][1], //on prend le premier point du trajet en reference du debut
+      longInitial: drawLineJourney[0].geometry.coordinates[0][0],
       geometry : drawLineJourney[0].geometry.coordinates //on stocke les coordonées du trajet
     };
     
