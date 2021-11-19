@@ -152,7 +152,7 @@ export default function CreateJourney2({ location }) {
   // console.log(location)
   const createJourney = async (e) => {
     console.log( "drawLineJourney.geometry.coordinates***************")
-//VERIFIER LES COORDONEE + RES A METTRE DEVANT POUR RECUP LES DATAS ENVOY2 DU SERVER
+
     console.log( drawLineJourney)
     console.log( drawLineJourney[0].geometry.coordinates[0][0])
 
