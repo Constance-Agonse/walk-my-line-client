@@ -12,7 +12,7 @@ import { Button } from '@material-ui/core';
 import { useAuth } from "./../auth/UserContext";
 import APIHandler from "./../api/APIHandler";
 
-export default function Journey({ location, idProfile }) {
+export default function Journey({ location }) {
   const { currentUser } = useAuth();
   const journeyData = location.state.journeyData;
   console.log('journeyData');
@@ -64,7 +64,7 @@ export default function Journey({ location, idProfile }) {
 
       const newIsLikedBy = journeyData.isLikedBy.filter((e) => {
 
-        return (e._id !== idProfile)
+        return (e._id !== currentUser)
 
       })
       console.log('newIsLikedBy')

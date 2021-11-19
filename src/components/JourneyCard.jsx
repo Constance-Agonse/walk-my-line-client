@@ -8,9 +8,12 @@ import { Room } from "@material-ui/icons"
 import Hashtags from "./Hashtags"
 import { Link } from 'react-router-dom';
 import Rating from './Rating';
+import { useAuth } from "./../auth/UserContext";
 
 
-export default function JourneyCard({ journeyData, handleDelete, idProfile }) {
+export default function JourneyCard({ journeyData, handleDelete}) {
+  const { currentUser } = useAuth();
+
     const [viewport, setViewport] = useState({
         width: "115px",
         height: "115px",
@@ -43,7 +46,6 @@ export default function JourneyCard({ journeyData, handleDelete, idProfile }) {
                 pathname: '/journey',
                 state: {
                     journeyData: journeyData,
-                    idProfile: idProfile
                 }
             }}>
                 <div className="innerBoxContainer-journey" >

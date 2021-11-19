@@ -6,17 +6,16 @@ export default class CreatePinJourney extends Component {
 
   // using the constructor form to associate a ref
   constructor(props) {
-    super(props); // MANDATORY !!!!
+    super(props); 
 
     this.state = {
-
-      creator: this.props.creator,
       title: "",
       lat: this.props.pinData.geometry.coordinates[1],
       long: this.props.pinData.geometry.coordinates[0],
       description: "",
       url: "http://google.com",
       genre: this.props.genre,
+      creator: this.props.creator, 
       media: React.createRef(), // create a reference to attach to the virtual DOM,
     };
   }
@@ -26,28 +25,34 @@ export default class CreatePinJourney extends Component {
   
 
 
-  handleSubmit = async (e) => {
+  handleSubmit = async (e) =>  {
     e.preventDefault(); // prevent the form to reload
     // destructuring the state
     this.props.isSubmit(false)
-    console.log("this.state.title",this.state.title)
+    console.log("this",this)
 
-    const { title, description, url, genre , lat, long, creator} = this.state;
+    const { title, lat, long, description, url, genre} = this.state; //, creator
     // accessing the image out of the ref
     // console.log(this.state.media)
-    // const file = this.state.media.current.files[0]; // target the image file associated to the input[type=file]
+    // if(genre === 'image') {
+    //   const file = this.state.media.current.files[0]; // target the image file associated to the input[type=file]
+    // }
 
     const uploadData = new FormData(); // create a form data => an object to send as post body
-
+    console.log('genre :', genre)
     // appending the keys / values pairs to the FormData
-    uploadData.append("creator", creator);
+    // uploadData.append("creator", creator);
     uploadData.append("title", title); // create a key [title] on the formDate
     uploadData.append("lat", lat);  // create a key [lat] on the formDate
     uploadData.append("long", long);  // create a key [long] on the formDate
     uploadData.append("description", description);  // create a key [description] on the formDate
     uploadData.append("url", url);  // create a key [url] on the formDate
     uploadData.append("genre", genre);  // create a key [genre] on the formDate
-    // uploadData.append("media", file);
+    // if(genre === 'image') {
+    //   const file = this.state.media.current.files[0]; // target the image file associated to the input[type=file]
+    //   uploadData.append("media", file);
+    // }
+
     console.log('------------------------------')
     console.log(uploadData)
     console.log('******************************')
@@ -155,7 +160,7 @@ export default class CreatePinJourney extends Component {
               onChange={this.handleChange}
             />
           </div>
-          {this.props.genre === 'Image' &&
+          {this.props.genre === 'image' &&
           <>
           <div className="form-block">
             <label className="label" htmlFor="media">

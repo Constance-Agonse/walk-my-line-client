@@ -107,7 +107,7 @@ const styles = [
 ];
 // **************************DRAW CUSTOM*****************************************//
 
-let tagArray = []; 
+
 
 export default function CreateJourney2({ location }) {
   // console.log("location>>>",location)
@@ -125,11 +125,57 @@ export default function CreateJourney2({ location }) {
   const [isAudio, setAudio] = useState(false);
   const [isVideo, setVideo] = useState(false);
   const [isImage, setImage] = useState(false);
-  const [radioType, setRadioType] = useState("Text");
+  const [radioType, setRadioType] = useState("text");
   const [formIsVisibel, setFormIsVisibel] = useState(false);
+/*
+  req.body
+{
+  isPublic: false,
+  tags: [ 'aa', 'ee', 'xxxxxxxxxxxxxxxxxxx' ],
+  pins: [
+    {
+      id: '88e912b9693cd8d7e09a847c5a9518f4',
+      type: 'Feature',
+      properties: {},
+      geometry: [Object],
+      pinType: 'text'
+    }
+  ],
+  creator: '61967029042d717b00ab24bd',
+  journeyTime: 47,
+  km: 47,
+  isLikedBy: [],
+  rate: 1.6363841450923011
+}*/
 
 
   // console.log(location)
+  const createJourney = async (e) => {
+    console.log( "drawLineJourney.geometry.coordinates")
+
+    console.log( drawLineJourney)
+      const randomRate = Math.random() * 5;
+      const journeyData = {
+      isPublic: isPublic, 
+      tags: addTag,            //a changer
+      // pins: [drawPointJourney[0].id], //checker si c'est une id
+      creator:creator,
+      journeyTime: 47,        //a changer
+      km: 47,                 //a changer
+      isLikedBy:[],
+      rate:randomRate,         //bancale
+      latInitial: drawLineJourney[0].geometry.coordinates[0][0], //on prend le premier point du trajet en reference du debut
+      longInitial: drawLineJourney[0].geometry.coordinates[0][1],
+      geometry : drawLineJourney[0].geometry.coordinates //on stocke les coordonées du trajet
+    };
+    
+    try {      
+      await APIHandler.post("/createSearchJourney", journeyData); // sending the formData
+      // this.props.handler(); // passing the ball to the parent's callback
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   const onDrawCreate = (payload) => {
     const feature = { ...payload.features[0] };
@@ -181,12 +227,13 @@ export default function CreateJourney2({ location }) {
 
   const handleChange = (e) => {
     setAddTag(e.target.value);
-    console.log("drawPointJourney", drawPointJourney);
-    console.log("drawLineJourney",drawLineJourney)
+    // console.log("drawPointJourney", drawPointJourney);
+    // console.log("drawLineJourney",drawLineJourney)
     // console.log("addTag",addTag)
   };
-
   console.log("drawPointJourney", drawPointJourney);
+    console.log("drawLineJourney",drawLineJourney)
+
   //On doit create un tag dans la database en fonction du trajet ou l'on est ensuite on push le tag dans l'array de l' useState pour que on est plusieurs tag
   //ou alors on peut pusher tous les tags seulement lorsqu'on click sur done
   // j'ai d'abord essayé de pusher le addTag ( setAddTag([...addTag, addTag]) et setAddTag(oldArray => [...oldArray, addTag]);)
@@ -195,12 +242,14 @@ export default function CreateJourney2({ location }) {
   //je vide ensuite le contenu de l'input
   //il me faut trouver un moyen de rerender une fois le handlesubmit terminé
   // lorsque l'utilisateur cliquera sur done ! je recup toutes les data pour en faire un create
-  const handleSubmit = (e) => {
+  //SOLUTION IL FALLAIT ENLEVER LE HANDLE CHANGE
+  
+  const handleSubmitTag = (e) => {
     e.preventDefault();
-    // console.log('submit')
-    tagArray.push(addTag);
-    // console.log(tagArray)
-    // console.log(e.target[0].value)
+
+    const newTag = e.target[0].value;
+    setAddTag((oldState) => [...oldState, newTag])
+
     e.target[0].value = ""; //on enleve la valeur que l'on vient de marquer dans le input
   };
 
@@ -265,32 +314,29 @@ export default function CreateJourney2({ location }) {
             checked="checked"
           />{" "}
           Text
-          {/* <button>V</button>
-                <button>I</button>
-                <button>T</button> */}
         </div>
         <div id="feature-container">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmitTag}>
             <input
               className="input"
               id="addTag"
               type="text"
               name="addTagInput"
               placeholder="#AddTag"
-              onChange={handleChange}
+              // onChange={handleChange}
             />
             <button>+</button>
           </form>
 
-          <NavLink exact to="/profile"><button>Done !</button></NavLink>
+          <NavLink exact to="/profile"><button onClick={createJourney}>Done !</button></NavLink>
 
           <button onClick={() => setIsPublic((prev) => (prev = !prev))}>
             {isPublic ? "Public" : "Private"}
           </button>
         </div>
-        {tagArray.length ? (
+        {addTag.length ? (
           <div>
-            {tagArray.map((tag, index) => (
+            {addTag.map((tag, index) => (
               <Hashtags key={index} text={tag}/>
             ))}
           </div>

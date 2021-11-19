@@ -11,6 +11,8 @@ import Journey from "./pages/Journey"
 import ErrorPage from "./pages/ErrorPage";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
+import HomeSearch from "./pages/HomeSearch";
+
 
 
 // auth
