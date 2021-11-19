@@ -21,10 +21,6 @@ export default class CreatePinJourney extends Component {
   }
 
 
- 
-  
-
-
   handleSubmit = async (e) =>  {
     e.preventDefault(); // prevent the form to reload
     // destructuring the state
@@ -32,15 +28,14 @@ export default class CreatePinJourney extends Component {
     console.log("this",this)
 
     const { title, lat, long, description, url, genre} = this.state; //, creator
-    // accessing the image out of the ref
-    // console.log(this.state.media)
-    // if(genre === 'image') {
+    
+    if(genre ==='image'){
+      console.log('in image')
+
       const file = this.state.media.current.files[0]; // target the image file associated to the input[type=file]
     // }
 
-    const uploadData = new FormData(); // create a form data => an object to send as post body
-    console.log('genre :', genre)
-    // appending the keys / values pairs to the FormData
+    var uploadData = new FormData(); // create a form data => an object to send as post body
     // uploadData.append("creator", creator);
     uploadData.append("title", title); // create a key [title] on the formDate
     uploadData.append("lat", lat);  // create a key [lat] on the formDate
@@ -48,25 +43,52 @@ export default class CreatePinJourney extends Component {
     uploadData.append("description", description);  // create a key [description] on the formDate
     uploadData.append("url", url);  // create a key [url] on the formDate
     uploadData.append("genre", genre);  // create a key [genre] on the formDate
-    // if(genre === 'image') {
-      // const file = this.state.media.current.files[0]; // target the image file associated to the input[type=file]
-      uploadData.append("media", file);
-    // }
+    uploadData.append("media", file);
 
-    console.log('------------------------------')
-    console.log(uploadData)
-    console.log('******************************')
-    for(let entry of uploadData.entries()) {
-      console.log(entry[1])
+    
     }
-    console.log('------------------------------')
+
+    
+
+    // console.log('------------------------------')
+    // console.log(uploadData)
+    // console.log('******************************')
+    // for(let entry of uploadData.entries()) {
+    //   console.log(entry[1])
+    // }
+    // console.log('------------------------------')
     try {
+      if(genre ==='text'){
+        const resultat = await APIHandler.post("/api/pins/text", { title, lat, long, description, url, genre} ); // sending the formData //
+        
+        
+        this.props.setPinArray(old => [...old, resultat.data._id])
+
+//         console.log(resultat.data._id)
+//         let tmp = [...this.state.pinArray, ]
+//         console.log('tmp: ',tmp)
+// console.log('state: ', this.state.pinArray)
+//         tmp.push(resultat.data._id)
+//         this.setState({pinArray: tmp})
+//         console.log(this.state.pinArray)
+       
+      }
+      else if(genre ==='image'){
+        const resultat = await APIHandler.post("/api/pins/image", uploadData ); // sending the formData //{ title, lat, long, description, url, genre}
+        // this.setState({pinArray: [...this.state.pinArray, resultat.data._id]}, () => console.log(this.state.pinArray))
+        this.props.setPinArray(old => [...old, resultat.data._id])
+        
+        // this.state.pinArray.push(resultat.data._id);
+      }
       
-      const resultat = await APIHandler.post("/api/pins", uploadData ); // sending the formData //{ title, lat, long, description, url, genre}
       // this.props.handler(); // passing the ball to the parent's callback
-      console.log("resultat >>>>>>>")
-      
-      
+      // console.log("resultat >>>>>>>")
+      // console.log(resultat)
+
+      // console.log("this.state.pinArray >>>>");
+      // console.log(this.state.pinArray)
+      // this.state.pinArray.push(resultat.data._id); //on ajoute l'id au tableau pour le transmettre plus tard
+      // console.log(this.state.pinArray)            
     } catch (err) {
       console.error(err);
     }
@@ -79,10 +101,12 @@ export default class CreatePinJourney extends Component {
     });
     console.log('props >>>')
     console.log(this.props)
-
   }; 
-
+  componentWillUnmount() {
+    console.log('unmounting')
+  }
   render() {
+    console.log('>>>>>>>',this.state.pinArray)
     return (
     <div className="form-page">
       <form className="form" 
@@ -175,7 +199,7 @@ export default class CreatePinJourney extends Component {
               type="file" />
 
           </div> 
-          <div className="form-block">
+          {/* <div className="form-block">
             <label className="label" htmlFor="genre">
               genre
             </label>
@@ -186,7 +210,7 @@ export default class CreatePinJourney extends Component {
               value={this.props.genre}
               onChange={this.handleChange}
             />
-          </div>
+          </div> */}
           </>
           }          
         <button>Submit!</button>

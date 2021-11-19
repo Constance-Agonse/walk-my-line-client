@@ -148,8 +148,8 @@ export default function Journey({ location }) {
               {/* <Link id="journey-bar-info-follow">Follow/unfollow</Link> */}
             </div>
             <div id="journey-bar-info-hashtags">
-              {journeyData.tags.map((tag) => {
-                return <Hashtags key={tag._id} text={tag.name} />
+              {journeyData.tags.map((tag , i) => {
+                return <Hashtags key={i} text={tag.name} />
               }
               )}
             </div>
