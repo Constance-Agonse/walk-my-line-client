@@ -127,6 +127,7 @@ export default function CreateJourney2({ location }) {
   const [isImage, setImage] = useState(false);
   const [radioType, setRadioType] = useState("text");
   const [formIsVisibel, setFormIsVisibel] = useState(false);
+  const [pinArray, setPinArray] = useState([])
 /*
   req.body
 {
@@ -163,7 +164,7 @@ export default function CreateJourney2({ location }) {
       const journeyData = {
       isPublic: isPublic, 
       tags: addTag,            //a changer
-      // pins: [drawPointJourney[0].id], //checker si c'est une id
+      pins: pinArray, //checker si c'est une id
       creator:creator,
       journeyTime: 47,        //a changer
       km: 47,                 //a changer
@@ -264,7 +265,7 @@ export default function CreateJourney2({ location }) {
     setRadioType(event.target.value);
   };
   /*********************Radio btn for pins*********************** */
-
+  console.log('daaaaaaaaaaaaaaaaaaaaaa :', pinArray)
   return (
     <div>
       <div id="test">
@@ -351,7 +352,7 @@ export default function CreateJourney2({ location }) {
           </div>
         )}
         <div>
-            {formIsVisibel && <CreatePinJourney isSubmit={setFormIsVisibel} genre={radioType} creator={creator} pinData={drawPointJourney[drawPointJourney.length-1]}/>}
+            {formIsVisibel && <CreatePinJourney setPinArray={setPinArray} pinArray={pinArray} isSubmit={setFormIsVisibel} genre={radioType} creator={creator} pinData={drawPointJourney[drawPointJourney.length-1]}/>}
         </div>
       </section>
     </div>
