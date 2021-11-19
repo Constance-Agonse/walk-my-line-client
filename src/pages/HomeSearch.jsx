@@ -131,8 +131,8 @@ export default function HomeSearch() {
           <NavLink to="/profile"><PersonRounded /></NavLink>
         </div>
         <div id="feature-container-homesearch">
-          <Link to='/auth/signin'>Sign in</Link>
-          <Link to='/auth/signup'>Sign up</Link>
+          <Link className="button-signin-home" to='/auth/signin'>Sign in</Link>
+          <Link className="button-signin-home" to='/auth/signup'>Sign up</Link>
         </div>
       </section>
 

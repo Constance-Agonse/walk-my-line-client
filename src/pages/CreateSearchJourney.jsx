@@ -139,7 +139,7 @@ export default function CreateSearchJourney() {
 
         <div id="feature-container-searchjourney">
 
-          {isSearchDone !== undefined && (
+          {/* {isSearchDone !== undefined && ( */}
             <Link to={{
               pathname: '/createSearchJourney/create2',
               state: {
@@ -147,10 +147,10 @@ export default function CreateSearchJourney() {
                 isSearchDone: isSearchDone
               }
             }}>
-              <button> Next page !</button>
+               Next page !
             </Link>
 
-          )}
+          {/* )} */}
         </div>
       </section>
 
