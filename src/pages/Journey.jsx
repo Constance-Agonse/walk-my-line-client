@@ -1,7 +1,7 @@
 import InfoPin from '../components/InfoPin';
 import './Journey.css';
 import React, { useState, useEffect } from 'react';
-import ReactMapGL, { Marker } from 'react-map-gl';
+import ReactMapGL, { Source, Layer , Marker } from 'react-map-gl';
 import { Room } from "@material-ui/icons";
 import NavBar from '../components/NavBar';
 import Hashtags from "./../components/Hashtags";
@@ -17,6 +17,8 @@ export default function Journey({ location }) {
   const journeyData = location.state.journeyData;
   console.log('journeyData');
   console.log(journeyData);
+  console.log(journeyData.geometry);
+
   // console.log('journeyData');
   // console.log(journeyData);
   // console.log('currentUser');
@@ -29,7 +31,24 @@ export default function Journey({ location }) {
     latitude: journeyData.latInitial,
     longitude: journeyData.longInitial,
     zoom: 11.5
+    // bearing: 0,
+    //     pitch: 0,
+    //     dragPan: true,
   });
+ 
+  const dataOne = {
+      type: "Feature",
+      properties: {},
+      geometry: {
+        type: "LineString",
+        // coordinates: [
+        //   [-96.93999779479579, 32.869829324179136],
+        //   [-96.6441240934782, 32.8105861524909s3]
+        // ]
+        coordinates: journeyData.geometry[0]
+      }
+    };
+
 
   // const fetchCurrentUser = async () => {
   //   try {
@@ -79,6 +98,28 @@ export default function Journey({ location }) {
 
   }
 
+  
+//   async function getMatch(coordinates, radius, profile) {
+//   // Separate the radiuses with semicolons
+//       const radiuses = radius.join(';');
+//       // Create the query
+//       const query = await fetch(
+//       `https://api.mapbox.com/matching/v5/mapbox/${profile}/${coordinates}?geometries=geojson&radiuses=${radiuses}&steps=true&access_token=${mapboxgl.accessToken}`,
+//       { method: 'GET' }
+//       );
+//       const response = await query.json();
+//       // Handle errors
+//       if (response.code !== 'Ok') {
+//         alert(
+//         `${response.code} - ${response.message}.\n\nFor more information: https://docs.mapbox.com/api/navigation/map-matching/#map-matching-api-errors`
+//         );
+//       return;
+//       }
+//       const coords = response.matchings[0].geometry;
+//       // Draw the route on the map
+//       addRoute(coords);
+//   }
+
   return (
     <div id="journey-global">
       <NavBar />
@@ -89,17 +130,36 @@ export default function Journey({ location }) {
           onViewportChange={nextViewport => setViewport(nextViewport)}
           mapStyle="mapbox://styles/hugowalk/ckvvj03ck2ojj14nmd442pqot"
           className="journey-map-mapbox"
+        >       
 
-        >
-          <Marker
-            latitude={journeyData.latInitial}
-            longitude={journeyData.longInitial}
-            offsetLeft={-20}
-            offsetTop={-10}>
-            <Room style={{ fontSize: viewport.zoom * 3, color: '#fb8500' }} />
-            {/* le zoom * 3 permet d'avoir un icon qui s'adapte avec le zoom effectué */}
-          </Marker>
+        <Source id="polylineLayer" type="geojson" data={dataOne}>
+          <Layer
+            id="lineLayer"
+            type="line"
+            source="my-data"
+            layout={{
+              "line-join": "round",
+              "line-cap": "round"
+            }}
+            paint={{
+              "line-color": "rgba(97, 132, 105, 1)",
+              "line-width": 8,
+              'line-opacity': 0.8
+            }}
+          />
+        </Source> 
 
+          {journeyData.pins && journeyData.pins.map((pin,i)=> (
+                <Marker
+                  latitude={pin.lat}
+                  longitude={pin.long}
+                  offsetLeft={-20}
+                  offsetTop={-10}
+                  key={i}>
+                      <Room key={i} style={{ fontSize: viewport.zoom * 3, color: '#955E44' }} />
+                </Marker>  
+          ))} 
+  
         </ReactMapGL>
       </div>
 
@@ -149,22 +209,16 @@ export default function Journey({ location }) {
             </div>
             <div id="journey-bar-info-hashtags">
               {journeyData.tags.map((tag , i) => {
-                return <Hashtags key={i} text={tag.name} />
+                return <Hashtags key={i} text={tag} />
               }
               )}
             </div>
           </div>
           <div id="journey-bar-pins-container">
             {/* <p>Mapper sur l'array des pins correspondant au trajet, pour l'instant on le met en dur</p> */}
-            <InfoPin />
-            <InfoPin />
-            <InfoPin />
-            <InfoPin />
-            <InfoPin />
-            <InfoPin />
-            <InfoPin />
-            <InfoPin />
-            <InfoPin />
+            {journeyData.pins && journeyData.pins.map((pin,i)=> (
+              <InfoPin pin={pin} key={i}/>
+            ))}            
           </div>
         </div>
       </div>

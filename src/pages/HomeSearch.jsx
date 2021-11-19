@@ -32,7 +32,7 @@ export default function HomeSearch() {
         fetchJournies();
   }, []);
 
-    const fetchJournies = async () => {
+  const fetchJournies = async () => {
     try {
         //avec res je peux peut etre obtenir mon id
       const res = await APIHandler.get("/homeSearch");
