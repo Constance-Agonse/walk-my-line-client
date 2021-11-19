@@ -26,10 +26,17 @@ import './HomeSearch.css'
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
 
 export default function HomeSearch() {
+<<<<<<< HEAD
   const [allJournies, setAllJournies] = useState([]);
 
   useEffect(() => {
     fetchJournies();
+=======
+    const [allJournies, setAllJournies] = useState([]);
+    const allJourniesGlobalArray = allJournies;
+    useEffect(() => {
+        fetchJournies();
+>>>>>>> dc951d0cd0f5ce162299f55d3205850708f064cb
   }, []);
 
   const fetchJournies = async () => {
@@ -73,48 +80,53 @@ export default function HomeSearch() {
     },
     []
   );
-  console.log('***')
-  console.log(allJournies.length)
-  console.log('***')
+  // console.log('***')
+  //   console.log(allJournies.length)
+  // console.log('***')
 
-  // console.log(allJournies[0].length)
-  console.log('***')
+  //   // console.log(allJournies[0].length)
+  // console.log('***')
 
-  // console.log(allJournies[0])
+    // console.log(allJournies[0])
 
 
-  return (
-    <div className="global-create-container-homesearch">
-
-      <div className="map-container-homesearch">
-        <ReactMapGL
-          ref={mapRef}
-          {...viewport}
-          mapboxApiAccessToken="pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg"
-          onViewportChange={nextViewport => setViewport(nextViewport)}
-          mapStyle="mapbox://styles/hugowalk/ckvyzg1n629ta15mvc49rx7ll"
-          id="map-create"
-        >
-          <Geocoder
-            mapRef={mapRef}
-            onViewportChange={handleGeocoderViewportChange}
-            mapboxApiAccessToken="pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg"
-            position="top-left"
-            id="input-geocoder-homesearch"
-          />
-          {allJournies.length !== 0 &&
-
-            allJournies.map((journey, index) => (
-              <Marker
-                key={index}
-                // latitude={journey.latInitial}
-                // longitude={journey.longInitial}
-                latitude={2.6041126260358}
-                longitude={28.850479576134404}
-                offsetLeft={-20}
-                offsetTop={-10}>
-                <Room style={{ fontSize: viewport.zoom * 3, color: '#fb8500' }} />.
-              </Marker>
+    return (
+        <div className="global-create-container">
+  
+      <div className="innerBoxContainer map-container">
+            <ReactMapGL
+            ref={mapRef}
+                {...viewport}
+                mapboxApiAccessToken = "pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg"
+                onViewportChange={nextViewport => setViewport(nextViewport)}
+                mapStyle="mapbox://styles/hugowalk/ckvyzg1n629ta15mvc49rx7ll"
+                id="map-create"                
+                >
+              <Geocoder
+                mapRef={mapRef}
+                onViewportChange={handleGeocoderViewportChange}
+                mapboxApiAccessToken="pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg"
+                position="top-left"
+              />
+            { allJourniesGlobalArray.length &&                 
+                allJournies.map((journey,index)=> (
+                    <Marker
+                        key={index}
+                        // latitude={journey.latInitial}
+                        // longitude={journey.longInitial}
+                        latitude={journey.latInitial}
+                        longitude={journey.longInitial}
+                        offsetLeft={-20}
+                        offsetTop={-10}>
+                        <Link to={{
+                              pathname: '/journey',
+                              state: {
+                                  journeyData: journey,
+                              }
+                                         }}>
+                          <Room key={index} style={{ fontSize: viewport.zoom * 8, color: '#955E44' }} />
+                        </Link>
+                    </Marker>
             ))
 
           }
@@ -154,3 +166,49 @@ export default function HomeSearch() {
                     </Marker>
             )) */}
 {/* console.log(allJournies[0].latInitial) */ }
+
+
+console.log('***')
+  console.log(allJournies.length)
+  console.log('***')
+
+  // console.log(allJournies[0].length)
+  console.log('***')
+
+  // console.log(allJournies[0])
+
+
+
+  
+  // return (
+  //   <div className="global-create-container-homesearch">
+
+  //     <div className="map-container-homesearch">
+  //       <ReactMapGL
+  //         ref={mapRef}
+  //         {...viewport}
+  //         mapboxApiAccessToken="pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg"
+  //         onViewportChange={nextViewport => setViewport(nextViewport)}
+  //         mapStyle="mapbox://styles/hugowalk/ckvyzg1n629ta15mvc49rx7ll"
+  //         id="map-create"
+  //       >
+  //         <Geocoder
+  //           mapRef={mapRef}
+  //           onViewportChange={handleGeocoderViewportChange}
+  //           mapboxApiAccessToken="pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg"
+  //           position="top-left"
+  //           id="input-geocoder-homesearch"
+  //         />
+  //         {allJournies.length !== 0 &&
+
+  //           allJournies.map((journey, index) => (
+  //             <Marker
+  //               key={index}
+  //               // latitude={journey.latInitial}
+  //               // longitude={journey.longInitial}
+  //               latitude={2.6041126260358}
+  //               longitude={28.850479576134404}
+  //               offsetLeft={-20}
+  //               offsetTop={-10}>
+  //               <Room style={{ fontSize: viewport.zoom * 3, color: '#fb8500' }} />.
+  //             </Marker>
