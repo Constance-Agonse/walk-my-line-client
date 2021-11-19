@@ -39,7 +39,7 @@ function App() {
         {/* <Route exact path="/profile" component={Profile} /> */}
         {/* <Route exact path="/createSearchJourney" component = {CreateSearchJourney} />         */}
         {/* <Route exact path="/createSearchJourney/create2" component = {CreateJourney2} />    */}
-        {/* <Route exact path="/journey" component = {Journey} />  */}
+        {/* <ProtectedRoute exact path="/journey/:id" component ={Journey} />  */}
          
         <Route exact path="/auth/signup" component= {Signup} />
         <Route exact path="/auth/signin" component= {Signin} />

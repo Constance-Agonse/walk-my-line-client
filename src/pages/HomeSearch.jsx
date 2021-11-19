@@ -27,7 +27,7 @@ import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
 
 export default function HomeSearch() {
     const [allJournies, setAllJournies] = useState([]);
-
+    const allJourniesGlobalArray = allJournies;
     useEffect(() => {
         fetchJournies();
   }, []);
@@ -73,12 +73,12 @@ export default function HomeSearch() {
     },
     []
   );
-  console.log('***')
-    console.log(allJournies.length)
-  console.log('***')
+  // console.log('***')
+  //   console.log(allJournies.length)
+  // console.log('***')
 
-    // console.log(allJournies[0].length)
-  console.log('***')
+  //   // console.log(allJournies[0].length)
+  // console.log('***')
 
     // console.log(allJournies[0])
 
@@ -101,18 +101,24 @@ export default function HomeSearch() {
                 mapboxApiAccessToken="pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg"
                 position="top-left"
               />
-            { allJournies.length !== 0 && 
-            
+            { allJourniesGlobalArray.length &&                 
                 allJournies.map((journey,index)=> (
                     <Marker
                         key={index}
                         // latitude={journey.latInitial}
                         // longitude={journey.longInitial}
-                        latitude={2.6041126260358}
-                        longitude={28.850479576134404}
+                        latitude={journey.latInitial}
+                        longitude={journey.longInitial}
                         offsetLeft={-20}
                         offsetTop={-10}>
-                        <Room style={{ fontSize: viewport.zoom * 3, color: '#fb8500' }} />.
+                        <Link to={{
+                              pathname: '/journey',
+                              state: {
+                                  journeyData: journey,
+                              }
+                                         }}>
+                          <Room key={index} style={{ fontSize: viewport.zoom * 8, color: '#955E44' }} />
+                        </Link>
                     </Marker>
             ))
             

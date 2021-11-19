@@ -13,6 +13,9 @@ import { useAuth } from "./../auth/UserContext";
 import APIHandler from "./../api/APIHandler";
 
 export default function Journey({ location }) {
+  console.log('xxxxxxxxxxxxxxx')
+  console.log(location.state.journeyData)
+
   const { currentUser } = useAuth();
   const journeyData = location.state.journeyData;
   console.log('journeyData');
