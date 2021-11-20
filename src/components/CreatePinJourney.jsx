@@ -213,7 +213,7 @@ export default class CreatePinJourney extends Component {
           </div> */}
           </>
           }          
-        <button>Submit!</button>
+        <button id='plusbutton'>Submit!</button>
       </form>
     </div>
 

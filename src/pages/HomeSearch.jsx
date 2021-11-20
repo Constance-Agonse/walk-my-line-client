@@ -6,6 +6,7 @@ import { NavLink, Link } from "react-router-dom";
 //icone
 import { HomeRounded } from "@material-ui/icons";
 import { PersonRounded } from '@material-ui/icons';
+import NavBar from '../components/NavBar';
 
 //mapbox
 import ReactMapGL, { Marker } from 'react-map-gl';
@@ -17,6 +18,8 @@ import { Room } from "@material-ui/icons"
 // import DrawControl from 'react-mapbox-gl-draw';
 // import MapboxDraw from '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.js'
 import APIHandler from "./../api/APIHandler";
+import { useAuth } from "./../auth/UserContext";
+import IconSignout from "../components/icon/signout";
 
 import './HomeSearch.css'
 
@@ -26,6 +29,8 @@ import './HomeSearch.css'
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
 
 export default function HomeSearch() {
+  const { currentUser } = useAuth();
+
     const [allJournies, setAllJournies] = useState([]);
     const allJourniesGlobalArray = allJournies;
     useEffect(() => {
@@ -132,13 +137,27 @@ export default function HomeSearch() {
       </div>
       <section id="menu-homesearch">
         <div className="nav-icone-container-homesearch">
-          <NavLink to="/"><HomeRounded /></NavLink>
-          <NavLink to="/profile"><PersonRounded /></NavLink>
+          {/* <NavLink to="/"><HomeRounded /></NavLink>  */}
+          {/* plus besoin car on est déjà sur la home  */}
+          {/* <NavLink to="/profile"><PersonRounded /></NavLink>
+          {currentUser && <IconSignout/>} */}
         </div>
-        <div id="feature-container-homesearch">
+        {/* <NavBar/> */}
+        
+        {currentUser ? ( 
+        <div>
+          <NavLink exact className="link" activeClassName="is-active" to="/profile">
+          <img className="nav-img" src="toutou.png" alt="profile pic" />
+          </NavLink>
+          <IconSignout/>
+        </div> 
+        ) : (
+          <div id="feature-container-homesearch">
           <Link className="button-signin-home" to='/auth/signin'>Sign in</Link>
           <Link className="button-signin-home" to='/auth/signup'>Sign up</Link>
-        </div>
+          </div>
+        )
+        }        
       </section>
 
 

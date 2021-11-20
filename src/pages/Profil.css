@@ -17,6 +17,12 @@
     font-family:BoskaBlack;
     font-size: 20px;
 }
+
+.title-typo-marron{
+    color: var(--marron);
+    font-family:BoskaBlack;
+    font-size: 20px;
+}
 .profile-characteristic-container{
     /* border: 2px solid tomato; */
     display: flex;

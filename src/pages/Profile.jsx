@@ -64,12 +64,16 @@ console.log("currentUser >>> ", currentUser);
       console.error(err);
     }
   };
+  
 console.log('currentUser:::', currentUser);
   return (
     <div className="profile-global-container">
       <header className="profile-characteristic-container">
         <div className="container-profile-picture">
           <img className="imgProfile" src="./toutou.png" alt="beautifulAvatarOfu" />
+          
+          {/* <img className="imgProfile" src={currentUser.profilePic} alt="beautifulAvatarOfu" /> */}
+
           <p className="title-typo"><strong>
             
             {currentUser.username}
@@ -77,7 +81,7 @@ console.log('currentUser:::', currentUser);
         </div>
         <div className="sub-container-profile-follower">
           <p className="profile-follower"><strong>
-            <div className="title-typo">
+            <div className="title-typo-marron">
               
               {journiesCreateByUser.length}
             </div>
@@ -85,7 +89,7 @@ console.log('currentUser:::', currentUser);
 
           </strong> own<br /> journies</p>
           <p className="profile-follower"><strong>
-            <div className="title-typo">
+            <div className="title-typo-marron">
               
               {journiesFollowedByUser.length}
             </div>

@@ -16,7 +16,7 @@ import './Form.css';
 
 
 export default function Signin(props) {
-  const [email, setEmail] = useState("admin@foobarbaz.io");
+  const [email, setEmail] = useState("m@m.m");
   const [password, setPassword] = useState("12345");
   const { isLoggedIn, setCurrentUser } = useAuth();
 
