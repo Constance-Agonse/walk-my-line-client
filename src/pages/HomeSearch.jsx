@@ -41,7 +41,7 @@ export default function HomeSearch() {
     try {
       //avec res je peux peut etre obtenir mon id
       const res = await APIHandler.get("/homeSearch");
-      console.log("api res => ", res.data);
+      // console.log("api res => ", res.data);
       setAllJournies(res.data);
     } catch (err) {
       console.error(err);

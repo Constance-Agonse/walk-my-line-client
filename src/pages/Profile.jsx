@@ -30,14 +30,13 @@ export default function Profile() {
 
 
   useEffect(() => {
-    console.log("MOUNTED !!!!");
     fetchJournies();
   }, []);
 
   const fetchJournies = async () => {
     try {
       const res = await APIHandler.get("/profile");
-      console.log("api res => ", res);
+      // console.log("api res => ", res);
       setUsers(res.data[0]); //(prevUsers) => prevUsers = 
       // setUserId(currentUser); // setUserId(res.data[1]); //plus besoin avec currentuser
       setJourniesCreateByUser(res.data[2]);
@@ -47,17 +46,14 @@ export default function Profile() {
     }
   };
 
-console.log("currentUser >>> ", currentUser);
-  console.log("users >>> ", users)
+// console.log("currentUser >>> ", currentUser);
+  // console.log("users >>> ", users)
   // console.log("userId >>> ", userId)
-  console.log("journiesCreateByUser >>> ", journiesCreateByUser) //[0].creator.username
-  console.log("journiesFollowedByUser >>> ", journiesFollowedByUser)
+  // console.log("journiesCreateByUser >>> ", journiesCreateByUser) //[0].creator.username
+  // console.log("journiesFollowedByUser >>> ", journiesFollowedByUser)
 
   const handleDelete = async (id) => {
-    console.log('before axios delete')
-
     try {
-      console.log('in axios handledelete')
       await APIHandler.delete(`/profile/${id}`);
       fetchJournies();
     } catch (err) {
@@ -65,7 +61,7 @@ console.log("currentUser >>> ", currentUser);
     }
   };
   
-console.log('currentUser:::', currentUser);
+// console.log('currentUser:::', currentUser);
   return (
     <div className="profile-global-container">
       <header className="profile-characteristic-container">

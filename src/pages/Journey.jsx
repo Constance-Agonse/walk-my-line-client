@@ -20,18 +20,18 @@ export default function Journey({ location }) {
   console.log("current user ->",currentUser)
 
   const [isFollow, setIsFollow] = useState(true);
-  const [btnUnfollow, setbtnUnfollow] = useState(true);
+  // const [btnUnfollow, setbtnUnfollow] = useState(true);
   // const [journeyData, setJourneyData] = useState(location.state.journeyData);
   // const journeyData = location.state.journeyData; //on le fait depuis le usestate now | finalement non pas besoin pour la modification de siLikedBy
-  console.log('journeyData');
-  console.log(journeyData);
-  console.log(journeyData.geometry);
 
-  // console.log('journeyData');
-  // console.log(journeyData);
-  // console.log('currentUser');
-  // console.log(currentUser);
+  useEffect(()=>{
+    console.log("Le button INITIALEMENT :",isFollow)
+    let isCreatorInlist = journeyData.isLikedBy.includes(currentUser._id);
+    console.log(isCreatorInlist)
+    setIsFollow(prev => prev = isCreatorInlist);
+    console.log("Le button APRES :",isFollow)
 
+  },[])
 
   const [viewport, setViewport] = useState({
     width: "100vw",
@@ -49,28 +49,13 @@ export default function Journey({ location }) {
       properties: {},
       geometry: {
         type: "LineString",
-        // coordinates: [
-        //   [-96.93999779479579, 32.869829324179136],
-        //   [-96.6441240934782, 32.8105861524909s3]
-        // ]
         coordinates: journeyData.geometry[0]
       }
     };
 
-
-  // const fetchCurrentUser = async () => {
-  //   try {
-  //     const res = await APIHandler.get("/profile");
-  //     console.log("api res => ", res);
-  //     setUserId(res.data[1]);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-
-  useEffect(() => {
-    console.log(">>>>>>>>",journeyData);
-  }, [])
+  // useEffect(() => {
+  //   console.log(">>>>>>>>",journeyData);
+  // }, [])
   // console.log('journeyData.isLikedBy',)
   // console.log(journeyData.isLikedBy)
   // console.log('journeyData.creator._id',)
@@ -83,7 +68,7 @@ export default function Journey({ location }) {
     try {
       //avec res je peux peut etre obtenir mon id
       const res = await APIHandler.patch("/journey", journeyData);
-      console.log("api res => ", res.data);
+      // console.log("api res => ", res.data);
     } catch (err) {
       console.error(err);
     }
@@ -110,26 +95,6 @@ export default function Journey({ location }) {
   }
 
   
-//   async function getMatch(coordinates, radius, profile) {
-//   // Separate the radiuses with semicolons
-//       const radiuses = radius.join(';');
-//       // Create the query
-//       const query = await fetch(
-//       `https://api.mapbox.com/matching/v5/mapbox/${profile}/${coordinates}?geometries=geojson&radiuses=${radiuses}&steps=true&access_token=${mapboxgl.accessToken}`,
-//       { method: 'GET' }
-//       );
-//       const response = await query.json();
-//       // Handle errors
-//       if (response.code !== 'Ok') {
-//         alert(
-//         `${response.code} - ${response.message}.\n\nFor more information: https://docs.mapbox.com/api/navigation/map-matching/#map-matching-api-errors`
-//         );
-//       return;
-//       }
-//       const coords = response.matchings[0].geometry;
-//       // Draw the route on the map
-//       addRoute(coords);
-//   }
 
   return (
     <div id="journey-global">
@@ -199,11 +164,14 @@ export default function Journey({ location }) {
               <div id="journey-bar-info-rate">
                 <Rating>{journeyData.rate}</Rating>
               </div>
+              {currentUser._id !== journeyData.creator._id &&
               <div className="button-switch-container">
-
-                <button className="button-switch" onClick={buttonFollow}>{isFollow ? "Unfollow" : "Follow"}</button>
+              
+                  <button className="button-switch" onClick={buttonFollow}>{isFollow ? "Unfollow" : "Follow"}</button>
 
               </div>
+              }
+              
               {/* <Link id="journey-bar-info-follow">Follow/unfollow</Link> */}
             </div>
             <div id="journey-bar-info-hashtags">
