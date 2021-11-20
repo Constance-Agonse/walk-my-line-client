@@ -14,10 +14,15 @@ import APIHandler from "./../api/APIHandler";
 
 export default function Journey({ location }) {
   console.log('xxxxxxxxxxxxxxxLocationxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
-  console.log(location.state.journeyData)
-
-  const { currentUser } = useAuth();
+  console.log("journeyData -->",location.state.journeyData)
   const journeyData = location.state.journeyData;
+  const { currentUser } = useAuth();
+  console.log("current user ->",currentUser)
+
+  const [isFollow, setIsFollow] = useState(true);
+  const [btnUnfollow, setbtnUnfollow] = useState(true);
+  // const [journeyData, setJourneyData] = useState(location.state.journeyData);
+  // const journeyData = location.state.journeyData; //on le fait depuis le usestate now | finalement non pas besoin pour la modification de siLikedBy
   console.log('journeyData');
   console.log(journeyData);
   console.log(journeyData.geometry);
@@ -26,8 +31,8 @@ export default function Journey({ location }) {
   // console.log(journeyData);
   // console.log('currentUser');
   // console.log(currentUser);
-  const [isFollow, setIsFollow] = useState(true);
-  const [btnUnfollow, setbtnUnfollow] = useState(true);
+
+
   const [viewport, setViewport] = useState({
     width: "100vw",
     height: "60vh",
@@ -87,34 +92,13 @@ export default function Journey({ location }) {
   const removeOrAddtoIslikedBy = () => {
     if (isFollow) { //si on follow alors on ajoute currentuser à l'array de isLikedBy
       // faire une requete axios qui demande au server d'ajouter dans la database
-      const newIsLikedBy = journeyData.isLikedBy.push(currentUser._id)
-      console.log('newIsLikedByavantAXIOS')
-      console.log(newIsLikedBy)
+      journeyData.isLikedBy.push(currentUser)
       updateFollowStatus();
-      console.log('newIsLikedByAPRESAXIOS')
-      console.log(newIsLikedBy)
-
-      console.log('journeyData.isLikedBy')
-      console.log(journeyData.isLikedBy)
-      console.log('journeyData.creator')
-      console.log(journeyData.creator)
-      console.log('currentUser')
-      console.log(currentUser._id)
-
-
-      console.log('journeyData')
-
-      console.log(journeyData)
-      // const newIsLikedBy = journeyData.isLikedBy.push(currentUser._id)
-      // const newIsLikedBy = journeyData.isLikedBy.filter((e) => {
-      //   console.log('e',e)
-      //   return (e._id !== currentUser)
-
-      // })
-      
-      // journeyData.isLikedBy.includes(currentUser)
     } else { //si on unfollow alors on enleve currentuser à l'array de isLikedBy
-      console.log("NOTHING YET")
+      // on renvoie un nouvel array qui contient uniquement les user (id) différents de celui qui à unfollow (attention il s'agit de l'array de isLikedBy)      
+      let newRemoveIsLikedBy = journeyData.isLikedBy.filter((user) => user._id !== currentUser._id)
+      journeyData.isLikedBy = newRemoveIsLikedBy
+      updateFollowStatus();
     }
 
   }

@@ -42,7 +42,7 @@ export default function CreateSearchJourney() {
     zoom: 11.5
   });
   const [isSearchDone, setSearchDone] = useState()
-  const [creator, setCreator] = useState("")
+  const [creator, setCreator] = useState()
 
   // console.log('firzst', isSearchDone)
   useEffect(() => {
@@ -52,8 +52,8 @@ export default function CreateSearchJourney() {
   const fetchCreator = async () => {
     try {
       const res = await APIHandler.get("/createSearchJourney");
-      console.log("api res => ", res);
-      setCreator(res.data._id);
+      console.log("api res x=> ", res);
+      setCreator(res.data);
     } catch (err) {
       console.error(err);
     }

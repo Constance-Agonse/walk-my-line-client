@@ -112,7 +112,8 @@ const styles = [
 export default function CreateJourney2({ location }) {
   // console.log("location>>>",location)
   console.log(">>loca>>", location)
-  const creator = location.state.creator;
+  const creator = location.state.creator
+
   const cityData = location.state.isSearchDone;
   //la ligne commenté ci dessous pourrait me permettre de gérer le pb de changement de view, lorsque l'on définit un trajet loin de notre point original on y revient et c'est relou donc il faut pas rentrer en dur les paramètres sauf si on les update avec un useeffect ou use state
   //   const [coordMapView, setCoordMapView] = useState([cityData.longitude,cityData.latitude,cityData.zoom])
@@ -183,6 +184,8 @@ export default function CreateJourney2({ location }) {
       console.error(err);
     }
   }
+
+  
 
   const onDrawCreate = (payload) => {
     const feature = { ...payload.features[0] };
