@@ -7,11 +7,14 @@ import { Menu, MenuItem, Fade, Button } from '@mui/material';
 import { useAuth } from "./../../auth/UserContext";
 import { Logo } from "./Logo";
 import { getUserAvatarUrl } from '../../helpers/getUserAvatarUrl';
+import APIHandler from "../../api/APIHandler";
 
 import "./Header.css";
 
 export const Header = () => {
   const { currentUser } = useAuth();
+  const { setCurrentUser } = useAuth();
+
   const location = useLocation();
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -22,6 +25,11 @@ export const Header = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleSignout = () =>
+    APIHandler.post("/signout").finally(() => {
+      setCurrentUser(null);
+    });
 
   const renderLinks = (menuItems) => {
     return menuItems.map((menuItem) => (
@@ -99,7 +107,7 @@ export const Header = () => {
               name: 'Create a journey',
             },
           ])}
-          <MenuItem>Logout</MenuItem>
+          <MenuItem onClick={handleSignout}>Logout</MenuItem>
         </Menu>
       </div>
     </div>
