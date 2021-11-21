@@ -114,8 +114,6 @@ export const ProfilePage = () => {
             <TabPanel value="1">
               {renderJourneysCreateByUser()}
             </TabPanel>
-          </div>
-          <div className="CreateJourneyPage__content__tab">
             <TabPanel value="2">
               {renderJourneysFollowedByUser()}
             </TabPanel>

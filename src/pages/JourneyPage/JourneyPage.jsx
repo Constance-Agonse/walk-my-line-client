@@ -158,7 +158,7 @@ export const JourneyPage = ({ location }) => {
             {/* <p>Mapper sur l'array des pins correspondant au trajet, pour l'instant on le met en dur</p> */}
             {journeyData.pins && journeyData.pins.map((pin, i) => (
               <div className="InfoPin">
-                <div className="InfoPin__pic" style={{ backgroundImage: `url(${pin.media})` }} />
+                {pin.media && (<div className="InfoPin__pic" style={{ backgroundImage: `url(${pin.media})` }} />)}
                 <div className="InfoPin__title">
                   {pin.title}
                 </div>

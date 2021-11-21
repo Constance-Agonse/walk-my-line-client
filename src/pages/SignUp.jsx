@@ -139,7 +139,7 @@ class Signup extends Component {
             onChange={this.handleChange}
           />
         </div>
-        <MyButton className="btn">Sign up</MyButton>
+        <MyButton type="submit" className="btn">Sign up</MyButton>
         <p className="parag">
           Already a member ? please{" "}
           <Link to="/auth/signin" className="link">
