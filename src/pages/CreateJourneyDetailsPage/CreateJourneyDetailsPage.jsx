@@ -270,43 +270,6 @@ export const CreateJourneyDetailsPage = ({ location }) => {
         onSubmitTag={handleSubmitTag}
         createJourney={createJourney}
       />
-
-      {/* <section id="menu-createjourney-2">
-        <div className="feature-container-container2">
-          <form onSubmit={handleSubmitTag}>
-            <input
-              className="input"
-              id="addTag"
-              type="text"
-              name="addTagInput"
-              placeholder="#AddTag"
-            // onChange={handleChange}
-            />
-            <button id="plusbutton">+</button>
-          </form>
-        </div>
-        <div className="feature-container-container2">
-          <NavLink exact to="/profile"><button id="plusbutton" onClick={createJourney}>Done !</button></NavLink>
-
-          <button id="plusbutton" onClick={() => setIsPublic((prev) => (prev = !prev))}>
-            {isPublic ? "Public" : "Private"}
-          </button>
-        </div>
-        {addTag.length ? (
-          <div>
-            {addTag.map((tag, index) => (
-              <Hashtags key={index} text={tag} />
-            ))}
-          </div>
-        ) : (
-          <div>
-            <Hashtags text={"..."} />
-          </div>
-        )}
-        <div>
-          {formIsVisibel && <CreatePinJourney />}
-        </div>
-      </section> */}
     </div>
   );
 }
