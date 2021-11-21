@@ -64,12 +64,6 @@ export default function HomeSearch() {
   const handleGeocoderViewportChange = useCallback(
     (newViewport) => {
       const geocoderDefaultOverrides = { transitionDuration: 1000 };
-      //   setSearchDone(prevSearch => prevSearch = newViewport)
-      // console.log("isSearchDone dans view")
-
-      //   console.log(isSearchDone)
-
-      // console.log(isSearchDone.latitude)
 
       return handleViewportChange({
         ...newViewport,
@@ -78,16 +72,9 @@ export default function HomeSearch() {
     },
     []
   );
-  // console.log('***')
-  //   console.log(allJournies.length)
-  // console.log('***')
-
-  //   // console.log(allJournies[0].length)
-  // console.log('***')
-
-    // console.log(allJournies[0])
 
 
+// console.log("all global>>>>>>>>>>",allJourniesGlobalArray)
     return (
         <div className="global-create-container">
   
