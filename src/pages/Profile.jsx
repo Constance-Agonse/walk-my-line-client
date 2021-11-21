@@ -5,6 +5,7 @@ import JourneyCard from "../components/JourneyCard";
 import './Profil.css';
 import { HomeRounded } from "@material-ui/icons";
 import { EditLocationOutlined } from "@material-ui/icons";
+import CityCountry from '../components/CityCountry';
 
 import APIHandler from "./../api/APIHandler";
 
@@ -86,7 +87,6 @@ export default function Profile() {
           </strong> own<br /> journies</p>
           <p className="profile-follower"><strong>
             <div className="title-typo-marron">
-              
               {journiesFollowedByUser.length}
             </div>
           </strong>journies <br />liked</p>

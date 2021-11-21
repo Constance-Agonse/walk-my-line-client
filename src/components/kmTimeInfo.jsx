@@ -47,7 +47,7 @@ let respMapBox;
     const conversion = () => {
         let time = respMapBox.distance;
         let distance = respMapBox.duration;
-
+        console.log(respMapBox.legs[0].summary)
         const hoursNoRound = time/3600;
         
         sethours(prev => prev = Math.floor(hoursNoRound))

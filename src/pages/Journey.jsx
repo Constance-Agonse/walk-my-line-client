@@ -12,6 +12,7 @@ import { Button } from '@material-ui/core';
 import { useAuth } from "./../auth/UserContext";
 import APIHandler from "./../api/APIHandler";
 import KmTimeInfo from '../components/kmTimeInfo';
+import CityCountry from '../components/CityCountry';
 
 export default function Journey({ location }) {
   console.log('xxxxxxxxxxxxxxxLocationxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
@@ -163,8 +164,9 @@ export default function Journey({ location }) {
 
             </div>
             <div id="journey-bar-info-location">
-              <h2>City</h2>
-              <h3>Country</h3>
+              <CityCountry journeyData={journeyData}/>
+              {/* <h2>City</h2>
+              <h3>Country</h3> */}
             </div>
             <div id="journey-bar-info-text">
               <KmTimeInfo journeyData={journeyData}/>              

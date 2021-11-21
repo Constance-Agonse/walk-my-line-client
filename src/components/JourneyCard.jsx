@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import Rating from './Rating';
 import { useAuth } from "./../auth/UserContext";
 import KmTimeInfo from '../components/kmTimeInfo';
+import CityCountry from '../components/CityCountry';
 
 
 export default function JourneyCard({ journeyData, handleDelete}) {
@@ -54,8 +55,10 @@ export default function JourneyCard({ journeyData, handleDelete}) {
                     <p>{journeyData.title}</p>
                     <p>by {journeyData.creator.username}</p>
                     <div className="affichage-vertical">
-                        <h3 id="townName">Paris</h3>
-                        <p>France</p>
+                    <CityCountry journeyData={journeyData}/>
+
+                        {/* <h3 id="townName">Paris</h3>
+                        <p>France</p> */}
                     </div>
                     <div className="affichage-vertical">
                         <KmTimeInfo journeyData={journeyData}/>              
