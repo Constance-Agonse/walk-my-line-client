@@ -8,6 +8,7 @@ import Hashtags from "../../components/Hashtags";
 import APIHandler from "../../api/APIHandler";
 
 import "./CreateJourneyDetailsPage.css";
+import { JourneyCreationForm } from "../../components/JourneyCreationForm/JourneyCreationForm";
 
 const Map = ReactMapboxGl({
   accessToken:
@@ -107,7 +108,7 @@ const styles = [
 
 export const CreateJourneyDetailsPage = ({ location }) => {
   console.log(">>loca>>", location)
-  const creator = location.state.creator
+  const creator = location.state.creator;
   const cityData = location.state.searchParams;
   //la ligne commenté ci dessous pourrait me permettre de gérer le pb de changement de view, lorsque l'on définit un trajet loin de notre point original on y revient et c'est relou donc il faut pas rentrer en dur les paramètres sauf si on les update avec un useeffect ou use state
   //   const [coordMapView, setCoordMapView] = useState([cityData.longitude,cityData.latitude,cityData.zoom])
@@ -116,11 +117,6 @@ export const CreateJourneyDetailsPage = ({ location }) => {
   const [drawPointJourney, setDrawPointJourney] = useState([]);
   const [drawLineJourney, setDrawLineJourney] = useState([]);
 
-  // State des pins (sélectionné ou non) à utiliser si on ne fait plus de radio button
-  const [isText, setIsText] = useState(true);
-  const [isAudio, setAudio] = useState(false);
-  const [isVideo, setVideo] = useState(false);
-  const [isImage, setImage] = useState(false);
   const [radioType, setRadioType] = useState("text");
   const [formIsVisibel, setFormIsVisibel] = useState(false);
   const [pinArray, setPinArray] = useState([])
@@ -147,7 +143,7 @@ export const CreateJourneyDetailsPage = ({ location }) => {
 
 
   // console.log(location)
-  const createJourney = async (e) => {
+  const createJourney = async (journeyCreationFormData) => {
     console.log("drawLineJourney.geometry.coordinates***************")
 
     console.log(drawLineJourney)
@@ -158,6 +154,8 @@ export const CreateJourneyDetailsPage = ({ location }) => {
 
     const randomRate = Math.random() * 5;
     const journeyData = {
+      name: journeyCreationFormData.title,
+      description: journeyCreationFormData.description,
       isPublic: isPublic,
       tags: addTag,            //a changer
       pins: pinArray, //checker si c'est une id
@@ -199,10 +197,6 @@ export const CreateJourneyDetailsPage = ({ location }) => {
   };
 
   const onDrawUpdate = (payload) => {
-    //  console.log(features[0])
-    //  console.log(features[0].geometry)
-    //  console.log(features[0].geometry.type)
-    //return console.log(">",payload);
     const feature = { ...payload.features[0] };
     if (feature.geometry.type === "Point") {
       feature.pinType = radioType;
@@ -229,15 +223,6 @@ export const CreateJourneyDetailsPage = ({ location }) => {
     }
   };
 
-  const handleChange = (e) => {
-    setAddTag(e.target.value);
-    // console.log("drawPointJourney", drawPointJourney);
-    // console.log("drawLineJourney",drawLineJourney)
-    // console.log("addTag",addTag)
-  };
-  console.log("drawPointJourney", drawPointJourney);
-  console.log("drawLineJourney", drawLineJourney)
-
   //On doit create un tag dans la database en fonction du trajet ou l'on est ensuite on push le tag dans l'array de l' useState pour que on est plusieurs tag
   //ou alors on peut pusher tous les tags seulement lorsqu'on click sur done
   // j'ai d'abord essayé de pusher le addTag ( setAddTag([...addTag, addTag]) et setAddTag(oldArray => [...oldArray, addTag]);)
@@ -248,30 +233,17 @@ export const CreateJourneyDetailsPage = ({ location }) => {
   // lorsque l'utilisateur cliquera sur done ! je recup toutes les data pour en faire un create
   //SOLUTION IL FALLAIT ENLEVER LE HANDLE CHANGE
 
-  const handleSubmitTag = (e) => {
-    e.preventDefault();
-
-    const newTag = e.target[0].value;
+  const handleSubmitTag = (newTag) => {
     setAddTag((oldState) => [...oldState, newTag])
-
-    e.target[0].value = ""; //on enleve la valeur que l'on vient de marquer dans le input
   };
-
-  /*********************Radio btn for pins*********************** */
-
-  const onChangeRadio = (event) => {
-    setRadioType(event.target.value);
-  };
-  /*********************Radio btn for pins*********************** */
-  console.log('daaaaaaaaaaaaaaaaaaaaaa :', pinArray)
+  
   return (
     <div id="CreateJourneyDetailsPage">
       <div id="blockcreatejourney2">
         <Map
           style="mapbox://styles/hugowalk/ckvyzg1n629ta15mvc49rx7ll"
           containerStyle={{
-            height: "75vh",
-            width: "100vw",
+            height: "100vh",
           }}
           center={[cityData.longitude, cityData.latitude]}
           zoom={[cityData.zoom]}
@@ -288,7 +260,18 @@ export const CreateJourneyDetailsPage = ({ location }) => {
         </Map>
       </div>
 
-      <section id="menu-createjourney-2">
+      <JourneyCreationForm
+        setPinArray={setPinArray}
+        pinArray={pinArray}
+        isSubmit={setFormIsVisibel}
+        genre={radioType}
+        creator={creator}
+        pinData={drawPointJourney[drawPointJourney.length - 1]}
+        onSubmitTag={handleSubmitTag}
+        createJourney={createJourney}
+      />
+
+      {/* <section id="menu-createjourney-2">
         <div className="feature-container-container2">
           <form onSubmit={handleSubmitTag}>
             <input
@@ -321,9 +304,9 @@ export const CreateJourneyDetailsPage = ({ location }) => {
           </div>
         )}
         <div>
-          {formIsVisibel && <CreatePinJourney setPinArray={setPinArray} pinArray={pinArray} isSubmit={setFormIsVisibel} genre={radioType} creator={creator} pinData={drawPointJourney[drawPointJourney.length - 1]} />}
+          {formIsVisibel && <CreatePinJourney />}
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

@@ -1,0 +1,16 @@
+.Panel {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.11);
+  background-color: #fff; 
+  margin: 8px;
+  border-radius: 4px;
+  padding: 16px;
+  position: relative;
+}
+
+.Panel__close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border: none;
+  background: none;
+}
