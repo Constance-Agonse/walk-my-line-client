@@ -6,6 +6,9 @@ import { Switch, Route } from "react-router-dom";
 import { AllJourneysPage } from './pages/AllJourneysPage';
 import { CreateJourneyPage } from './pages/CreateJourneyPage';
 
+// config
+import { routes } from './config/routes';
+
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import CreateSearchJourney from "./pages/CreateSearchJourney";

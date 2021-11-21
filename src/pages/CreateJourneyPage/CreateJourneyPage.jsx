@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import ReactMapGL, { Marker } from 'react-map-gl';
 import Geocoder from 'react-map-gl-geocoder';
+import { Button } from '@material-ui/core';
 import { Link } from "react-router-dom";
 import { Room } from "@material-ui/icons"
 
@@ -12,7 +13,7 @@ import "./CreateJourneyPage.css";
 
 export const CreateJourneyPage = () => {
   const [creator, setCreator] = useState()
-  const [isSearchDone, setSearchDone] = useState()
+  const [searchParams, setSearchParams] = useState()
   const [viewport, setViewport] = useState(viewportParams);
   const mapRef = useRef();
   const handleViewportChange = useCallback(
@@ -23,12 +24,7 @@ export const CreateJourneyPage = () => {
   const handleGeocoderViewportChange = useCallback(
     (newViewport) => {
       const geocoderDefaultOverrides = { transitionDuration: 1000 };
-
-      setSearchDone(newViewport)
-      console.log("isSearchDone dans view")
-
-      console.log(isSearchDone)
-
+      setSearchParams(newViewport);
       return handleViewportChange({
         ...newViewport,
         ...geocoderDefaultOverrides
@@ -40,7 +36,7 @@ export const CreateJourneyPage = () => {
   const fetchCreator = async () => {
     try {
       const res = await APIHandler.get("/createSearchJourney");
-      console.log("api res x=> ", res);
+      console.log(res.data)
       setCreator(res.data);
     } catch (err) {
       console.error(err);
@@ -48,7 +44,6 @@ export const CreateJourneyPage = () => {
   };
 
   useEffect(() => {
-
     fetchCreator();
   }, []);
 
@@ -71,10 +66,30 @@ export const CreateJourneyPage = () => {
             position="top-left"
             id="input-geocoder"
           />
-
-
         </ReactMapGL>
       </div>
+      {searchParams && (
+        <div className="CreateJourneyPage__callout-wrapper">
+          <div className="CreateJourneyPage__callout-wrapper__box">
+            <p className="CreateJourneyPage__callout__text">
+              Congrats!<br />
+              You've chosen the city where you gonna travel.<br />
+              Do you want to create a journey?
+            </p>
+            <Link to={{
+              pathname: '/createSearchJourney/create2',
+              state: {
+                creator: creator,
+                isSearchDone: searchParams
+              }
+            }}>
+              <Button variant="outlined">
+                Create a journey
+              </Button>
+            </Link>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

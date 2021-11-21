@@ -41,15 +41,28 @@ export const Header = () => {
     ))
   }
 
+  const renderCallToActionButton = () => {
+    if (currentUser && location.pathname !== '/createSearchJourney') {
+      return (
+        <Link className="Header__call-to-action" to='/createSearchJourney'>Create a journey</Link>
+      )
+    }
+
+    if (!currentUser) {
+      return (
+        <Link className="Header__call-to-action" to='/auth/signin'>Sign in</Link>
+      )
+    }
+
+    return null;
+  }
+
   return (
     <div className="Header">
       <Logo className="Header__logo" />
-      {currentUser ? (
-        <Link className="Header__call-to-action" to='/createSearchJourney'>Create a journey</Link>
-      ) : (
-        <Link className="Header__call-to-action" to='/auth/signin'>Sign in</Link>
-      )}
-      <div>
+      {renderCallToActionButton()}
+
+      <div className="Header__profile">
         <Button
           id="basic-button"
           aria-controls="basic-menu"
@@ -57,7 +70,10 @@ export const Header = () => {
           aria-expanded={open ? 'true' : undefined}
           onClick={handleClick}
         >
-          <div className="Header__profile__pic" style={{ backgroundImage: `url(${getAvatarUrl(currentUser?.profilePic)})` }} />
+          <div
+            className="Header__profile__pic"
+            style={{ backgroundImage: `url(${getAvatarUrl(currentUser?.profilePic)})` }}
+          />
           <ArrowDropDown />
         </Button>
         <Menu
