@@ -44,29 +44,6 @@ export const AllJourneysPage = () => {
     []
   );
 
-  const renderMarkers = () => {
-    if (allJournies.length > 0) {
-      allJournies.map((journey, index) => (
-        <Marker
-          key={index}
-          latitude={journey.latInitial}
-          longitude={journey.longInitial}
-          offsetLeft={-20}
-          offsetTop={-10}>
-          <Link to={{
-            pathname: '/journey',
-            state: {
-              journeyData: journey,
-            }
-          }}>
-            <Room key={index} style={{ fontSize: viewport.zoom * 8, color: '#955E44' }} />
-          </Link>
-        </Marker>
-      ))
-    }
-    return null;
-  }
-
   return (
     <div className="AllJourneysPage">
       <Header />
@@ -85,7 +62,27 @@ export const AllJourneysPage = () => {
             mapboxApiAccessToken="pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg"
             position="top-left"
           />
-          {renderMarkers()}
+          {allJournies.length &&                 
+                allJournies.map((journey,index)=> (
+                    <Marker
+                        key={index}
+                        // latitude={journey.latInitial}
+                        // longitude={journey.longInitial}
+                        latitude={journey.latInitial}
+                        longitude={journey.longInitial}
+                        offsetLeft={-20}
+                        offsetTop={-10}>
+                        <Link to={{
+                              pathname: '/journey',
+                              state: {
+                                  journeyData: journey,
+                              }
+                                         }}>
+                          <Room key={index} style={{ fontSize: viewport.zoom * 8, color: '#955E44' }} />
+                        </Link>
+                    </Marker>
+            ))
+}
         </ReactMapGL>
       </div>
     </div>
