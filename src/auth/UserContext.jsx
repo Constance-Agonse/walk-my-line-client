@@ -14,7 +14,6 @@ export const UserContextProvider = (props) => {
 
   useEffect(() => {
     APIHandler.get("/auth/is-loggedin")
-
       .then((res) => {
         setIsLoading(false);
         setCurrentUser(res.data.currentUser);

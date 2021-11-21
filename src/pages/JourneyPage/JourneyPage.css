@@ -5,3 +5,10 @@
   text-align: left;
   overflow: hidden;
 }
+
+.JourneyPage__callout-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
