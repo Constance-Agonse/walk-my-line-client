@@ -28,7 +28,7 @@ export const Header = () => {
   };
 
   const handleSignout = () => {
-    APIHandler.post("/signout").finally(() => {
+    APIHandler.post("/auth/signout").finally(() => {
       setCurrentUser(null);
       history.push('/auth/signin')
     });
