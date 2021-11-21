@@ -23,6 +23,7 @@ export class JourneyCreationForm extends React.Component {
       media: React.createRef(), // create a reference to attach to the virtual DOM,
       isCalloutOpened: !this.props.pinData,
       isFinalizationFormOpened: false,
+      selectedFile: null,
     };
   }
 
@@ -42,7 +43,7 @@ export class JourneyCreationForm extends React.Component {
 
     const { title, lat, long, description, url, genre } = this.state; //, creator
 
-    const isImageUploaded = !this.state.media;
+    const isImageUploaded = this.state.selectedFile !== null;
 
     if (isImageUploaded) {
       console.log('in image')
@@ -61,12 +62,18 @@ export class JourneyCreationForm extends React.Component {
       if (!isImageUploaded) {
         const resultat = await APIHandler.post("/api/pins/text", { title, lat, long, description, url, genre }); // sending the formData //
         this.props.setPinArray(old => [...old, resultat.data._id])
-        this.setState({ isCalloutOpened: true })
+        this.setState({
+          isCalloutOpened: true,
+          selectedFile: null,
+        })
       }
       else if (isImageUploaded) {
         const resultat = await APIHandler.post("/api/pins/image", uploadData); // sending the formData //{ title, lat, long, description, url, genre}
         this.props.setPinArray(old => [...old, resultat.data._id]);
-        this.setState({ isCalloutOpened: true })
+        this.setState({
+          isCalloutOpened: true,
+          selectedFile: null,
+        })
       }
     } catch (err) {
       console.error(err);
@@ -120,6 +127,9 @@ export class JourneyCreationForm extends React.Component {
               <input
                 name="media"
                 type="file"
+                onChange={(event) => {
+                  this.setState({ selectedFile: event.target.files[0] });
+                }}
                 ref={this.state.media}
               />
             </Button>
