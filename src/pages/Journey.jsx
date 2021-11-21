@@ -11,6 +11,7 @@ import Testbutton from '../components/Testbutton';
 import { Button } from '@material-ui/core';
 import { useAuth } from "./../auth/UserContext";
 import APIHandler from "./../api/APIHandler";
+import KmTimeInfo from '../components/kmTimeInfo';
 
 export default function Journey({ location }) {
   console.log('xxxxxxxxxxxxxxxLocationxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
@@ -23,40 +24,20 @@ export default function Journey({ location }) {
   // const [btnUnfollow, setbtnUnfollow] = useState(true);
   // const [journeyData, setJourneyData] = useState(location.state.journeyData);
   // const journeyData = location.state.journeyData; //on le fait depuis le usestate now | finalement non pas besoin pour la modification de siLikedBy
-  // const profile = "walking";
-  // const coordinates = {{2.395412379248853,48.864659286869625;2.401164877129304,48.860305206737735}}
-  // const radiuses = 25;
-  // const query = fetch(
-  //   `https://api.mapbox.com/matching/v5/mapbox/${profile}/${coordinates}?geometries=geojson&radiuses=${radiuses}&steps=true&access_token=${mapboxgl.accessToken}`,
-  //   { method: 'GET' }
-  // );
-  // `https://api.mapbox.com/matching/v5/mapbox/walking/2.395412379248853,48.864659286869625;2.401164877129304,48.860305206737735?geometries=geojson&radiuses=25&steps=true&access_token=pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg`
-// useEffect(async () => {
-//   const query = await fetch(
-//     // 'https://api.mapbox.com/matching/v5/mapbox/driving/-117.17282,32.71204;-117.17288,32.71225?steps=true&radiuses=25;25&access_token=pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg'
-//     `https://api.mapbox.com/matching/v5/mapbox/walking/2.395412379248853,48.864659286869625;2.401164877129304,48.860305206737735?steps=true&radiuses=25;25&access_token=pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg`
-//     ,
-//     { method: 'GET' }
-//   );
-//   const response = await query.json();
-//   console.log(query)
-//   console.log(response)
-
-// },[])
    
 
   useEffect(()=>{
-    console.log("Le button INITIALEMENT :",isFollow)
-    console.log(currentUser._id)
-    console.log(journeyData.isLikedBy)
+    // console.log("Le button INITIALEMENT :",isFollow)
+    // console.log(currentUser._id)
+    // console.log(journeyData.isLikedBy)
     let isCreatorInlist;
     let a = journeyData.isLikedBy.filter(el => el._id === currentUser._id).length;
-    console.log(a);
+    // console.log(a);
     (journeyData.isLikedBy.filter(el => el._id === currentUser._id).length) ? (isCreatorInlist = true) : (isCreatorInlist = false);
     // let isCreatorInlist = journeyData.isLikedBy.includes(currentUser._id);
     // console.log(isCreatorInlist)
     setIsFollow(prev => prev = isCreatorInlist); //pas logique de mettre l'inverse mais permet de revenir à la normal
-    console.log("Le button APRES :",isFollow)
+    // console.log("Le button APRES :",isFollow)
 
   },[])
 
@@ -95,7 +76,7 @@ export default function Journey({ location }) {
     try {
       //avec res je peux peut etre obtenir mon id
       const res = await APIHandler.patch("/journey", journeyData);
-      console.log("api res => ", res.data);
+      // console.log("api res => ", res.data);
     } catch (err) {
       console.error(err);
     }
@@ -106,13 +87,13 @@ export default function Journey({ location }) {
       // faire une requete axios qui demande au server d'ajouter dans la database
       journeyData.isLikedBy.push(currentUser)
       updateFollowStatus();
-      console.log('should be added :' ,journeyData)
+      // console.log('should be added :' ,journeyData)
     } else { //si on unfollow alors on enleve currentuser à l'array de isLikedBy
       // on renvoie un nouvel array qui contient uniquement les user (id) différents de celui qui à unfollow (attention il s'agit de l'array de isLikedBy)      
       let newRemoveIsLikedBy = journeyData.isLikedBy.filter((user) => user._id !== currentUser._id)
       journeyData.isLikedBy = newRemoveIsLikedBy
       updateFollowStatus();
-      console.log('should be removed :' ,journeyData)
+      // console.log('should be removed :' ,journeyData)
 
     }
 
@@ -125,7 +106,7 @@ export default function Journey({ location }) {
   }
 
   
-  console.log("Le button APRES de vrai true=UNFOLOW false=FOLOW:",isFollow)
+  // console.log("Le button APRES de vrai true=UNFOLOW false=FOLOW:",isFollow)
 
   return (
     <div id="journey-global">
@@ -186,8 +167,7 @@ export default function Journey({ location }) {
               <h3>Country</h3>
             </div>
             <div id="journey-bar-info-text">
-              <p>{journeyData.km} km</p>
-              <p>{journeyData.journeyTime} min</p>
+              <KmTimeInfo journeyData={journeyData}/>              
               <p>{journeyData.pins.length} pins</p>
               <p>{(journeyData.isPublic) ? ("Public") : "Private"}</p>
             </div>

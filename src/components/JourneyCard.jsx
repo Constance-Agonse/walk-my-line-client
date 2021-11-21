@@ -9,6 +9,7 @@ import Hashtags from "./Hashtags"
 import { Link } from 'react-router-dom';
 import Rating from './Rating';
 import { useAuth } from "./../auth/UserContext";
+import KmTimeInfo from '../components/kmTimeInfo';
 
 
 export default function JourneyCard({ journeyData, handleDelete}) {
@@ -57,8 +58,8 @@ export default function JourneyCard({ journeyData, handleDelete}) {
                         <p>France</p>
                     </div>
                     <div className="affichage-vertical">
-                        <p>{journeyData.km} km</p>
-                        <p>{journeyData.journeyTime} min</p>
+                        <KmTimeInfo journeyData={journeyData}/>              
+
                         <p>{journeyData.pins.length} pins</p>
                     </div>
                     <div className="affichage-vertical">
