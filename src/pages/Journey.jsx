@@ -31,17 +31,18 @@ export default function Journey({ location }) {
   //   { method: 'GET' }
   // );
   // `https://api.mapbox.com/matching/v5/mapbox/walking/2.395412379248853,48.864659286869625;2.401164877129304,48.860305206737735?geometries=geojson&radiuses=25&steps=true&access_token=pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg`
-useEffect(async () => {
-  const query = await fetch(
-    'https://api.mapbox.com/matching/v5/mapbox/driving/-117.17282,32.71204;-117.17288,32.71225?steps=true&radiuses=25;25&access_token=pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg'
-    ,
-    { method: 'GET' }
-  );
-  const response = await query.json();
-  console.log(query)
-  console.log(response)
+// useEffect(async () => {
+//   const query = await fetch(
+//     // 'https://api.mapbox.com/matching/v5/mapbox/driving/-117.17282,32.71204;-117.17288,32.71225?steps=true&radiuses=25;25&access_token=pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg'
+//     `https://api.mapbox.com/matching/v5/mapbox/walking/2.395412379248853,48.864659286869625;2.401164877129304,48.860305206737735?steps=true&radiuses=25;25&access_token=pk.eyJ1IjoiaHVnb3dhbGsiLCJhIjoiY2t2cjdnNmRnOG05cjJwcXd5bzdrcXNsMyJ9.V4USQMRev0gaQMP7zfrRlg`
+//     ,
+//     { method: 'GET' }
+//   );
+//   const response = await query.json();
+//   console.log(query)
+//   console.log(response)
 
-},[])
+// },[])
    
 
   useEffect(()=>{
