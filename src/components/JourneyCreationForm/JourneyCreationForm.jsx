@@ -167,7 +167,11 @@ export class JourneyCreationForm extends React.Component {
             />
           </div>
           <div className="JourneyCreationForm__pin-form__desc__field">
-            <Tags onChange={this.props.onSubmitTag} />
+            <Tags onChange={(tags) => {
+              this.setState({
+                tags,
+              })
+            }} />
           </div>
         </div>
         <div className="JourneyCreationForm__actions">
@@ -175,6 +179,7 @@ export class JourneyCreationForm extends React.Component {
             this.props.createJourney({
               title: this.state.title,
               description: this.state.description,
+              tags: this.state.tags,
             })
           }}>
             Submit my trip

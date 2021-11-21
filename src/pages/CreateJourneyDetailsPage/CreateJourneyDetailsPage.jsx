@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
 import ReactMapboxGl from "react-mapbox-gl";
 import DrawControl from "react-mapbox-gl-draw";
+import { useHistory } from "react-router-dom";
 
-import CreatePinJourney from "../../components/CreatePinJourney";
-import Hashtags from "../../components/Hashtags";
 import APIHandler from "../../api/APIHandler";
+import { JourneyCreationForm } from "../../components/JourneyCreationForm/JourneyCreationForm";
 
 import "./CreateJourneyDetailsPage.css";
-import { JourneyCreationForm } from "../../components/JourneyCreationForm/JourneyCreationForm";
 
 const Map = ReactMapboxGl({
   accessToken:
@@ -107,11 +105,13 @@ const styles = [
 
 
 export const CreateJourneyDetailsPage = ({ location }) => {
+  const history = useHistory();
   console.log(">>loca>>", location)
   const creator = location.state.creator;
   const cityData = location.state.searchParams;
   //la ligne commenté ci dessous pourrait me permettre de gérer le pb de changement de view, lorsque l'on définit un trajet loin de notre point original on y revient et c'est relou donc il faut pas rentrer en dur les paramètres sauf si on les update avec un useeffect ou use state
   //   const [coordMapView, setCoordMapView] = useState([cityData.longitude,cityData.latitude,cityData.zoom])
+  const [isFormVisible, setIsFormVisible] = useState(false);
   const [isPublic, setIsPublic] = useState(true);
   const [addTag, setAddTag] = useState([]);
   const [drawPointJourney, setDrawPointJourney] = useState([]);
@@ -157,7 +157,7 @@ export const CreateJourneyDetailsPage = ({ location }) => {
       name: journeyCreationFormData.title,
       description: journeyCreationFormData.description,
       isPublic: isPublic,
-      tags: addTag,            //a changer
+      tags: journeyCreationFormData.tags,            //a changer
       pins: pinArray, //checker si c'est une id
       creator: creator,
       journeyTime: 47,        //a changer
@@ -172,6 +172,7 @@ export const CreateJourneyDetailsPage = ({ location }) => {
     try {
       await APIHandler.post("/createSearchJourney", journeyData); // sending the formData
       // this.props.handler(); // passing the ball to the parent's callback
+      history.push('/profile');
     } catch (err) {
       console.error(err);
     }
@@ -267,7 +268,6 @@ export const CreateJourneyDetailsPage = ({ location }) => {
         genre={radioType}
         creator={creator}
         pinData={drawPointJourney[drawPointJourney.length - 1]}
-        onSubmitTag={handleSubmitTag}
         createJourney={createJourney}
       />
     </div>

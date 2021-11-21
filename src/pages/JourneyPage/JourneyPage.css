@@ -1,6 +1,7 @@
-.CreateJourneyDetailsPage {
+.JourneyPage {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  text-align: left;
   overflow: hidden;
 }

@@ -20,8 +20,11 @@ export const Tags = ({ onChange }) => {
           }}
         />
         <Button onClick={() => {
-          setTags([...tags, text]);
-          setText(undefined);
+          if (text !== '') {
+            onChange([...tags, text]);
+            setTags([...tags, text]);
+            setText(undefined);
+          }
         }}>
           Add tag
         </Button>
