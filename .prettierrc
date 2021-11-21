@@ -1,0 +1,11 @@
+{
+  "tabWidth": 2,
+  "useTabs": false,
+  "max-line-length": [
+    true,
+    {
+      "limit": 140,
+      "ignore-pattern": "^import |^export {(.*?)}"
+    }
+  ]
+}

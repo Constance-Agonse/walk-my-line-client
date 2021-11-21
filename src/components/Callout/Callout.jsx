@@ -10,16 +10,21 @@ export const Callout = ({ text, buttonText, link, onButtonClick }) => {
       <p className="Callout__text">
         {text}
       </p>
-      {link ? (
-        <Link to={link}>
-          <Button variant="outlined">
+      {link && (
+        <div className="Callout__actions">
+          <Link to={link}>
+            <Button variant="outlined">
+              {buttonText}
+            </Button>
+          </Link>
+        </div>
+      )}
+      {onButtonClick && (
+        <div className="Callout__actions">
+          <Button variant="outlined" onClick={onButtonClick}>
             {buttonText}
           </Button>
-        </Link>
-      ) : (
-        <Button variant="outlined" onClick={onButtonClick}>
-          {buttonText}
-        </Button>
+        </div>
       )}
     </div>
   )
