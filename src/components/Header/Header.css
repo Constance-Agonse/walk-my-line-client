@@ -1,0 +1,41 @@
+.Header {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.11);
+  position: relative;
+  z-index: 1;
+}
+
+.Header__call-to-action {
+  background: none;
+  border: none;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-family: Satoshi;
+  padding: 4px 8px;
+  border: 1px solid black; 
+  border-radius: 4px;
+  margin-left: auto;
+  line-height: 27px;
+}
+
+.Header__profile__pic {
+  border-radius: 50%;
+  background-position: center;
+  background-size: contain;
+  width: 42px;
+  height: 42px;
+}
+
+.Header__profile {
+  display: flex;
+  align-items: center;
+  margin-left: 16px;
+  background: none;
+  border: none;
+}
+
+.Header__profile__item--active {
+  font-weight: bold;
+}
