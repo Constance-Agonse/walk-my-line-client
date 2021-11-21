@@ -6,6 +6,7 @@ import { Switch, Route } from "react-router-dom";
 import { AllJourneysPage } from './pages/AllJourneysPage';
 import { CreateJourneyPage } from './pages/CreateJourneyPage';
 import { CreateJourneyDetailsPage } from './pages/CreateJourneyDetailsPage';
+import { ProfilePage } from './pages/ProfilePage';
 
 // config
 import { routes } from './config/routes';
@@ -37,7 +38,7 @@ function App() {
     <UserContextProvider>
       <Switch>
         {/* <Route exact path="/" component= {Home} /> */}
-        <ProtectedRoute exact path="/profile" component={Profile} />
+        <ProtectedRoute exact path="/profile" component={ProfilePage} />
         <ProtectedRoute exact path="/createSearchJourney" component = {CreateJourneyPage} />
         
         <ProtectedRoute exact path="/createSearchJourney/create2" component = {CreateJourneyDetailsPage} />        
