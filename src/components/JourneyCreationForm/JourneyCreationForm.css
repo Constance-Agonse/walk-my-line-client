@@ -1,0 +1,28 @@
+.JourneyCreationForm__panel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.JourneyCreationForm__pin-form__desc {
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.JourneyCreationForm__actions {
+  margin-top: 16px;
+}
+
+.JourneyCreationForm__pin-form__desc__field--media {
+  margin-top: 16px;
+}
+
+.JourneyCreationForm__actions > button:first-child {
+  margin-right: 16px;
+}
+
+.JourneyCreationForm__panel__finalize-button {
+  margin-top: 16px;
+}

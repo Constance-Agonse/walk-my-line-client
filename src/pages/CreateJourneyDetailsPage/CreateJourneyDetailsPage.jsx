@@ -8,6 +8,7 @@ import Hashtags from "../../components/Hashtags";
 import APIHandler from "../../api/APIHandler";
 
 import "./CreateJourneyDetailsPage.css";
+import { JourneyCreationForm } from "../../components/JourneyCreationForm/JourneyCreationForm";
 
 const Map = ReactMapboxGl({
   accessToken:
@@ -107,7 +108,7 @@ const styles = [
 
 export const CreateJourneyDetailsPage = ({ location }) => {
   console.log(">>loca>>", location)
-  const creator = location.state.creator
+  const creator = location.state.creator;
   const cityData = location.state.searchParams;
   //la ligne commenté ci dessous pourrait me permettre de gérer le pb de changement de view, lorsque l'on définit un trajet loin de notre point original on y revient et c'est relou donc il faut pas rentrer en dur les paramètres sauf si on les update avec un useeffect ou use state
   //   const [coordMapView, setCoordMapView] = useState([cityData.longitude,cityData.latitude,cityData.zoom])
@@ -270,8 +271,7 @@ export const CreateJourneyDetailsPage = ({ location }) => {
         <Map
           style="mapbox://styles/hugowalk/ckvyzg1n629ta15mvc49rx7ll"
           containerStyle={{
-            height: "75vh",
-            width: "100vw",
+            height: "100vh",
           }}
           center={[cityData.longitude, cityData.latitude]}
           zoom={[cityData.zoom]}
@@ -288,7 +288,16 @@ export const CreateJourneyDetailsPage = ({ location }) => {
         </Map>
       </div>
 
-      <section id="menu-createjourney-2">
+      <JourneyCreationForm
+        setPinArray={setPinArray}
+        pinArray={pinArray}
+        isSubmit={setFormIsVisibel}
+        genre={radioType}
+        creator={creator}
+        pinData={drawPointJourney[drawPointJourney.length - 1]}
+      />
+
+      {/* <section id="menu-createjourney-2">
         <div className="feature-container-container2">
           <form onSubmit={handleSubmitTag}>
             <input
@@ -321,9 +330,9 @@ export const CreateJourneyDetailsPage = ({ location }) => {
           </div>
         )}
         <div>
-          {formIsVisibel && <CreatePinJourney setPinArray={setPinArray} pinArray={pinArray} isSubmit={setFormIsVisibel} genre={radioType} creator={creator} pinData={drawPointJourney[drawPointJourney.length - 1]} />}
+          {formIsVisibel && <CreatePinJourney />}
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }
