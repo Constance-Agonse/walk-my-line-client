@@ -133,12 +133,11 @@ export class JourneyCreationForm extends React.Component {
 
   renderFinalizationForm = () => {
     return (
-      <Panel onClose={() => this.setState({ isCalloutOpened: true })}>
+      <Panel>
         <div className="JourneyCreationForm__pin-form">
           <p className="JourneyCreationForm__pin-form__desc">
             What's left? Just put some info about this trip and we're good to go!
           </p>
-
           <div className="JourneyCreationForm__pin-form__desc__field">
             <TextField
               label="Trip name"
@@ -168,11 +167,16 @@ export class JourneyCreationForm extends React.Component {
             />
           </div>
           <div className="JourneyCreationForm__pin-form__desc__field">
-            <Tags onChange={(tags) => { console.log(tags) }} />
+            <Tags onChange={this.props.onSubmitTag} />
           </div>
         </div>
         <div className="JourneyCreationForm__actions">
-          <Button variant="outlined" onClick={this.handleSubmit}>
+          <Button variant="outlined" onClick={() => {
+            this.props.createJourney({
+              title: this.state.title,
+              description: this.state.description,
+            })
+          }}>
             Submit my trip
           </Button>
         </div>
@@ -196,7 +200,7 @@ export class JourneyCreationForm extends React.Component {
                         isCalloutOpened: false,
                       })
                     }
-                  : undefined
+                    : undefined
                 }
                 buttonText="Finalize the trip"
               />
