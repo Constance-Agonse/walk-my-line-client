@@ -27,9 +27,9 @@ export default function CityCountry(props) {
     console.log('respppp')
 //   console.log(query)
     // console.log(response.features[2].text)
-    setTown(prev => prev = response.features[2].text)
+    setTown(prev => prev = response.features[2]?.text)
     // console.log(response.features[4].text)
-    setCountry(prev => prev = response.features[4].text)
+    setCountry(prev => prev = response.features[4]?.text)
 
 //   setResponse(prev => prev = response)
     // setRespMapBox(prev => prev = response.matchings[0])  //not fast enough
