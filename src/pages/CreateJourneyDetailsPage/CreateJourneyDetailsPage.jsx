@@ -120,27 +120,6 @@ export const CreateJourneyDetailsPage = ({ location }) => {
   const [radioType, setRadioType] = useState("text");
   const [formIsVisibel, setFormIsVisibel] = useState(false);
   const [pinArray, setPinArray] = useState([])
-  /*
-    req.body
-  {
-    isPublic: false,
-    tags: [ 'aa', 'ee', 'xxxxxxxxxxxxxxxxxxx' ],
-    pins: [
-      {
-        id: '88e912b9693cd8d7e09a847c5a9518f4',
-        type: 'Feature',
-        properties: {},
-        geometry: [Object],
-        pinType: 'text'
-      }
-    ],
-    creator: '61967029042d717b00ab24bd',
-    journeyTime: 47,
-    km: 47,
-    isLikedBy: [],
-    rate: 1.6363841450923011
-  }*/
-
 
   // console.log(location)
   const createJourney = async (journeyCreationFormData) => {

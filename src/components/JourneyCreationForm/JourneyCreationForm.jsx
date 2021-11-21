@@ -42,7 +42,9 @@ export class JourneyCreationForm extends React.Component {
 
     const { title, lat, long, description, url, genre } = this.state; //, creator
 
-    if (genre === 'image') {
+    const isImageUploaded = !this.state.media;
+
+    if (isImageUploaded) {
       console.log('in image')
       const file = this.state.media.current.files[0]; // target the image file associated to the input[type=file]
       var uploadData = new FormData(); // create a form data => an object to send as post body
@@ -56,11 +58,12 @@ export class JourneyCreationForm extends React.Component {
     }
 
     try {
-      if (genre === 'text') {
+      if (!isImageUploaded) {
         const resultat = await APIHandler.post("/api/pins/text", { title, lat, long, description, url, genre }); // sending the formData //
         this.props.setPinArray(old => [...old, resultat.data._id])
+        this.setState({ isCalloutOpened: true })
       }
-      else if (genre === 'image') {
+      else if (isImageUploaded) {
         const resultat = await APIHandler.post("/api/pins/image", uploadData); // sending the formData //{ title, lat, long, description, url, genre}
         this.props.setPinArray(old => [...old, resultat.data._id]);
         this.setState({ isCalloutOpened: true })

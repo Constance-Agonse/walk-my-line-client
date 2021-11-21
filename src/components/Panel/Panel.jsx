@@ -7,9 +7,11 @@ import "./Panel.css";
 export const Panel = ({ children, onClose }) => {
   return (
     <div className="Panel">
-      <button className="Panel__close" onClick={onClose}>
-        <Close />
-      </button>
+      {onClose && (
+        <button className="Panel__close" onClick={onClose}>
+          <Close />
+        </button>
+      )}
       {children}
     </div>
   )
