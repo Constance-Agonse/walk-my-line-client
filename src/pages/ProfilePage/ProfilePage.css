@@ -1,0 +1,54 @@
+.ProfilePage {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  overflow: hidden;
+}
+
+.CreateJourneyPage__profile {
+  
+}
+
+.CreateJourneyPage__profile-section {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.CreateJourneyPage__profile-section__pic {
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  margin-right: 24px;
+}
+
+.CreateJourneyPage__profile-section__info {
+
+}
+
+.CreateJourneyPage__profile-section__info__name {
+  font-weight: bold;
+  text-transform: capitalize;
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.CreateJourneyPage__profile-section__info__item {
+
+}
+
+.CreateJourneyPage__content {
+  height: 100%;
+}
+
+.CreateJourneyPage__content__tab {
+  height: calc(100% - 47px);
+  overflow: auto;
+  box-sizing: border-box;
+  padding-bottom: 210px;
+}
+
+.CreateJourneyPage__content__tab > div {
+  padding: 16px;
+}

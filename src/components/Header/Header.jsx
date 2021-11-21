@@ -4,9 +4,9 @@ import cx from 'classnames';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, MenuItem, Fade, Button } from '@mui/material';
 
-
 import { useAuth } from "./../../auth/UserContext";
 import { Logo } from "./Logo";
+import { getUserAvatarUrl } from '../../helpers/getUserAvatarUrl';
 
 import "./Header.css";
 
@@ -72,7 +72,7 @@ export const Header = () => {
         >
           <div
             className="Header__profile__pic"
-            style={{ backgroundImage: `url(${getAvatarUrl(currentUser?.profilePic)})` }}
+            style={{ backgroundImage: `url(${getUserAvatarUrl(currentUser?.profilePic)})` }}
           />
           <ArrowDropDown />
         </Button>
@@ -104,8 +104,4 @@ export const Header = () => {
       </div>
     </div>
   )
-}
-
-const getAvatarUrl = (url) => {
-  return url ?? './profile1.png';
 }

@@ -1,14 +1,14 @@
-.CreateJourneyPage {
+.JourneyPage {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  text-align: left;
   overflow: hidden;
 }
 
-.CreateJourneyPage__callout-wrapper {
+.JourneyPage__callout-wrapper {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
 }
-
