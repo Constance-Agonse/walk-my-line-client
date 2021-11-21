@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Room } from "@material-ui/icons"
 
 import { Header } from '../../components/Header';
+import { Callout } from '../../components/Callout';
 import { viewportParams } from '../../config/viewport';
 import APIHandler from "./../../api/APIHandler";
 
@@ -70,24 +71,23 @@ export const CreateJourneyPage = () => {
       </div>
       {searchParams && (
         <div className="CreateJourneyPage__callout-wrapper">
-          <div className="CreateJourneyPage__callout-wrapper__box">
-            <p className="CreateJourneyPage__callout__text">
-              Congrats!<br />
-              You've chosen the city where you gonna travel.<br />
-              Do you want to create a journey?
-            </p>
-            <Link to={{
+          <Callout
+            text={
+              <>
+                Congrats!<br />
+                You've chosen the city where you gonna travel.<br />
+                Do you want to create a journey?
+              </>
+            }
+            link={{
               pathname: '/createSearchJourney/create2',
               state: {
                 creator: creator,
                 isSearchDone: searchParams
               }
-            }}>
-              <Button variant="outlined">
-                Create a journey
-              </Button>
-            </Link>
-          </div>
+            }}
+            buttonText="Create a journey"
+          />
         </div>
       )}
     </div>

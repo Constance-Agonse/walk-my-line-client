@@ -11,14 +11,3 @@
   width: 100%;
 }
 
-.CreateJourneyPage__callout-wrapper__box {
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.11);
-  background-color: #fff; 
-  margin: 8px;
-  border-radius: 4px;
-  padding: 16px;
-}
-
-.CreateJourneyPage__callout__text {
-  margin-bottom: 16px;
-}
