@@ -1,0 +1,13 @@
+.CreateJourneyPage {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.CreateJourneyPage__callout-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+

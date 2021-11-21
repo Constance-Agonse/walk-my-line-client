@@ -2,6 +2,13 @@ import './App.css';
 import React from 'react';
 import { Switch, Route } from "react-router-dom";
 
+// pages
+import { AllJourneysPage } from './pages/AllJourneysPage';
+import { CreateJourneyPage } from './pages/CreateJourneyPage';
+
+// config
+import { routes } from './config/routes';
+
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import CreateSearchJourney from "./pages/CreateSearchJourney";
@@ -30,8 +37,7 @@ function App() {
       <Switch>
         {/* <Route exact path="/" component= {Home} /> */}
         <ProtectedRoute exact path="/profile" component={Profile} />
-        <ProtectedRoute exact path="/createSearchJourney" component = {CreateSearchJourney} />
-        
+        <ProtectedRoute exact path="/createSearchJourney" component = {CreateJourneyPage} />
         
         <ProtectedRoute exact path="/createSearchJourney/create2" component = {CreateJourney2} />        
         {/* <Route exact path="/createSearchJourney/Pin" component = {CreatePinJourney} /> */}
@@ -43,7 +49,7 @@ function App() {
          
         <Route exact path="/auth/signup" component= {Signup} />
         <Route exact path="/auth/signin" component= {Signin} />
-        <Route exact path="/" component= {HomeSearch} />
+        <Route exact path="/" component= {AllJourneysPage} />
         
         <Route path="*" component= {ErrorPage} />
       </Switch>
@@ -53,5 +59,3 @@ function App() {
 }
 
 export default App;
-
-
