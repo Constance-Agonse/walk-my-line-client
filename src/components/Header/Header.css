@@ -5,6 +5,8 @@
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.11);
   position: relative;
   z-index: 1;
+  background-color: #095256;
+  color: white;
 }
 
 .Header__call-to-action {
@@ -14,7 +16,7 @@
   font-size: 16px;
   font-family: Satoshi;
   padding: 4px 8px;
-  border: 1px solid black; 
+  border: 1px solid white; 
   border-radius: 4px;
   margin-left: 16px;
   line-height: 27px;

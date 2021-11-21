@@ -8,7 +8,57 @@
 
 .JourneyPage__callout-wrapper {
   position: fixed;
-  bottom: 0;
+  bottom: -5px;
   left: 0;
   width: 100%;
+}
+
+.JourneyPage__title {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.JourneyPage__title {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.JourneyPage__location * {
+  display: inline;
+}
+
+.JourneyPage__info * {
+  display: inline;
+}
+
+.JourneyPage__info p:nth-child(1) {
+  margin-right: 4px;
+}
+
+.JourneyPage__info {
+  color: white;
+}
+
+.InfoPin {
+  width: 100px;
+  margin-right: 12px;
+}
+.InfoPin:last-child {
+  margin-right: 0;
+}
+.InfoPin__pic {
+  width: 100%;
+  height: 80px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: 4px;
+}
+.InfoPin__title {
+  color: white;
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+.InfoPin__description {
+  color: white;
 }

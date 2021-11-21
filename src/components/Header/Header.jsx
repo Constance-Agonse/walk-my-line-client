@@ -82,7 +82,7 @@ export const Header = () => {
             className="Header__profile__pic"
             style={{ backgroundImage: `url(${getUserAvatarUrl(currentUser?.profilePic)})` }}
           />
-          <ArrowDropDown />
+          <ArrowDropDown color="action" />
         </Button>
         <Menu
           id="basic-menu"

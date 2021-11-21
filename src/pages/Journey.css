@@ -47,10 +47,7 @@ margin-top: 160px;
 #journey-bar-pins-container {
   display: flex;
   overflow-x: auto;
-  padding-right: 24px;
-  padding-left: 24px;
-
-  /* METTRE UN SCROLL HORIZONTAL */
+  margin-top: 8px;
 }
 
 #journey-bar-pins-container::-webkit-scrollbar {
@@ -68,11 +65,12 @@ margin-top: 160px;
 #journey-bar-info-title {
   display: flex;
   justify-content: space-between;
-  color: var(--brown);
-  font-family: BoskaBlack;
+  text-transform: capitalize;
+  font-weight: bold;
   font-size: 20px;
   width: 100%;
   margin: 0;
+  margin-bottom: 8px;
   /* align-items: flex-end; */
 }
 

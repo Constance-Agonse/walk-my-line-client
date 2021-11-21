@@ -14,3 +14,16 @@
   border: none;
   background: none;
 }
+
+.PanelCool {
+  background-color: #095256;
+  position: relative;
+  padding: 16px;
+}
+
+.PanelCool svg {
+  position: absolute;
+  top: -70px;
+  left: 0;
+  z-index: -1;
+}
