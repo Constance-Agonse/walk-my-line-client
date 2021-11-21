@@ -26,3 +26,11 @@
 .JourneyCreationForm__panel__finalize-button {
   margin-top: 16px;
 }
+
+.Tags {
+  margin-top: 24px;
+}
+
+.Tags__top {
+  display: flex;
+}

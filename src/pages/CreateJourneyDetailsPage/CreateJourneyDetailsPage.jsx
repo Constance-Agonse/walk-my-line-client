@@ -117,11 +117,6 @@ export const CreateJourneyDetailsPage = ({ location }) => {
   const [drawPointJourney, setDrawPointJourney] = useState([]);
   const [drawLineJourney, setDrawLineJourney] = useState([]);
 
-  // State des pins (sélectionné ou non) à utiliser si on ne fait plus de radio button
-  const [isText, setIsText] = useState(true);
-  const [isAudio, setAudio] = useState(false);
-  const [isVideo, setVideo] = useState(false);
-  const [isImage, setImage] = useState(false);
   const [radioType, setRadioType] = useState("text");
   const [formIsVisibel, setFormIsVisibel] = useState(false);
   const [pinArray, setPinArray] = useState([])

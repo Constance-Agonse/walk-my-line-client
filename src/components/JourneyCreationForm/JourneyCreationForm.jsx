@@ -3,6 +3,7 @@ import { Button, TextField } from '@material-ui/core';
 
 import { Callout } from '../Callout';
 import { Panel } from '../Panel';
+import { Tags } from './Tags';
 import APIHandler from "../../api/APIHandler";
 
 import "./JourneyCreationForm.css";
@@ -21,6 +22,7 @@ export class JourneyCreationForm extends React.Component {
       creator: this.props.creator,
       media: React.createRef(), // create a reference to attach to the virtual DOM,
       isCalloutOpened: !this.props.pinData,
+      isFinalizationFormOpened: false,
     };
   }
 
@@ -69,6 +71,9 @@ export class JourneyCreationForm extends React.Component {
   };
 
   renderPinForm = () => {
+    if (this.state.isFinalizationFormOpened) {
+      return null;
+    }
     return (
       <Panel onClose={() => this.setState({ isCalloutOpened: true })}>
         <div className="JourneyCreationForm__pin-form">
@@ -126,6 +131,55 @@ export class JourneyCreationForm extends React.Component {
     )
   }
 
+  renderFinalizationForm = () => {
+    return (
+      <Panel onClose={() => this.setState({ isCalloutOpened: true })}>
+        <div className="JourneyCreationForm__pin-form">
+          <p className="JourneyCreationForm__pin-form__desc">
+            What's left? Just put some info about this trip and we're good to go!
+          </p>
+
+          <div className="JourneyCreationForm__pin-form__desc__field">
+            <TextField
+              label="Trip name"
+              variant="standard"
+              size="small"
+              fullWidth
+              onChange={(e) => {
+                this.setState({
+                  title: e.target.value,
+                })
+              }}
+            />
+          </div>
+          <div className="JourneyCreationForm__pin-form__desc__field">
+            <TextField
+              label="Description"
+              variant="standard"
+              size="small"
+              multiline
+              maxRows={4}
+              fullWidth
+              onChange={(e) => {
+                this.setState({
+                  description: e.target.value,
+                })
+              }}
+            />
+          </div>
+          <div className="JourneyCreationForm__pin-form__desc__field">
+            <Tags onChange={(tags) => { console.log(tags) }} />
+          </div>
+        </div>
+        <div className="JourneyCreationForm__actions">
+          <Button variant="outlined" onClick={this.handleSubmit}>
+            Submit my trip
+          </Button>
+        </div>
+      </Panel>
+    )
+  }
+
   render() {
     return (
       <div className="JourneyCreationForm">
@@ -134,11 +188,21 @@ export class JourneyCreationForm extends React.Component {
             <>
               <Callout
                 text="Please choose the place you would like to register in this trip by using the map tools."
-                onButtonClick={this.props.pinArray.length > 0 ? () => {} : undefined}
+                onButtonClick={
+                  this.props.pinArray.length > 0 ?
+                    () => {
+                      this.setState({
+                        isFinalizationFormOpened: true,
+                        isCalloutOpened: false,
+                      })
+                    }
+                  : undefined
+                }
                 buttonText="Finalize the trip"
               />
             </>
           ) : this.renderPinForm()}
+          {this.state.isFinalizationFormOpened && this.renderFinalizationForm()}
         </div>
       </div>
     )
