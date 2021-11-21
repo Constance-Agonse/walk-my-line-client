@@ -69,7 +69,7 @@ export const CreateJourneyPage = () => {
           />
         </ReactMapGL>
       </div>
-      {searchParams && (
+      {searchParams ? (
         <div className="CreateJourneyPage__callout-wrapper">
           <Callout
             text={
@@ -82,11 +82,17 @@ export const CreateJourneyPage = () => {
             link={{
               pathname: '/createSearchJourney/create2',
               state: {
-                creator: creator,
-                isSearchDone: searchParams
+                creator,
+                searchParams,
               }
             }}
             buttonText="Create a journey"
+          />
+        </div>
+      ) : (
+        <div className="CreateJourneyPage__callout-wrapper">
+          <Callout
+            text="You can now find the city or place where you are going to travel"
           />
         </div>
       )}
