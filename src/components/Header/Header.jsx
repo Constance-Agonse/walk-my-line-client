@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { ArrowDropDown } from "@material-ui/icons";
 import cx from 'classnames';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, MenuItem, Fade, Button } from '@mui/material';
+import { Link, useLocation, useHistory } from 'react-router-dom';
+import { Menu, MenuItem, Button } from '@mui/material';
 
 import { useAuth } from "./../../auth/UserContext";
 import { Logo } from "./Logo";
@@ -14,6 +14,7 @@ import "./Header.css";
 export const Header = () => {
   const { currentUser } = useAuth();
   const { setCurrentUser } = useAuth();
+  const history = useHistory();
 
   const location = useLocation();
 
@@ -26,11 +27,13 @@ export const Header = () => {
     setAnchorEl(null);
   };
 
-  const handleSignout = () =>
+  const handleSignout = () => {
     APIHandler.post("/signout").finally(() => {
       setCurrentUser(null);
+      history.push('/auth/signin')
     });
 
+  }
   const renderLinks = (menuItems) => {
     return menuItems.map((menuItem) => (
       <MenuItem onClick={handleClose}>
