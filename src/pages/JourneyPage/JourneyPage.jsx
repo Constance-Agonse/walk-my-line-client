@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { PanelCool } from '../../components/Panel';
 import { Room } from "@material-ui/icons";
 import ReactMapGL, { Source, Layer, Marker } from 'react-map-gl';
+import { Button } from '@mui/material';
+import { styled } from '@mui/material/styles';
+
 
 import CityCountry from '../../components/CityCountry';
 import KmTimeInfo from '../../components/kmTimeInfo';
@@ -34,6 +37,11 @@ export const JourneyPage = ({ location }) => {
     longitude: journeyData.longInitial,
     zoom: 11.5
   });
+
+  const MyButton = styled(Button)(({ theme }) => ({
+    color: 'black',
+    backgroundColor: 'white'
+  }));
 
   useEffect(() => {
     let isCreatorInlist;
@@ -142,10 +150,17 @@ export const JourneyPage = ({ location }) => {
                 <Rating>{journeyData.rate}</Rating>
               </div>
               {currentUser._id !== journeyData.creator._id &&
-                <div className="button-switch-container">
-                  <button className="button-switch" onClick={buttonFollow}>{isFollow ? "Unfollow" : "Follow"}</button>
+                <div className="journey-bar-info-button">
+                  <MyButton variant="contained"
+                    onClick={buttonFollow}>
+                    {isFollow ? "Unfollow" : "Follow"}
+                  </MyButton>
+                  {/* <Button onClick={buttonFollow}>{isFollow ? "Unfollow" : "Follow"}</Button> */}
                 </div>
               }
+
+
+
             </div>
             <div id="journey-bar-info-hashtags">
               {/* {journeyData.tags.map((tag, i) => {

@@ -62,3 +62,8 @@
 .InfoPin__description {
   color: white;
 }
+
+.journey-bar-info-button{
+  color: white;
+  border: white;
+}
