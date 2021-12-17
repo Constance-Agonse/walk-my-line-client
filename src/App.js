@@ -22,12 +22,26 @@ import ErrorPage from "./pages/ErrorPage";
 import Signup from "./pages/SignUp";
 import Signin from "./pages/Signin";
 import HomeSearch from "./pages/HomeSearch";
-
+import Palette from './components/ui/Palette';
 
 
 // auth
 import { UserContextProvider } from "./auth/UserContext";
 import { ProtectedRoute } from "./auth/ProtectedRoute";
+
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#EBDFCA',
+    },
+    secondary: {
+      // This is green.A700 as hex.
+      main: '#11cb5f',
+    },
+  },
+});
 
 
 function App() {
@@ -35,29 +49,28 @@ function App() {
 
   return (
     <div className="wrap-app">
-      <div className="App">
-        <UserContextProvider>
-          <Switch>
-            {/* <Route exact path="/" component= {Home} /> */}
-            <ProtectedRoute exact path="/profile" component={ProfilePage} />
-            <ProtectedRoute exact path="/createSearchJourney" component={CreateJourneyPage} />
+      <ThemeProvider theme={theme}>
+        <div className="App">
+          <UserContextProvider>
+            <Switch>
+            
+              <ProtectedRoute exact path="/profile" component={ProfilePage} />
+              <ProtectedRoute exact path="/createSearchJourney" component={CreateJourneyPage} />
 
-            <ProtectedRoute exact path="/createSearchJourney/create2" component={CreateJourneyDetailsPage} />
-            {/* <Route exact path="/createSearchJourney/Pin" component = {CreatePinJourney} /> */}
-            <ProtectedRoute exact path="/journey" component={JourneyPage} />
-            {/* <Route exact path="/profile" component={Profile} /> */}
-            {/* <Route exact path="/createSearchJourney" component = {CreateSearchJourney} />         */}
-            {/* <Route exact path="/createSearchJourney/create2" component = {CreateJourney2} />    */}
-            {/* <Route exact path="/journey" component = {Journey} />  */}
+              <ProtectedRoute exact path="/createSearchJourney/create2" component={CreateJourneyDetailsPage} />
+          
+              <ProtectedRoute exact path="/journey" component={JourneyPage} />
+             
 
-            <Route exact path="/auth/signup" component={Signup} />
-            <Route exact path="/auth/signin" component={Signin} />
-            <Route exact path="/" component={AllJourneysPage} />
+              <Route exact path="/auth/signup" component={Signup} />
+              <Route exact path="/auth/signin" component={Signin} />
+              <Route exact path="/" component={AllJourneysPage} />
 
-            <Route path="*" component={ErrorPage} />
-          </Switch>
-        </UserContextProvider>
-      </div>
+              <Route path="*" component={ErrorPage} />
+            </Switch>
+          </UserContextProvider>
+        </div>
+      </ThemeProvider>
     </div>
   );
 }

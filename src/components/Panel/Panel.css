@@ -5,6 +5,7 @@
   border-radius: 4px;
   padding: 16px;
   position: relative;
+  color: #EBDFCA;
 }
 
 .Panel__close {
@@ -19,6 +20,7 @@
   background-color: #095256;
   position: relative;
   padding: 16px;
+
 }
 
 .PanelCool svg {

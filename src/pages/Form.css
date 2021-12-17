@@ -10,7 +10,6 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  color: black;
   align-items: center;
 }
 
@@ -97,7 +96,6 @@
 }
 
 .parag {
-  color: black;
   font-weight: bold;
 }
 

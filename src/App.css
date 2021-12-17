@@ -19,11 +19,10 @@
 }
 
 :root {
-  --vert: #618469;
-  --beige: #FEF1E0;
-  --brown: #955E44;
-  --lightbrown: #DFD0C9;
-  --beigetresclair: #faf5f0;
+  --vertfonce: #1B2817;
+  --beige: #EBDFCA;
+  --vertclair:  #68917B;
+  --verttresclair: #9CC99F;
 }
 
 .App {

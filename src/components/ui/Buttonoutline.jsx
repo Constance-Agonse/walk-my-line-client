@@ -3,14 +3,12 @@ import { Button as MuiButton } from '@mui/material';
 
 // type: 'contained' | 'outlined'
 
-export const Button = ({ type, onClick, children }) => {
+export const Buttonoutline = ({ type, onClick, children }) => {
   const DefaultButton = styled(MuiButton)(() => ({
-    color: '#FFFFFF',
-    backgroundColor: '#68917B',
+    color: 'var(--vertclair)',
+    // backgroundColor: '#68917B',
     width: '100%',
-    paddingTop: '14px',
-    paddingBottom: '14px',
-    marginBottom: '14px'
+    border: 'var(--verttresclair)'
   }));
 
   return (

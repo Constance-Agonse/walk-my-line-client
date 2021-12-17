@@ -4,6 +4,7 @@ import cx from 'classnames';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import { Menu, MenuItem, Button } from '@mui/material';
 
+import { Buttonoutline } from '../ui/Buttonoutline';
 import { useAuth } from "./../../auth/UserContext";
 import { Logo } from "./Logo";
 import { getUserAvatarUrl } from '../../helpers/getUserAvatarUrl';
@@ -55,13 +56,17 @@ export const Header = () => {
   const renderCallToActionButton = () => {
     if (currentUser && location.pathname !== '/createSearchJourney') {
       return (
-        <Link className="Header__call-to-action" to='/createSearchJourney'>Create a journey</Link>
+        <Buttonoutline type="outlined">
+          <Link className="Header__call-to-action" to='/createSearchJourney'>Create a journey</Link>
+        </Buttonoutline>
       )
     }
 
     if (!currentUser) {
       return (
-        <Link className="Header__call-to-action" to='/auth/signin'>Sign in</Link>
+        <Buttonoutline type="outlined">
+          <Link className="Header__call-to-action" to='/auth/signin'>Sign in</Link>
+        </Buttonoutline>
       )
     }
 
@@ -80,6 +85,7 @@ export const Header = () => {
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
           onClick={handleClick}
+
         >
           <div
             className="Header__profile__pic"
