@@ -15,6 +15,7 @@ import './../components/ToggleSignin.css'
 
 
 import './Form.css';
+import { Panel } from "../components/Panel/Panel";
 // import { ToggleButtonGroup } from "@mui/material";
 
 
@@ -65,9 +66,10 @@ export default function Signin(props) {
           </span>
         </div> */}
       {/* </div> */}
-      <form className="form-container" onSubmit={handleSubmit} >
-        <div className="form-block">
-          {/* <label className="label" htmlFor="email">
+      <Panel className="form-container">
+        <form onSubmit={handleSubmit} >
+          <div className="form-block">
+            {/* <label className="label" htmlFor="email">
             email
           </label>
           <input
@@ -77,19 +79,18 @@ export default function Signin(props) {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           /> */}
-          <TextField
-            id="email"
-            className="TextField__input"
-            type="email"
-            value={email}
-            label="Email"
-            onChange={(e) => setEmail(e.target.value)}
-            variant="filled"
-            fullWidth
-          />
-        </div>
-        <div className="form-block">
-          {/* <label className="label" htmlFor="password">
+            <TextField
+              id="email"
+              type="email"
+              value={email}
+              label="Email"
+              onChange={(e) => setEmail(e.target.value)}
+              variant="filled"
+              fullWidth
+            />
+          </div>
+          <div className="form-block">
+            {/* <label className="label" htmlFor="password">
             password
           </label>
           <input
@@ -99,27 +100,27 @@ export default function Signin(props) {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           /> */}
-          <TextField
-            id="password"
-            className="TextField__input"
-            type="password"
-            label="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            variant="filled"
-            fullWidth
-          />
-        </div>
-        <MyButton variant="contained" type="submit">
-          Sign In
-        </MyButton>
-        <p className="parag">
-          No account yet ? please{" "}
-          <Link to="/auth/signup" className="link">
-            signup
-          </Link>
-        </p>
-      </form>
+            <TextField
+              id="password"
+              type="password"
+              label="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              variant="filled"
+              fullWidth
+            />
+          </div>
+          <MyButton variant="contained" type="submit">
+            Sign In
+          </MyButton>
+          <p className="parag">
+            No account yet ? please{" "}
+            <Link to="/auth/signup" className="link">
+              signup
+            </Link>
+          </p>
+        </form>
+      </Panel>
     </div>
   )
 }

@@ -19,7 +19,7 @@ import CreateSearchJourney from "./pages/CreateSearchJourney";
 import CreateJourney2 from "./pages/CreateJourney2";
 import Journey from "./pages/Journey"
 import ErrorPage from "./pages/ErrorPage";
-import Signup from "./pages/Signup";
+import Signup from "./pages/SignUp";
 import Signin from "./pages/Signin";
 import HomeSearch from "./pages/HomeSearch";
 
@@ -34,29 +34,30 @@ function App() {
 
 
   return (
+    <div className="wrap-app">
+      <div className="App">
+        <UserContextProvider>
+          <Switch>
+            {/* <Route exact path="/" component= {Home} /> */}
+            <ProtectedRoute exact path="/profile" component={ProfilePage} />
+            <ProtectedRoute exact path="/createSearchJourney" component={CreateJourneyPage} />
 
-    <div className="App">
-      <UserContextProvider>
-        <Switch>
-          {/* <Route exact path="/" component= {Home} /> */}
-          <ProtectedRoute exact path="/profile" component={ProfilePage} />
-          <ProtectedRoute exact path="/createSearchJourney" component={CreateJourneyPage} />
+            <ProtectedRoute exact path="/createSearchJourney/create2" component={CreateJourneyDetailsPage} />
+            {/* <Route exact path="/createSearchJourney/Pin" component = {CreatePinJourney} /> */}
+            <ProtectedRoute exact path="/journey" component={JourneyPage} />
+            {/* <Route exact path="/profile" component={Profile} /> */}
+            {/* <Route exact path="/createSearchJourney" component = {CreateSearchJourney} />         */}
+            {/* <Route exact path="/createSearchJourney/create2" component = {CreateJourney2} />    */}
+            {/* <Route exact path="/journey" component = {Journey} />  */}
 
-          <ProtectedRoute exact path="/createSearchJourney/create2" component={CreateJourneyDetailsPage} />
-          {/* <Route exact path="/createSearchJourney/Pin" component = {CreatePinJourney} /> */}
-          <ProtectedRoute exact path="/journey" component={JourneyPage} />
-          {/* <Route exact path="/profile" component={Profile} /> */}
-          {/* <Route exact path="/createSearchJourney" component = {CreateSearchJourney} />         */}
-          {/* <Route exact path="/createSearchJourney/create2" component = {CreateJourney2} />    */}
-          {/* <Route exact path="/journey" component = {Journey} />  */}
+            <Route exact path="/auth/signup" component={Signup} />
+            <Route exact path="/auth/signin" component={Signin} />
+            <Route exact path="/" component={AllJourneysPage} />
 
-          <Route exact path="/auth/signup" component={Signup} />
-          <Route exact path="/auth/signin" component={Signin} />
-          <Route exact path="/" component={AllJourneysPage} />
-
-          <Route path="*" component={ErrorPage} />
-        </Switch>
-      </UserContextProvider>
+            <Route path="*" component={ErrorPage} />
+          </Switch>
+        </UserContextProvider>
+      </div>
     </div>
   );
 }

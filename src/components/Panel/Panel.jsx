@@ -1,16 +1,14 @@
 import React from 'react';
-
-import { Close } from "@material-ui/icons";
+import cx from 'classnames';
 
 import "./Panel.css";
 
-export const Panel = ({ children, onClose }) => {
+export const Panel = ({ className, children, isHidable }) => {
+
   return (
-    <div className="Panel">
-      {onClose && (
-        <button className="Panel__close" onClick={onClose}>
-          <Close />
-        </button>
+    <div className={cx("Panel", className)}>
+      {isHidable && (
+        <div className="Panel__grip" />
       )}
       {children}
     </div>

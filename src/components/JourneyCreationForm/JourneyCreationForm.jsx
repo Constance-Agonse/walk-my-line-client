@@ -1,5 +1,6 @@
 import React from "react";
-import { Button, TextField } from '@material-ui/core';
+import { Button as MuiButton, TextField } from '@material-ui/core';
+import { Button } from '../ui';
 
 import { Callout } from '../Callout';
 import { Panel } from '../Panel';
@@ -85,7 +86,7 @@ export class JourneyCreationForm extends React.Component {
       return null;
     }
     return (
-      <Panel onClose={() => this.setState({ isCalloutOpened: true })}>
+      <Panel isHidable>
         <div className="JourneyCreationForm__pin-form">
           <p className="JourneyCreationForm__pin-form__desc">
             Please give more information to the place you've chosen on the map.
@@ -119,7 +120,7 @@ export class JourneyCreationForm extends React.Component {
             />
           </div>
           <div className="JourneyCreationForm__pin-form__desc__field--media">
-            <Button
+            <MuiButton
               variant="contained"
               component="label"
               fullWidth
@@ -132,11 +133,11 @@ export class JourneyCreationForm extends React.Component {
                 }}
                 ref={this.state.media}
               />
-            </Button>
+            </MuiButton>
           </div>
         </div>
         <div className="JourneyCreationForm__actions">
-          <Button variant="outlined" onClick={this.handleSubmit}>
+          <Button type="outlined" onClick={this.handleSubmit}>
             Save place
           </Button>
         </div>
@@ -188,7 +189,7 @@ export class JourneyCreationForm extends React.Component {
           </div>
         </div>
         <div className="JourneyCreationForm__actions">
-          <Button variant="outlined" onClick={() => {
+          <MuiButton variant="outlined" onClick={() => {
             this.props.createJourney({
               title: this.state.title,
               description: this.state.description,
@@ -196,7 +197,7 @@ export class JourneyCreationForm extends React.Component {
             })
           }}>
             Submit my trip
-          </Button>
+          </MuiButton>
         </div>
       </Panel>
     )
